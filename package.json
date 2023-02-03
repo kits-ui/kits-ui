@@ -12,7 +12,7 @@
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs",
     "check:ts": "vue-tsc --noEmit",
-    "check:eslint": "eslint .",
+    "check:eslint": "eslint \"**/*.{ts,tsx,vue}\"",
     "check:ci": "npm run check:ts && npm run check:eslint"
   },
   "keywords": [],
