@@ -12,9 +12,9 @@ dist
 dist-ssr
 *.local
 
-yarn.lock
-package-lock.json
-pnpm-lock.yaml
+docs/.vitepress/cache
+docs/.vitepress/dist
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
