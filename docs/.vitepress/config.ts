@@ -2,7 +2,7 @@ import { demoBlockPlugin } from 'vitepress-theme-demoblock';
 
 const sidebar = {
   '/': [
-    { text: '快速开始', items: [{ text: '介绍', link: '/' }] },
+    { text: '快速开始', items: [{ text: '介绍', link: '/guide/' }] },
     {
       text: '通用',
       items: [{ text: 'Button 按钮', link: '/components/button/' }],
@@ -15,8 +15,13 @@ const sidebar = {
   ],
 };
 const config = {
+  title: "Useless UI🌟",
   themeConfig: {
+    siteTitle: 'Useless UI🌟',
     sidebar,
+    socialLinks: [
+      { icon: 'github', link: 'https://github.com/useless-ui/useless-ui' }
+    ]
   },
   markdown: {
     config: (md) => {
