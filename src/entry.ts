@@ -1,5 +1,5 @@
 import { App } from "vue";
-import SFCButton from "./SFCButton.vue";
+import SFCButton from "./button/SFCButton.vue";
 import UButton from './button/index';
 import "uno.css";
 // 导出单独组件
