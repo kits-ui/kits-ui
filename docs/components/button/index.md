@@ -10,56 +10,19 @@
 ```vue
 <template>
  <div style="margin-bottom:20px;">
-  <UButton color="blue">主要按钮</UButton>
-  <UButton color="green">绿色按钮</UButton>
-  <UButton color="gray">灰色按钮</UButton>
-  <UButton color="yellow">黄色按钮</UButton>
-  <UButton color="red">红色按钮</UButton>
+  <UButton color="#0ea5e9" hoverColor="#38bdf8">default</UButton>
+  <UButton color="#22c55e" hoverColor="#4ade80">绿色按钮</UButton>
+  <UButton color="#6b7280" hoverColor="#9ca3af">灰色按钮</UButton>
+  <UButton color="#eab308 " hoverColor="#facc15">黄色按钮</UButton>
+  <UButton color="#ef4444" hoverColor="#f87171">红色按钮</UButton>
  </div>
  <div style="margin-bottom:20px;"
  >
-  <UButton color="blue" plain>朴素按钮</UButton>
-  <UButton color="green" plain>绿色按钮</UButton>
-  <UButton color="gray" plain>灰色按钮</UButton>
-  <UButton color="yellow" plain>黄色按钮</UButton>
-  <UButton color="red" plain>红色按钮</UButton>
- </div>
- <div style="margin-bottom:20px;">
-  <UButton size="small" plain>小按钮</UButton>
-  <UButton size="medium" plain>中按钮</UButton>
-  <UButton size="large" plain>大按钮</UButton>
- </div>
- <div style="margin-bottom:20px;">
-  <UButton color="blue" round plain icon="search">搜索按钮</UButton>
-  <UButton color="green" round plain icon="edit">编辑按钮</UButton>
-  <UButton color="gray" round plain icon="check">成功按钮</UButton>
-  <UButton color="yellow" round plain icon="message">提示按钮</UButton>
-  <UButton color="red" round plain icon="delete">删除按钮</UButton>
- </div>
- <div style="margin-bottom:20px;">
-  <UButton color="blue" round plain icon="search"></UButton>
-  <UButton color="green" round plain icon="edit"></UButton>
-  <UButton color="gray" round plain icon="check"></UButton>
-  <UButton color="yellow" round plain icon="message"></UButton>
-  <UButton color="red" round plain icon="delete"></UButton>
- </div>
-</template>
-```
-:::
-
-## 图标按钮
-
-带图标的按钮可增强辨识度（有文字）或节省空间（无文字）。
-
-:::demo 设置 icon 属性即可，icon 的列表可以参考 Element 的 icon 组件，也可以设置在文字右边的 icon ，只要使用 i 标签即可，可以使用自定义图标。
-
-```vue
-<template>
- <div class="flex flex-row">
-  <UButton icon="edit" plain></UButton>
-  <UButton icon="delete" plain></UButton>
-  <UButton icon="share" plain></UButton>
-  <UButton round plain icon="search">搜索</UButton>
+  <UButton color="#0ea5e9" hoverColor="#38bdf8" type="insert">insert</UButton>
+  <UButton color="#22c55e" hoverColor="#4ade80" type="insert">绿色按钮</UButton>
+  <UButton color="#6b7280" hoverColor="#9ca3af" type="insert">灰色按钮</UButton>
+  <UButton color="#eab308 " hoverColor="#facc15" type="insert">黄色按钮</UButton>
+  <UButton color="#ef4444" hoverColor="#f87171" type="insert">红色按钮</UButton>
  </div>
 </template>
 ```

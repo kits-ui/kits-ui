@@ -16,6 +16,8 @@ docs/.vitepress/cache
 yarn.lock
 package-lock.json
 pnpm-lock.yaml
+docs/.vitepress/dist
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
