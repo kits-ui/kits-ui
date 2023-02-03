@@ -10,7 +10,7 @@
 ```vue
 <template>
  <div style="margin-bottom:20px;">
-  <SFCButton color="blue">主要按钮</SFCButton>
+  <UButton color="blue">主要按钮</UButton>
   <UButton color="green">绿色按钮</UButton>
   <UButton color="gray">灰色按钮</UButton>
   <UButton color="yellow">黄色按钮</UButton>
