@@ -4,7 +4,7 @@
   </button>
 </template>
 <script lang="ts" setup>
-import { computed, ref } from 'vue';
+import { computed } from 'vue';
 
 // defineOptions({
 //   name: "UButton",
@@ -12,24 +12,24 @@ import { computed, ref } from 'vue';
 
 const props = defineProps({
   color: {
-    String,
+    type: String,
     default: '',
   },
   hoverColor: {
-    String,
+    type: String,
     default: '',
   },
   type: {
-    String,
+    type: String,
     default: 'default',
   },
 });
 
 const color = computed(() => {
-  return props.color
+  return props.color;
 });
 const hoverColor = computed(() => {
-  return props.hoverColor
+  return props.hoverColor;
 });
 
 const btnClass = () => {
