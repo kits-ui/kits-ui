@@ -13,12 +13,26 @@
     "docs:serve": "vitepress serve docs",
     "check:ts": "vue-tsc --noEmit",
     "check:eslint": "eslint \"**/*.{ts,tsx,vue}\"",
-    "check:ci": "npm run check:ts && npm run check:eslint"
+    "check:ci": "npm run check:ts && npm run check:eslint",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.{json,html,md,yaml}": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --write",
+      "npm run check:ci",
+      "git add"
+    ]
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "@commitlint/cli": "^17.4.2",
+    "@commitlint/config-conventional": "^17.4.2",
     "@iconify-json/ic": "1.1.4",
     "@types/node": "^18.11.18",
     "@typescript-eslint/eslint-plugin": "^5.50.0",
@@ -30,6 +44,8 @@
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-vue": "^9.9.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.1.0",
     "prettier": "^2.8.3",
     "typescript": "^4.9.5",
     "unocss": "0.45.6",
