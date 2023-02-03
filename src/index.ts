@@ -1,5 +1,5 @@
 import { createApp } from "vue/dist/vue.esm-browser"
-import UButton from "./button";
+// import UButton from "./button";
 import UseLessUI from './entry';
 // import aaa from './SFCButton.vue';
 
