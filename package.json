@@ -13,17 +13,21 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@iconify-json/ic": "1.1.4",
     "@types/node": "^18.11.18",
+    "@typescript-eslint/eslint-plugin": "^5.50.0",
+    "@typescript-eslint/parser": "^5.50.0",
     "@vitejs/plugin-vue": "^4.0.0",
     "@vitejs/plugin-vue-jsx": "^3.0.0",
+    "eslint": "^8.33.0",
+    "eslint-plugin-vue": "^9.9.0",
+    "prettier": "^2.8.3",
     "unocss": "0.45.6",
     "vite": "^4.0.3",
     "vitepress": "1.0.0-alpha.43",
-    "vitepress-theme-demoblock": "^2.0.2",
-    "prettier": "^2.8.3"
+    "vitepress-theme-demoblock": "^2.0.2"
   },
   "dependencies": {
     "sass": "^1.58.0",

@@ -26,10 +26,10 @@ const props = defineProps({
 });
 
 const color = computed(() => {
-  return props.color;
+  return props.color
 });
 const hoverColor = computed(() => {
-  return props.hoverColor;
+  return props.hoverColor
 });
 
 const btnClass = () => {
@@ -78,6 +78,9 @@ const btnClass = () => {
     bottom: 0;
     top: auto;
     height: 100%;
+  }
+  &:active {
+    top: 2px;
   }
 }
 </style>
