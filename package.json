@@ -25,6 +25,7 @@
     "vitepress-theme-demoblock": "^2.0.2"
   },
   "dependencies": {
+    "scss": "^0.2.4",
     "vue": "^3.2.45"
   }
 }
