@@ -5,7 +5,10 @@ const sidebar = {
     { text: '快速开始', items: [{ text: '介绍', link: '/guide/' }] },
     {
       text: '通用',
-      items: [{ text: 'Button 按钮', link: '/components/button/' }],
+      items: [
+        { text: 'Button 按钮', link: '/components/button/' },
+        { text: 'filterBox 搜索面板', link: '/components/filterBox/' },
+      ],
     },
     { text: '导航' },
     { text: '反馈' },
@@ -15,13 +18,11 @@ const sidebar = {
   ],
 };
 const config = {
-  title: "Useless UI🌟",
+  title: 'Useless UI🌟',
   themeConfig: {
     siteTitle: 'Useless UI🌟',
     sidebar,
-    socialLinks: [
-      { icon: 'github', link: 'https://github.com/useless-ui/useless-ui' }
-    ]
+    socialLinks: [{ icon: 'github', link: 'https://github.com/useless-ui/useless-ui' }],
   },
   markdown: {
     config: (md) => {

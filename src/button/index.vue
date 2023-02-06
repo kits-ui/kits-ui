@@ -13,11 +13,11 @@ import { computed } from 'vue';
 const props = defineProps({
   color: {
     type: String,
-    default: '',
+    default: '#2bc0ac',
   },
   hoverColor: {
     type: String,
-    default: '',
+    default: '#40d9c4',
   },
   type: {
     type: String,
