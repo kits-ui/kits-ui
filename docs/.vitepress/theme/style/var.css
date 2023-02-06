@@ -1,15 +1,15 @@
 :root {
   --vp-home-hero-name-color: transparent;
-  --vp-home-hero-name-background: linear-gradient( 135deg, #c8df8bf8 10%, #40d9c4 100%);
+  --vp-home-hero-name-background: linear-gradient( 135deg, #c8df8bf8 10%, #2bc0ac 100%);
   
   /* 图标背景 */
-  --vp-home-hero-image-background-image: linear-gradient( 135deg, #c8df8bf8 10%, #40d9c4 100%);
+  --vp-home-hero-image-background-image: linear-gradient( 135deg, #c8df8bf8 10%, #2bc0ac 100%);
   --vp-home-hero-image-filter: blur(150px);
-  --vp-c-brand: #40d9c4;
+  --vp-c-brand: #2bc0ac;
 }
 
 .VPContent .VPHome .VPHero.VPHomeHero .actions .VPButton.medium.brand{
-  background-color: #40d9c4;
+  background-color: #2bc0ac;
 }
 
   /*滚动条宽或高*/
