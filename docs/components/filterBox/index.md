@@ -6,14 +6,14 @@
 
 ```vue
 <template>
-  <FilterBox :filterData="filterData" :isClean="isClean"></FilterBox>
+  <FilterBox :filterData="data" :isClean="isClean" @filterSelectData="filterSelectData"></FilterBox>
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue';
 
 const isClean = ref(true);
-const filterData = ref<any>([
+const data = ref([
   {
     id: 'f9ff118f9bd94f2ab6b1afdcef7efa16',
     parentId: null,
@@ -211,5 +211,9 @@ const filterData = ref<any>([
     ],
   },
 ]);
+
+const filterSelectData = (value) => {
+  console.log(value, 5666);
+};
 </script>
 ```
