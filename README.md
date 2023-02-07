@@ -6,8 +6,9 @@
 2. 使用 http 或 ssh clone 个人仓库
 3. 在 clone 后的个人仓库中 通过 git remote add 主仓库名 主仓库 ssh 添加一条主仓库链接 例如： git remote add uselessui git@github.com:useless-ui/useless-ui.git
 4. 在后续开发中 拉取主仓库 dev 的代码到本地，保证代码为最新， 推送代码则是到个人仓库 即： pull uselessui / push origin
-5. 提交 pr -> 发起 个人仓库到主仓库的 pr  origin推送到uselessui的dev分支
-6. 通过检测无冲突后进行合并
+5. 在每次 push 代码前, 拉取一次主仓库代码,保证提交上去不会有冲突
+6. 提交 pr -> 发起 个人仓库到主仓库的 pr origin 推送到 uselessui 的 dev 分支
+7. 通过检测无冲突后进行合并
 
 ## 项目目录介绍
 
