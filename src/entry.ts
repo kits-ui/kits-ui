@@ -1,8 +1,10 @@
 import { App } from 'vue';
 // import SFCButton from "./button/SFCButton.vue";
 import 'uno.css';
+import './style.css';
 import UButton from './button/index.vue';
 import FilterBox from './filterBox/index.vue';
+import UAuthCode from './authCode/index.vue';
 // 导出单独组件
 export { UButton };
 
@@ -13,5 +15,6 @@ export default {
     // app.component(SFCButton.name, SFCButton);
     app.component('UButton', UButton);
     app.component('UFilterBox', FilterBox);
+    app.component('UAuthCode', UAuthCode);
   },
 };

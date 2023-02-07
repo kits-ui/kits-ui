@@ -321,7 +321,7 @@ const closeNav = (value) => {
     justify-content: space-between;
 
     .left {
-      color: #606266;
+      color: var(--font-color);
       padding-left: 2px;
     }
 
@@ -336,20 +336,20 @@ const closeNav = (value) => {
         height: 24px;
         line-height: 24px;
         margin-right: 44px;
-        border: 1px solid #ebeef5;
+        border: 1px solid var(--border-color);
         // border-image: tr;
-        color: #606266;
+        color: var(--font-color);
         margin-bottom: 10px;
-        background-color: #fafafa;
+        background-color: var(--zebra-bg);
         cursor: pointer;
 
         &:hover {
-          border-color: #40d9c4;
-          background: #fafafa;
+          border-color: var(--theme-hover-color);
+          background: var(--zebra-bg);
 
           span {
             z-index: 50;
-            background: #fafafa;
+            background: var(--zebra-bg);
           }
 
           // border: 1px solid #1683C8;
@@ -370,8 +370,8 @@ const closeNav = (value) => {
 
           // border-bottom: 1px solid #000;
           &:hover {
-            // color: #40d9c4;
-            border-bottom: 1px solid #fafafa;
+            // color: var(--theme-hover-color);
+            border-bottom: 1px solid var(--zebra-bg);
           }
         }
 
@@ -381,8 +381,8 @@ const closeNav = (value) => {
           left: -1px;
           top: 21px;
           width: 300px;
-          background: #fafafa;
-          border: 1px solid #40d9c4;
+          background: var(--zebra-bg);
+          border: 1px solid var(--theme-hover-color);
           // border-image-source: linear-gradient(to bottom, #1683c8, #082bb1);
           // border-image-slice: 1;
           z-index: 22;
@@ -403,7 +403,7 @@ const closeNav = (value) => {
               margin-right: 16px;
 
               &:hover {
-                color: #40d9c4;
+                color: var(--theme-hover-color);
               }
             }
           }
@@ -412,7 +412,7 @@ const closeNav = (value) => {
             display: block;
 
             & + span {
-              border-bottom: 1px solid #fafafa;
+              border-bottom: 1px solid var(--zebra-bg);
             }
           }
         }
@@ -423,7 +423,7 @@ const closeNav = (value) => {
           top: -1px;
           width: 24px;
           height: 24px;
-          background-color: #40d9c4;
+          background-color: var(--theme-hover-color);
 
           &::after {
             position: absolute;
@@ -459,11 +459,11 @@ const closeNav = (value) => {
         height: 36px;
         float: left;
         border: none;
-        color: #606266;
+        color: var(--font-color);
         font-size: 14px;
 
         &:hover {
-          color: #40d9c4;
+          color: var(--theme-hover-color);
           border: none;
         }
 
@@ -483,11 +483,11 @@ const closeNav = (value) => {
   }
 
   .line {
-    border: 1px solid #ebeef5;
+    border: 1px solid var(--border-color);
     border-bottom: none;
 
     &:last-child {
-      border: 1px solid #ebeef5;
+      border: 1px solid var(--border-color);
     }
   }
 
@@ -503,8 +503,8 @@ const closeNav = (value) => {
       padding-left: 20px;
       white-space: nowrap;
       overflow: hidden;
-      background-color: #fafafa;
-      color: #606266;
+      background-color: var(--zebra-bg);
+      color: var(--font-color);
     }
 
     .row-value {
@@ -547,15 +547,15 @@ const closeNav = (value) => {
           margin-right: 50px;
           text-align: left;
           cursor: pointer;
-          color: #606266;
+          color: var(--font-color);
 
           &:hover {
-            color: #40d9c4;
+            color: var(--theme-hover-color);
           }
         }
 
         .clickSelected {
-          color: #40d9c4;
+          color: var(--theme-hover-color);
         }
       }
     }
@@ -572,7 +572,7 @@ const closeNav = (value) => {
     .row-btn {
       width: 210px;
       position: relative;
-      background-color: #fafafa;
+      background-color: var(--zebra-bg);
       padding-top: 8px;
 
       button {
@@ -626,7 +626,7 @@ const closeNav = (value) => {
         // margin: auto;
         .confirm {
           background-color: transparent;
-          color: #606266;
+          color: var(--font-color);
           border: 1px solid #97abea;
           cursor: default;
           opacity: 0.2;
@@ -657,7 +657,7 @@ const closeNav = (value) => {
         margin-right: 32px;
         cursor: pointer;
         user-select: none;
-        color: #606266;
+        color: var(--font-color);
 
         i {
           position: absolute;
@@ -666,13 +666,13 @@ const closeNav = (value) => {
           display: inline-block;
           height: 12px;
           width: 12px;
-          border: 1px solid #3bd3be;
+          border: 1px solid var(--theme-color);
           font-size: 0;
         }
 
         .selected {
-          border-color: #3bd3be;
-          background-color: #3bd3be;
+          border-color: var(--theme-color);
+          background-color: var(--theme-color);
         }
       }
     }
@@ -693,26 +693,26 @@ ul {
 }
 
 button {
-  border: 1px solid #3bd3be;
-  color: #606266;
+  border: 1px solid var(--theme-color);
+  color: var(--font-color);
   font-size: 12px;
   line-height: 1;
   cursor: pointer;
 
   &:hover {
-    border: 1px solid #40d9c4;
-    color: #40d9c4;
+    border: 1px solid var(--theme-hover-color);
+    color: var(--theme-hover-color);
   }
 }
 
 .showBtn {
   background-color: transparent;
-  color: #606266;
+  color: var(--font-color);
   pointer-events: auto;
   transition: all 0.5s;
 
   &:hover {
-    background-color: #40d9c4;
+    background-color: var(--theme-hover-color);
     color: #fff;
   }
 }
