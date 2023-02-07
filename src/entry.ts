@@ -14,7 +14,7 @@ export default {
   install(app: App): void {
     // app.component(SFCButton.name, SFCButton);
     app.component('UButton', UButton);
-    app.component('FilterBox', FilterBox);
+    app.component('UFilterBox', FilterBox);
     app.component('UAuthCode', UAuthCode);
   },
 };
