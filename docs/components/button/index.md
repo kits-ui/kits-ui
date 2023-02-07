@@ -25,4 +25,14 @@
 </template>
 ```
 
-<!-- <demo src="../../demo/button.vue" desc="使用 `type`、`plain`、`round` 和 `circle` 来定义按钮的样式。"></demo> -->
+:::
+
+# Button API
+
+## Button 属性
+
+| 属性名     | 说明                       | 类型   | 默认值  |
+| ---------- | -------------------------- | ------ | ------- |
+| color      | 按钮背景色                 | string | ---     |
+| hoverColor | 按钮 hover 时的背景色      | string | ---     |
+| type       | 按钮类型(insert: 内部动效) | string | default |
