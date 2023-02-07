@@ -45,7 +45,7 @@ const btnClass = () => {
   }
 };
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 .u-button {
   border-radius: 5px;
   background-color: v-bind(color);
@@ -53,34 +53,34 @@ const btnClass = () => {
   &::after {
     transition: all 0.3s ease;
   }
-}
-.default:hover {
-  background-color: v-bind(hoverColor);
-}
-.insert {
-  position: relative;
-  color: #fff;
-  z-index: 1;
-  border: none;
-  overflow: hidden;
-  &::after {
-    position: absolute;
-    content: '';
-    width: 100%;
-    height: 0;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    border-radius: 5px;
+  &.default:hover {
     background-color: v-bind(hoverColor);
   }
-  &:hover::after {
-    bottom: 0;
-    top: auto;
-    height: 100%;
-  }
-  &:active {
-    top: 2px;
+  &.insert {
+    position: relative;
+    color: #fff;
+    z-index: 1;
+    border: none;
+    overflow: hidden;
+    &::after {
+      position: absolute;
+      content: '';
+      width: 100%;
+      height: 0;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      border-radius: 5px;
+      background-color: v-bind(hoverColor);
+    }
+    &:hover::after {
+      bottom: 0;
+      top: auto;
+      height: 100%;
+    }
+    &:active {
+      top: 2px;
+    }
   }
 }
 </style>
