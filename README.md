@@ -44,7 +44,7 @@
 │
 └─src                               // 组件书写位置
     │  entry.ts                     // 注册组件
-    │  index.ts                     // 目前没啥用....
+    │  style.css                    // 全局变量
     │
     └─button                        // 按钮示例组件
             index.vue               // vue组件示例

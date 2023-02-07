@@ -1,6 +1,7 @@
 import { App } from 'vue';
 // import SFCButton from "./button/SFCButton.vue";
 import 'uno.css';
+import './style.css';
 import UButton from './button/index.vue';
 import FilterBox from './filterBox/index.vue';
 // 导出单独组件
