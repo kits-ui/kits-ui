@@ -7,12 +7,11 @@ import FilterBox from './filterBox/index.vue';
 export { UButton };
 
 // 编写一个插件，实现一个install方法
-
-console.log(UButton.name, 'UButton.nameUButton.nameUButton.nameUButton.name');
+// app.component(组件名称, 组件实例);
 export default {
   install(app: App): void {
     // app.component(SFCButton.name, SFCButton);
     app.component('UButton', UButton);
-    app.component('FilterBox', FilterBox);
+    app.component('UFilterBox', FilterBox);
   },
 };
