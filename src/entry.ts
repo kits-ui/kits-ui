@@ -1,6 +1,7 @@
 import { App } from 'vue';
 // import SFCButton from "./button/SFCButton.vue";
 import 'uno.css';
+import './style.css';
 import UButton from './button/index.vue';
 import FilterBox from './filterBox/index.vue';
 import UAuthCode from './authCode/index.vue';
@@ -8,8 +9,7 @@ import UAuthCode from './authCode/index.vue';
 export { UButton };
 
 // 编写一个插件，实现一个install方法
-
-console.log(UButton.name, 'UButton.nameUButton.nameUButton.nameUButton.name');
+// app.component(组件名称, 组件实例);
 export default {
   install(app: App): void {
     // app.component(SFCButton.name, SFCButton);

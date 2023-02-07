@@ -46,7 +46,7 @@
                   @click="data.multipleIndex === i ? liSelected(iItem.id) : liClick(item, iItem.id)"
                 >
                   <i :class="data.selectList.includes(iItem.id) === true ? 'selected' : ''"></i>
-                  {{ item.name === '资产服务' ? iItem.title : iItem.name }}
+                  {{ iItem.name }}
                 </li>
               </ul>
               <div class="btn">
@@ -91,7 +91,7 @@ const props = defineProps({
   },
 });
 
-// const emit = defineEmits(['filterSelectData']);
+const emit = defineEmits(['onSelectData']);
 
 const data = reactive<any>({
   currentList: [],
@@ -260,41 +260,21 @@ const confirm = (value, num) => {
   organizeData(value, num);
   // this.close()
   data.multipleIndex = '';
-  // filterBoxObj(value);
+  filterBoxObj();
 };
 
-// const filterBoxObj = (value) => {
-//   const obj = {};
-//   console.log(data.navList, 111);
-//   data.navList.map((item) => {
-//     const childIdStr = item.selectedList
-//       .map((iItem) => {
-//         return iItem.id;
-//       })
-//       .join(',');
-//     switch (item.name) {
-//       case '网络域':
-//         obj['netTagIds'] = childIdStr;
-//         break;
-//       case '组织机构':
-//         obj['orgTagIds'] = childIdStr;
-//         break;
-//       case '资产管理员':
-//         obj['personTagIds'] = childIdStr;
-//         break;
-//       case '资产类型':
-//         obj['categoryIds'] = childIdStr;
-//         break;
-//       case '操作系统':
-//         obj['operateSystemIds'] = childIdStr;
-//         break;
-//       case '资产服务':
-//         obj['typeIds'] = childIdStr;
-//         break;
-//     }
-//   });
-//   emit('filterSelectData', obj);
-// };
+const filterBoxObj = () => {
+  const obj = {};
+  data.navList.map((item) => {
+    const childIdStr = item.selectedList
+      .map((iItem) => {
+        return iItem.id;
+      })
+      .join(',');
+    obj[item.name] = childIdStr;
+  });
+  emit('onSelectData', obj);
+};
 
 const isFold = () => {
   data.currentType = !data.currentType;
@@ -315,249 +295,10 @@ const closeNav = (value) => {
   });
   data.selectLi = arr;
   nextTick(() => {
-    // filterBoxObj(value);
+    filterBoxObj();
   });
 };
 </script>
-
-<!-- <script lang="ts">
-export default {
-  name: 'filterBox',
-  props: {
-    isClean: {
-      type: Boolean,
-      default: false,
-    },
-    data: {
-      type: Array,
-      default: () => [],
-    },
-  },
-  data() {
-    return {
-      currentList: [],
-      currentType: false,
-      isOpenList: [],
-      openIndex: null,
-      multipleIndex: '',
-      selectList: [],
-      selectLi: [], // 当前选择的li数组
-      navList: [],
-      filterBoxData: [],
-    };
-  },
-  watch: {
-    isClean(newVal) {
-      if (newVal) {
-        this.navList = [];
-        this.selectLi = [];
-      }
-    },
-  },
-  mounted() {
-    this.init();
-  },
-  methods: {
-    // 判断是否显示展开按钮
-    async init() {
-      await this.getAllQueryTags();
-      const arr = [];
-      for (let i = 0; i < this.$refs.rowValueList.length; i++) {
-        if (this.$refs.rowValueList[i].clientHeight > 85) {
-          arr.push(i);
-        }
-      }
-      this.isOpenList = arr;
-    },
-    async getAllQueryTags() {
-      this.filterBoxData = this.data;
-    },
-    // 右侧多选按钮
-    rowBtn(value, i) {
-      // 赋值当前触发行的index 改变样式
-      this.multipleIndex = i;
-      // 从已选择的列表中获取当前行中的选中项 -----回显
-      const arr = this.navList.filter((item) => {
-        return item.id === value.id;
-      });
-      // 当选中列表中有当前列的已选项时
-      if (arr.length > 0) {
-        // 将已选择项赋值当前行的选择数组this.selectList
-        this.selectList = arr[0].selectedList.map((item) => {
-          return item.id;
-        });
-      } else {
-        // 若选中列表没有当前列的已选项时,将选择数组置空
-        this.selectList = [];
-      }
-      this.currentList = [...this.selectLi];
-      this.resetscroll(i);
-    },
-    open(i) {
-      // 赋值当前触发行的index 改变样式
-      // 先将非当前列的展开样式变为收起,一次只能展开一行 dom元素数组为伪数组因此无法使用map filter
-      for (let ii = 0; ii < this.$refs.rowValue.length; ii++) {
-        if (ii !== i) {
-          // 判断遍历的rowValue是否有展开的样式openRow
-          if (this.$refs.rowValue[ii].classList.contains('openRow')) {
-            this.$refs.rowValue[ii].classList.remove('openRow');
-          }
-        }
-      }
-      // 对当前点击的一行进行样式修改
-      this.$refs.rowValue[i].classList.add('openRow');
-      // 存储当前行的index给到按钮,来控制展开与收起
-      this.openIndex = i;
-      // 展开的时候将之前的滚动高度置为0
-      this.resetscroll(i);
-    },
-    // 收起
-    folded(i) {
-      // 去除当前行的展开样式
-      this.$refs.rowValue[i].classList.remove('openRow');
-      // 将index清空
-      this.openIndex = null;
-    },
-    // 点击收起时,将滚动到最上面
-    resetscroll(i) {
-      this.$nextTick(() => {
-        this.$refs.rowList[i].scrollTop = 0;
-      });
-    },
-    // 取消按钮
-    close() {
-      this.selectLi = [...this.currentList];
-      this.selectList = [];
-      this.multipleIndex = '';
-    },
-    // 单选
-    async liClick(item, value) {
-      // num 0 单选  1多选
-      await this.liSelected(value);
-      await this.confirm(item, 0);
-    },
-    // 点击勾选(多选)
-    liSelected(value) {
-      // 判断当前是否已勾选
-      if (this.selectList.includes(value)) {
-        this.selectList = this.selectList.filter((item) => {
-          return item !== value;
-        });
-
-        this.selectLi = this.selectLi.filter((item) => {
-          return item !== value;
-        });
-      } else {
-        // 当前所选的li高亮的数组
-        this.selectLi.push(value);
-        // 当前多选的li
-        this.selectList.push(value);
-      }
-    },
-    // 数据整理
-    organizeData(value, num) {
-      if (this.selectList.length === 0) {
-        return;
-      }
-      const obj = {
-        id: value.id,
-        name: value.name,
-        selectedList: [],
-      };
-      this.selectList.map((item) => {
-        value.childList.filter((i) => {
-          if (item === i.id) {
-            obj.selectedList.push(i);
-          }
-        });
-      });
-      // 判断当前是新增列表还是修改列表
-      let currentIndex = null;
-      const currentArr = this.navList.filter((item, i) => {
-        if (item.id === value.id) {
-          currentIndex = i;
-          return item;
-        }
-      });
-      // 如果是修改 则去重后重新赋值
-      if (currentArr.length > 0) {
-        if (num === 0) {
-          this.navList[currentIndex].selectedList.push(...obj.selectedList);
-        } else {
-          this.navList[currentIndex].selectedList = obj.selectedList;
-        }
-        this.navList[currentIndex].selectedList = [
-          ...new Set(this.navList[currentIndex].selectedList),
-        ];
-      } else {
-        // 如果是新增则push
-        this.navList.push(obj);
-      }
-      this.selectList = [];
-    },
-    // 多选确定
-    confirm(value, num) {
-      this.organizeData(value, num);
-      // this.close()
-      this.multipleIndex = '';
-      this.filterBoxObj();
-    },
-    filterBoxObj() {
-      const obj = {};
-      console.log(this.navList, 111);
-      this.navList.map((item) => {
-        const childIdStr = item.selectedList
-          .map((iItem) => {
-            return iItem.id;
-          })
-          .join(',');
-        switch (item.name) {
-          case '网络域':
-            obj['netTagIds'] = childIdStr;
-            break;
-          case '组织机构':
-            obj['orgTagIds'] = childIdStr;
-            break;
-          case '资产管理员':
-            obj['personTagIds'] = childIdStr;
-            break;
-          case '资产类型':
-            obj['categoryIds'] = childIdStr;
-            break;
-          case '操作系统':
-            obj['operateSystemIds'] = childIdStr;
-            break;
-          case '资产服务':
-            obj['typeIds'] = childIdStr;
-            break;
-        }
-      });
-      this.$emit('filterSelectData', obj);
-    },
-    isFold() {
-      this.currentType = !this.currentType;
-    },
-    // 删除所选大类
-    closeNav(value) {
-      const arr = [];
-      // 删除所选navList
-      this.navList = this.navList.filter((item) => {
-        return item.id !== value.id;
-      });
-      // 清除高亮
-      this.navList.map((item) => {
-        item.selectedList.map((ii) => {
-          arr.push(ii.id);
-        });
-      });
-      this.selectLi = arr;
-      this.$nextTick(() => {
-        this.filterBoxObj(value);
-      });
-    },
-  },
-};
-</script> -->
 
 <style scoped lang="scss">
 .line:after {
@@ -580,7 +321,7 @@ export default {
     justify-content: space-between;
 
     .left {
-      color: #606266;
+      color: var(--font-color);
       padding-left: 2px;
     }
 
@@ -595,20 +336,20 @@ export default {
         height: 24px;
         line-height: 24px;
         margin-right: 44px;
-        border: 1px solid #ebeef5;
+        border: 1px solid var(--border-color);
         // border-image: tr;
-        color: #606266;
+        color: var(--font-color);
         margin-bottom: 10px;
-        background-color: #fafafa;
+        background-color: var(--zebra-bg);
         cursor: pointer;
 
         &:hover {
-          border-color: #40d9c4;
-          background: #fafafa;
+          border-color: var(--theme-hover-color);
+          background: var(--zebra-bg);
 
           span {
             z-index: 50;
-            background: #fafafa;
+            background: var(--zebra-bg);
           }
 
           // border: 1px solid #1683C8;
@@ -629,8 +370,8 @@ export default {
 
           // border-bottom: 1px solid #000;
           &:hover {
-            // color: #40d9c4;
-            border-bottom: 1px solid #fafafa;
+            // color: var(--theme-hover-color);
+            border-bottom: 1px solid var(--zebra-bg);
           }
         }
 
@@ -640,8 +381,8 @@ export default {
           left: -1px;
           top: 21px;
           width: 300px;
-          background: #fafafa;
-          border: 1px solid #40d9c4;
+          background: var(--zebra-bg);
+          border: 1px solid var(--theme-hover-color);
           // border-image-source: linear-gradient(to bottom, #1683c8, #082bb1);
           // border-image-slice: 1;
           z-index: 22;
@@ -662,7 +403,7 @@ export default {
               margin-right: 16px;
 
               &:hover {
-                color: #40d9c4;
+                color: var(--theme-hover-color);
               }
             }
           }
@@ -671,7 +412,7 @@ export default {
             display: block;
 
             & + span {
-              border-bottom: 1px solid #fafafa;
+              border-bottom: 1px solid var(--zebra-bg);
             }
           }
         }
@@ -682,7 +423,7 @@ export default {
           top: -1px;
           width: 24px;
           height: 24px;
-          background-color: #40d9c4;
+          background-color: var(--theme-hover-color);
 
           &::after {
             position: absolute;
@@ -718,11 +459,11 @@ export default {
         height: 36px;
         float: left;
         border: none;
-        color: #606266;
+        color: var(--font-color);
         font-size: 14px;
 
         &:hover {
-          color: #40d9c4;
+          color: var(--theme-hover-color);
           border: none;
         }
 
@@ -742,11 +483,11 @@ export default {
   }
 
   .line {
-    border: 1px solid #ebeef5;
+    border: 1px solid var(--border-color);
     border-bottom: none;
 
     &:last-child {
-      border: 1px solid #ebeef5;
+      border: 1px solid var(--border-color);
     }
   }
 
@@ -762,8 +503,8 @@ export default {
       padding-left: 20px;
       white-space: nowrap;
       overflow: hidden;
-      background-color: #fafafa;
-      color: #606266;
+      background-color: var(--zebra-bg);
+      color: var(--font-color);
     }
 
     .row-value {
@@ -806,15 +547,15 @@ export default {
           margin-right: 50px;
           text-align: left;
           cursor: pointer;
-          color: #606266;
+          color: var(--font-color);
 
           &:hover {
-            color: #40d9c4;
+            color: var(--theme-hover-color);
           }
         }
 
         .clickSelected {
-          color: #40d9c4;
+          color: var(--theme-hover-color);
         }
       }
     }
@@ -831,7 +572,7 @@ export default {
     .row-btn {
       width: 210px;
       position: relative;
-      background-color: #fafafa;
+      background-color: var(--zebra-bg);
       padding-top: 8px;
 
       button {
@@ -885,7 +626,7 @@ export default {
         // margin: auto;
         .confirm {
           background-color: transparent;
-          color: #606266;
+          color: var(--font-color);
           border: 1px solid #97abea;
           cursor: default;
           opacity: 0.2;
@@ -916,7 +657,7 @@ export default {
         margin-right: 32px;
         cursor: pointer;
         user-select: none;
-        color: #606266;
+        color: var(--font-color);
 
         i {
           position: absolute;
@@ -925,13 +666,13 @@ export default {
           display: inline-block;
           height: 12px;
           width: 12px;
-          border: 1px solid #3bd3be;
+          border: 1px solid var(--theme-color);
           font-size: 0;
         }
 
         .selected {
-          border-color: #3bd3be;
-          background-color: #3bd3be;
+          border-color: var(--theme-color);
+          background-color: var(--theme-color);
         }
       }
     }
@@ -952,26 +693,26 @@ ul {
 }
 
 button {
-  border: 1px solid #3bd3be;
-  color: #606266;
+  border: 1px solid var(--theme-color);
+  color: var(--font-color);
   font-size: 12px;
   line-height: 1;
   cursor: pointer;
 
   &:hover {
-    border: 1px solid #40d9c4;
-    color: #40d9c4;
+    border: 1px solid var(--theme-hover-color);
+    color: var(--theme-hover-color);
   }
 }
 
 .showBtn {
   background-color: transparent;
-  color: #606266;
+  color: var(--font-color);
   pointer-events: auto;
   transition: all 0.5s;
 
   &:hover {
-    background-color: #40d9c4;
+    background-color: var(--theme-hover-color);
     color: #fff;
   }
 }
