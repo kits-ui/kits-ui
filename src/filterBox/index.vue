@@ -91,7 +91,7 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(['filterSelectData']);
+const emit = defineEmits(['onSelectData']);
 
 const data = reactive<any>({
   currentList: [],
@@ -273,7 +273,7 @@ const filterBoxObj = () => {
       .join(',');
     obj[item.name] = childIdStr;
   });
-  emit('filterSelectData', obj);
+  emit('onSelectData', obj);
 };
 
 const isFold = () => {
