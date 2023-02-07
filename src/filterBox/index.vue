@@ -1,5 +1,5 @@
 <template>
-  <div id="filterBox">
+  <div class="u-filter-box">
     <section class="top">
       <div class="left">标签筛选 ></div>
       <div class="center">
@@ -300,16 +300,8 @@ const closeNav = (value) => {
 };
 </script>
 
-<style scoped lang="scss">
-.line:after {
-  content: '';
-  display: block;
-  clear: both;
-  height: 0;
-  visibility: hidden;
-}
-
-#filterBox {
+<style lang="scss">
+.u-filter-box {
   font-size: 12px;
   width: 100%;
   background-color: transparent;
@@ -685,35 +677,41 @@ const closeNav = (value) => {
       }
     }
   }
-}
-
-ul {
-  list-style: none;
-  user-select: none;
-}
-
-button {
-  border: 1px solid var(--theme-color);
-  color: var(--font-color);
-  font-size: 12px;
-  line-height: 1;
-  cursor: pointer;
-
-  &:hover {
-    border: 1px solid var(--theme-hover-color);
-    color: var(--theme-hover-color);
+  ul {
+    list-style: none;
+    user-select: none;
   }
-}
 
-.showBtn {
-  background-color: transparent;
-  color: var(--font-color);
-  pointer-events: auto;
-  transition: all 0.5s;
+  button {
+    border: 1px solid var(--theme-color);
+    color: var(--font-color);
+    font-size: 12px;
+    line-height: 1;
+    cursor: pointer;
 
-  &:hover {
-    background-color: var(--theme-hover-color);
-    color: #fff;
+    &:hover {
+      border: 1px solid var(--theme-hover-color);
+      color: var(--theme-hover-color);
+    }
+  }
+
+  .showBtn {
+    background-color: transparent;
+    color: var(--font-color);
+    pointer-events: auto;
+    transition: all 0.5s;
+
+    &:hover {
+      background-color: var(--theme-hover-color);
+      color: #fff;
+    }
+  }
+  .line:after {
+    content: '';
+    display: block;
+    clear: both;
+    height: 0;
+    visibility: hidden;
   }
 }
 </style>
