@@ -4,7 +4,9 @@
 
 ## 基础用法
 
-:::demo 使用`color`、`hoverColor`、`type`属性来定义 Button 的样式。
+使用`color`、`hoverColor`、`type`属性来定义 Button 的样式。
+
+:::demo
 
 ```vue
 <template>
