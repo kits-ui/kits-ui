@@ -18,6 +18,7 @@ const sidebar = {
         { text: 'Button 按钮', link: '/components/button/' },
         { text: 'filterBox 搜索面板', link: '/components/filterBox/' },
         { text: 'authCode 验证码', link: '/components/authCode/' },
+        { text: 'notification 通知', link: '/components/notification/' },
       ],
     },
     { text: '导航' },
