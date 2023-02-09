@@ -1,5 +1,10 @@
 <template>
-  <button class="u-button px-4 py-1 font-semibold cursor-pointer m-1" :class="btnClass()">
+  <button
+    class="u-button font-semibold"
+    :class="btnClass()"
+    @click="handleClick"
+    :disabled="props.disabled"
+  >
     <slot />
   </button>
 </template>
@@ -15,34 +20,39 @@ const props = defineProps({
     type: String,
     default: '#2bc0ac',
   },
-  hoverColor: {
-    type: String,
-    default: '#40d9c4',
-  },
   type: {
     type: String,
     default: 'default',
   },
+  direction: {
+    type: String,
+    default: 'bottom',
+  },
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
 });
+
+const emits = defineEmits(['click']);
 
 const color = computed(() => {
   return props.color;
 });
-const hoverColor = computed(() => {
-  return props.hoverColor;
-});
 
 const btnClass = () => {
-  if (props.type === 'default') {
-    return `
-      shadow-md
-      border-none
-      text-white
-      default
-    `;
-  } else if (props.type === 'insert') {
-    return 'insert';
+  let classStr = 'default';
+  if (props.type === 'insert') {
+    classStr = `insert ${props.direction}`;
   }
+  if (typeof props.disabled === 'boolean' && props.disabled) {
+    classStr += ' is-disabled';
+  }
+  return classStr;
+};
+
+const handleClick = () => {
+  emits('click');
 };
 </script>
 <style lang="scss">
@@ -50,11 +60,16 @@ const btnClass = () => {
   border-radius: 5px;
   background-color: v-bind(color);
   transition: all 0.3s ease;
+  cursor: pointer;
+  margin: 4px;
+  padding: 4px 16px;
+  border: none;
+  color: white;
   &::after {
     transition: all 0.3s ease;
   }
   &.default:hover {
-    background-color: v-bind(hoverColor);
+    filter: brightness(1.1);
   }
   &.insert {
     position: relative;
@@ -65,21 +80,76 @@ const btnClass = () => {
     &::after {
       position: absolute;
       content: '';
-      width: 100%;
-      height: 0;
-      top: 0;
-      left: 0;
       z-index: -1;
       border-radius: 5px;
-      background-color: v-bind(hoverColor);
+      background-color: inherit;
+      filter: brightness(1.1);
     }
-    &:hover::after {
+    &.top::after,
+    &.bottom::after {
+      width: 100%;
+      height: 0;
+    }
+    // direction=top
+    &.top::after {
+      bottom: 0;
+      left: 0;
+    }
+    &.top:hover::after {
+      top: 0;
+      bottom: auto;
+      height: 100%;
+    }
+    // direction=bottom
+    &.bottom::after {
+      top: 0;
+      left: 0;
+    }
+    &.bottom:hover::after {
       bottom: 0;
       top: auto;
       height: 100%;
     }
+    &.left::after,
+    &.right::after {
+      width: 0;
+      height: 100%;
+    }
+    // direction=left
+    &.left::after {
+      top: 0;
+      right: 0;
+    }
+    &.left:hover::after {
+      left: 0;
+      right: auto;
+      width: 100%;
+    }
+    // direction=right
+    &.right::after {
+      top: 0;
+      left: 0;
+    }
+    &.right:hover::after {
+      right: 0;
+      left: auto;
+      width: 100%;
+    }
     &:active {
       top: 2px;
+    }
+  }
+  &.is-disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+    &:active {
+      top: 0;
+    }
+    &:hover {
+      filter: unset;
+    }
+    &:hover::after {
+      content: unset;
     }
   }
 }
