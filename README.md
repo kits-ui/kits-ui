@@ -54,15 +54,10 @@
             jsxdemo.tsx             // jsx组件demo示例
 ```
 
-:::tip
-测试页面如何打开?
+> **测试页面如何打开?**
+> **运行 npm run build 生成 dist 文件, 再运行 npm start 打开测试页面**
 
-运行 npm run build 生成 dist 文件, 再运行 npm start 打开测试页面
-:::
-
-:::warning
-提交代码时 commit 未通过 main.ts 报错请先 npm run build 生成 dist 目录在进行提交,保证 main.ts 中的引用是正确的
-:::
+> **提交代码时 commit 未通过 main.ts 报错请先 npm run build 生成 dist 目录在进行提交,保证 main.ts 中的引用是正确的**
 
 ## 主题色 (默认色)
 
