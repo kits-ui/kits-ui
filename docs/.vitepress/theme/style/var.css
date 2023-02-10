@@ -84,6 +84,10 @@
   width: 100% !important;
 }
 
+.VPDoc.has-aside .container .content .content-container {
+  max-width: 715px;
+}
+
 table thead, table tbody {
   width: 100%;
 }
@@ -93,5 +97,16 @@ table thead, table tbody {
     height: calc(100% - 70px);
     margin-top: 70px;
     padding-top: 10px !important;
+  }
+  .VPSidebar .VPSidebarItem.level-1.is-link {
+    padding: 3px 20px;
+  }
+
+  .VPSidebar .VPSidebarItem.level-1.is-link.is-active.has-active {
+    background-color: #2fd3bd2a;
+    border-radius: 8px;
+  }
+  .VPDoc.has-sidebar.has-aside .container .content {
+    padding: 0 0px 128px;
   }
 }
