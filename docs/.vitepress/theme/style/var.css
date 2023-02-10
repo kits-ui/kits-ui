@@ -1,48 +1,97 @@
 :root {
   --vp-home-hero-name-color: transparent;
-  --vp-home-hero-name-background: linear-gradient( 135deg, #c8df8bf8 10%, #2bc0ac 100%);
-  
+  --vp-home-hero-name-background: linear-gradient(135deg, #c8df8bf8 10%, #2bc0ac 100%);
+
   /* 图标背景 */
-  --vp-home-hero-image-background-image: linear-gradient( 135deg, #c8df8bf8 10%, #2bc0ac 100%);
+  --vp-home-hero-image-background-image: linear-gradient(135deg, #c8df8bf8 10%, #2bc0ac 100%);
   --vp-home-hero-image-filter: blur(150px);
   --vp-c-brand: #2bc0ac;
+  --vp-sidebar-bg-color: #fff;
+  --vp-code-block-bg: #f6f6f7;
+  --vp-c-divider: transparent;
+  --demo-block-shadow: 0 0 1px 1px #f5f5f5;
+  --demo-block-hover-shadow: #f5f5f5;
 }
 
-.VPContent .VPHome .VPHero.VPHomeHero .actions .VPButton.medium.brand{
+.dark {
+  --vp-sidebar-bg-color: #252529;
+  --vp-code-block-bg: #282828;
+  --demo-block-shadow: unset;
+  --demo-block-hover-shadow: unset;
+}
+
+.VPContent .VPHome .VPHero.VPHomeHero .actions .VPButton.medium.brand {
   background-color: #2bc0ac;
 }
 
-  /*滚动条宽或高*/
-  *::-webkit-scrollbar {
-    width: 5px;
-    height: 1px;
-  }
+/*滚动条宽或高*/
+*::-webkit-scrollbar {
+  width: 5px;
+  height: 1px;
+}
 
-  /*正常情况下滑块的样式*/
-  *::-webkit-scrollbar-thumb {
-    background-color: #070f205e;
-    border-radius: 3px;
-  }
+/*正常情况下滑块的样式*/
+*::-webkit-scrollbar-thumb {
+  background-color: #070f205e;
+  border-radius: 3px;
+}
 
-  /*鼠标悬浮在该类指向的控件上时滑块的样式*/
-  *:hover::-webkit-scrollbar-thumb {
-    background-color: #6a70805e;
-    border-radius: 3px;
-  }
+/*鼠标悬浮在该类指向的控件上时滑块的样式*/
+*:hover::-webkit-scrollbar-thumb {
+  background-color: #6a70805e;
+  border-radius: 3px;
+}
 
-  /*鼠标悬浮在滑块上时滑块的样式*/
-  *::-webkit-scrollbar-thumb:hover {
-    background-color: #0814305e;
-    border-radius: 3px;
-  }
+/*鼠标悬浮在滑块上时滑块的样式*/
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #0814305e;
+  border-radius: 3px;
+}
 
-  /*正常时候的主干部分*/
-  *::-webkit-scrollbar-track {
-    border-radius: 5px;
-    background: transparent;
-  }
+/*正常时候的主干部分*/
+*::-webkit-scrollbar-track {
+  border-radius: 5px;
+  background: transparent;
+}
 
-  /*鼠标悬浮在滚动条上的主干部分*/
-  *::-webkit-scrollbar-track:hover {
-    background-color: transparent;
+/*鼠标悬浮在滚动条上的主干部分*/
+*::-webkit-scrollbar-track:hover {
+  background-color: transparent;
+}
+
+/* .VPDoc.has-sidebar.has-aside {
+  background-color: #ffffff;
+} */
+
+
+.demo-block {
+  box-shadow: var(--demo-block-shadow);
+}
+
+.demo-block:hover {
+  box-shadow: 0 0 3px 0px var(--demo-block-hover-shadow);
+}
+
+.demo-block.hover {
+  box-shadow: 0 0 3px 0px var(--demo-block-hover-shadow);
+}
+
+.vp-doc pre {
+  z-index: unset !important;
+}
+
+.demo-block-control {
+  width: 100% !important;
+}
+
+table thead, table tbody {
+  width: 100%;
+}
+
+@media (min-width: 960px) {
+  .VPSidebar {
+    height: calc(100% - 70px);
+    margin-top: 70px;
+    padding-top: 10px !important;
   }
+}
