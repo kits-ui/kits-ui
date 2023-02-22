@@ -10,54 +10,54 @@ import Unocss from './config/unocss';
 
 const rollupOptions: any = {
   external: ['vue', 'vue-router'],
-  // output: {
-  //   globals: {
-  //     vue: 'Vue',
+  output: {
+    globals: {
+      vue: 'Vue',
+    },
+  },
+  // input: ['src/entry.ts'],
+  // output: [
+  //   {
+  //     name: 'useless-ui',
+  //     format: 'umd',
+  //     sourcemap: false,
+  //     dir: 'dist/dist',
+  //     entryFileNames: '[name].js',
+  //     chunkFileNames: '[name].js',
+  //     assetFileNames: '[name].[ext]',
+  //     manualChunks: undefined,
+  //     inlineDynamicImports: false,
+  //     globals: { vue: 'Vue' },
+  //     namespaceToStringTag: true,
   //   },
-  // },
-  input: ['src/entry.ts'],
-  output: [
-    {
-      name: 'useless-ui',
-      format: 'umd',
-      sourcemap: false,
-      dir: 'dist/dist',
-      entryFileNames: '[name].js',
-      chunkFileNames: '[name].js',
-      assetFileNames: '[name].[ext]',
-      manualChunks: undefined,
-      inlineDynamicImports: false,
-      globals: { vue: 'Vue' },
-      namespaceToStringTag: true,
-    },
-    {
-      format: 'es', // 打包模式
-      dir: 'dist/es', // 输出路径
-      // sourcemap: false,
-      entryFileNames: '[name].js', // 输出后的文件名
-      chunkFileNames: '[name].js', // 输出的 chunk文件名
-      assetFileNames: '[name].[ext]', // 输出资产文件名
-      inlineDynamicImports: false,
-      manualChunks: undefined,
-      preserveModules: true,
-      preserveModulesRoot: 'src',
-      namespaceToStringTag: true,
-    },
-    {
-      format: 'cjs',
-      // exports: 'named',
-      dir: 'dist/lib',
-      // sourcemap: false,
-      entryFileNames: '[name].js',
-      chunkFileNames: '[name].js',
-      assetFileNames: '[name].[ext]',
-      inlineDynamicImports: false,
-      manualChunks: undefined,
-      preserveModules: true,
-      preserveModulesRoot: 'src',
-      namespaceToStringTag: true,
-    },
-  ],
+  //   {
+  //     format: 'es', // 打包模式
+  //     dir: 'dist/es', // 输出路径
+  //     // sourcemap: false,
+  //     entryFileNames: '[name].js', // 输出后的文件名
+  //     chunkFileNames: '[name].js', // 输出的 chunk文件名
+  //     assetFileNames: '[name].[ext]', // 输出资产文件名
+  //     inlineDynamicImports: false,
+  //     manualChunks: undefined,
+  //     preserveModules: true,
+  //     preserveModulesRoot: 'src',
+  //     namespaceToStringTag: true,
+  //   },
+  //   {
+  //     format: 'cjs',
+  //     // exports: 'named',
+  //     dir: 'dist/lib',
+  //     // sourcemap: false,
+  //     entryFileNames: '[name].js',
+  //     chunkFileNames: '[name].js',
+  //     assetFileNames: '[name].[ext]',
+  //     inlineDynamicImports: false,
+  //     manualChunks: undefined,
+  //     preserveModules: true,
+  //     preserveModulesRoot: 'src',
+  //     namespaceToStringTag: true,
+  //   },
+  // ]
 };
 
 export default defineConfig({

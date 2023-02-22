@@ -110,3 +110,24 @@ table thead, table tbody {
     padding: 0 0px 128px;
   }
 }
+
+.block {
+  padding: 20px 0;
+  text-align: center;
+  display: inline-block;
+  width: 20%;
+  box-sizing: border-box;
+  vertical-align: top;
+}
+.block:not(:last-child) {
+  border-right: 1px solid #eff2f6;
+}
+
+.general-span {
+  display: block;
+  color: #8492a6;
+  font-size: 12px;
+  margin-top: 15px;
+}
+
+
