@@ -9,3 +9,11 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "monthly"
+    open-pull-requests-limit: 10
+    versioning-strategy: lockfile-only
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 10
+    versioning-strategy: lockfile-only
