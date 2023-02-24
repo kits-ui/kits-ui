@@ -2,8 +2,8 @@
   <button
     class="u-button font-semibold"
     :class="btnClass()"
-    @click="handleClick"
     :disabled="props.disabled"
+    @click="handleClick"
   >
     <slot />
   </button>

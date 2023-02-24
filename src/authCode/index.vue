@@ -2,7 +2,7 @@
  * @Author: jx
  * @LastEditors: jx
  * @Date: 2023-02-07 09:54:09
- * @LastEditTime: 2023-02-07 10:57:10
+ * @LastEditTime: 2023-02-24 13:13:46
  * @Description: 验证码
  * @FilePath: \useless-ui\src\authCode\index.vue
 -->
@@ -42,7 +42,7 @@ export default {
       type: Array,
     },
   },
-  emits: ['created', 'input'],
+  emits: ['input', 'update:code'],
   data() {
     return {};
   },
@@ -54,7 +54,7 @@ export default {
       },
       set(val) {
         // console.log({ val });
-        this.$emit('input', val);
+        this.$emit('update:code', val);
       },
     },
   },
@@ -64,7 +64,6 @@ export default {
   methods: {
     createCodeHandle() {
       this.value = this.createCode(this.count);
-      this.$emit('created', this.value);
     },
     // 生成并渲染出验证码图形
     createCode(showNum = 4) {
