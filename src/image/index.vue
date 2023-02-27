@@ -64,7 +64,7 @@ onMounted(() => {
       previewImg.value.style.transform = `scale(${scale.value})`;
       previewImg.value.style.transition = `all 0.3s`;
     },
-    { passive: false },
+    { capture: true, passive: false },
   );
 });
 
@@ -73,7 +73,7 @@ const close = () => {
   scale.value = 1;
   previewImg.value.style.transform = `scale(${scale.value})`;
   isShowPre.value = false;
-  document.body.style.overflowY = 'overlay';
+  // document.body.style.overflowY = 'overlay';
 };
 
 // 左右切换
@@ -104,7 +104,7 @@ const changeScale = (value: string) => {
   } else {
     scale.value += 0.1;
   }
-  previewImg.value.style.transform = `scale(${scale.value})`;
+  previewImg.value.style.transform = `scale(${scale.value}) rotate(${rotate.value}deg)`;
   previewImg.value.style.transition = `all 0.3s`;
 };
 
@@ -114,7 +114,7 @@ const changeRotate = (value: string) => {
   } else {
     rotate.value += 90;
   }
-  previewImg.value.style.transform = `rotate(${rotate.value}deg)`;
+  previewImg.value.style.transform = `scale(${scale.value}) rotate(${rotate.value}deg)`;
   previewImg.value.style.transition = `all 0.3s`;
 };
 
@@ -122,7 +122,7 @@ const changeRotate = (value: string) => {
 const showPreview = () => {
   if (props.preview && props.preview.length !== 0) {
     isShowPre.value = true;
-    document.body.style.overflowY = 'hidden';
+    // document.body.style.overflowY = 'hidden';
   } else {
     return;
   }
@@ -231,6 +231,7 @@ const showPreview = () => {
         &::after {
           display: inline-block;
           content: '';
+          box-sizing: border-box;
         }
         &::before {
           position: absolute;
