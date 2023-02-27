@@ -9,3 +9,15 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "monthly"
+    open-pull-requests-limit: 10
+    versioning-strategy: lockfile-only
+    ignore:
+      - dependency-name: "@vue"
+        versions:
+          - 3.2.x
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 10
+    versioning-strategy: lockfile-only

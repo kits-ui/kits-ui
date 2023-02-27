@@ -57,8 +57,9 @@ function popNotice(Data) {
       dir: Data.dir,
       lang: Data.lang,
       body: Data.body,
-      tag: Data.tag,
+      tag: 'Data.tag',
       icon: Data.icon,
+      renotify: true,
     });
     notification.onclick = function () {
       nextTick(() => {

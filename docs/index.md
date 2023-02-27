@@ -3,11 +3,11 @@ layout: home
 
 hero:
   name: Useless UI
-  text: 不一样的体验
-  tagline: 副内容信息
-  # image:
-  #   src: 
-  #   alt: 
+  text: 给你不一样的体验
+  tagline: 基于Vite构建的Vue3组件库
+  image:
+    src: /logo.png
+    alt:
   actions:
     - theme: brand
       text: 快速开始
