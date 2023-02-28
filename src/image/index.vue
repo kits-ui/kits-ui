@@ -1,7 +1,12 @@
 <template>
-  <div ref="uImage" class="u-image">
-    <img :src="props.src" alt="" @click="showPreview" />
-    <div v-show="isShowPre" class="u-image-preview">
+  <div class="u-image">
+    <img
+      :src="props.src"
+      alt=""
+      :style="{ cursor: props.preview && props.preview.length === 0 ? 'auto' : 'pointer' }"
+      @click="showPreview"
+    />
+    <div v-show="isShowPre" ref="uImagePreview" class="u-image-preview">
       <span class="u-image-preview-close" @click="close"></span>
       <span class="u-image-preview-prev" @click="switchImg('prev')">&lt;</span>
       <span class="u-image-preview-next" @click="switchImg('next')">&gt;</span>
@@ -22,7 +27,7 @@ import { ref, computed, onMounted } from 'vue';
 const isShowPre = ref<Boolean>(false);
 const currentShow = ref<string>('');
 const currentIndex = ref<number>(0);
-const uImage = ref<any>();
+const uImagePreview = ref<any>();
 const previewImg = ref<any>();
 const scale = ref<number>(1);
 const rotate = ref<number>(0);
@@ -49,7 +54,7 @@ const fit = computed(() => {
 onMounted(() => {
   currentShow.value = props.preview[0] as string;
   currentIndex.value = 0;
-  uImage.value.addEventListener(
+  uImagePreview.value.addEventListener(
     'wheel',
     (e) => {
       e.preventDefault();
@@ -61,22 +66,28 @@ onMounted(() => {
       }
       console.log(scale);
       scale.value = Math.min(Math.max(0.125, scale.value), 4);
-      previewImg.value.style.transform = `scale(${scale.value})`;
+      previewImg.value.style.transform = `scale(${scale.value}) rotate(${rotate.value}deg)`;
       previewImg.value.style.transition = `all 0.3s`;
     },
     { capture: true, passive: false },
   );
 });
 
-// 关闭
+/**
+ * 关闭按钮
+ */
 const close = () => {
   scale.value = 1;
+  rotate.value = 0;
   previewImg.value.style.transform = `scale(${scale.value})`;
   isShowPre.value = false;
-  // document.body.style.overflowY = 'overlay';
+  document.body.style.overflowY = 'overlay';
 };
 
-// 左右切换
+/**
+ * 左右切换
+ * @param value 参数: 前一个prev  下一个 next
+ */
 const switchImg = (value) => {
   scale.value = 1;
   rotate.value = 0;
@@ -98,6 +109,10 @@ const switchImg = (value) => {
   currentShow.value = props.preview[currentIndex.value] as string;
 };
 
+/**
+ * 修改缩放大小
+ * @param value 参数 放大或缩小
+ */
 const changeScale = (value: string) => {
   if (value === 'reduce') {
     scale.value -= 0.1;
@@ -108,6 +123,10 @@ const changeScale = (value: string) => {
   previewImg.value.style.transition = `all 0.3s`;
 };
 
+/**
+ * 修改旋转角度
+ * @param value 参数: 左left 右right
+ */
 const changeRotate = (value: string) => {
   if (value === 'left') {
     rotate.value -= 90;
@@ -118,11 +137,15 @@ const changeRotate = (value: string) => {
   previewImg.value.style.transition = `all 0.3s`;
 };
 
-// 显示组件
+/**
+ * 打开组件
+ */
 const showPreview = () => {
   if (props.preview && props.preview.length !== 0) {
     isShowPre.value = true;
-    // document.body.style.overflowY = 'hidden';
+    currentIndex.value = props.preview.indexOf(props.src);
+    currentShow.value = props.src;
+    document.body.style.overflowY = 'hidden';
   } else {
     return;
   }
@@ -138,6 +161,7 @@ const showPreview = () => {
   margin: auto;
 
   img {
+    cursor: pointer;
     width: inherit;
     height: inherit;
     object-fit: v-bind(fit);
@@ -188,6 +212,7 @@ const showPreview = () => {
     .preview-content {
       position: absolute;
       top: 0;
+      bottom: 0;
       left: 0;
       right: 0;
       margin: auto;
