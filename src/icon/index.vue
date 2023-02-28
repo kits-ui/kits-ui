@@ -1,9 +1,12 @@
 <template>
-  <i :class="classIconName"></i>
+  <i class="u-icon" :class="`icon-${props.type}`"></i>
+  <!-- <svg class="u-icon icon" aria-hidden="true">
+    <use :xlink:href="`#icon-${props.type}`"></use>
+  </svg> -->
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
+// import { computed } from 'vue';
 
 const props = defineProps({
   type: {
@@ -12,9 +15,9 @@ const props = defineProps({
   },
 });
 
-const classIconName = computed(() => {
-  return `i-simple-line-icons-${props.type}`;
-});
+// const classIconName = computed(() => {
+//   return `i-simple-line-icons-${props.type}`;
+// });
 </script>
 
 <style scoped>

@@ -8,6 +8,7 @@ import UAuthCode from './authCode/index.vue';
 import UNotification from './notification/index.vue';
 import UImage from './image/index.vue';
 import UIcon from './icon/index.vue';
+import './assets/css/iconfont.css';
 
 // 导出单独组件
 export { UButton };
