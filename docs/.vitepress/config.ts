@@ -20,6 +20,7 @@ const sidebar = {
         { text: 'authCode 验证码', link: '/components/authCode/' },
         { text: 'notification 通知', link: '/components/notification/' },
         { text: 'image图片', link: '/components/image/' },
+        { text: 'icon图标', link: '/components/icon/' },
       ],
     },
     { text: '导航' },

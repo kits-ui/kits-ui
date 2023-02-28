@@ -11,6 +11,7 @@
   --vp-c-divider: transparent;
   --demo-block-shadow: 0 0 1px 1px #f5f5f5;
   --demo-block-hover-shadow: #f5f5f5;
+  --block-border-color: #eff2f6;
 }
 
 .dark {
@@ -18,6 +19,7 @@
   --vp-code-block-bg: #282828;
   --demo-block-shadow: unset;
   --demo-block-hover-shadow: unset;
+  --block-border-color: #343333;
 }
 
 .VPContent .VPHome .VPHero.VPHomeHero .actions .VPButton.medium.brand {
@@ -120,7 +122,7 @@ table thead, table tbody {
   vertical-align: top;
 }
 .block:not(:last-child) {
-  border-right: 1px solid #eff2f6;
+  border-right: 1px solid var(--block-border-color);
 }
 
 .general-span {
