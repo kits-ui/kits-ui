@@ -7,14 +7,20 @@
       @click="showPreview"
     />
     <div v-show="isShowPre" ref="uImagePreview" class="u-image-preview">
-      <span class="u-image-preview-close" @click="close"></span>
-      <span class="u-image-preview-prev" @click="switchImg('prev')">&lt;</span>
-      <span class="u-image-preview-next" @click="switchImg('next')">&gt;</span>
+      <span class="u-image-preview-close" @click="close">
+        <u-icon type="shut" />
+      </span>
+      <span class="u-image-preview-prev" @click="switchImg('prev')">
+        <u-icon type="arrowleft" />
+      </span>
+      <span class="u-image-preview-next" @click="switchImg('next')">
+        <u-icon type="arrowright" />
+      </span>
       <div class="u-image-bar">
-        <span @click="changeScale('reduce')">-</span>
-        <span @click="changeScale('amplify')">+</span>
-        <span class="left" @click="changeRotate('left')"></span>
-        <span class="right" @click="changeRotate('right')"></span>
+        <u-icon type="narrow" @click="changeScale('reduce')" />
+        <u-icon type="enlarge" @click="changeScale('amplify')" />
+        <u-icon type="undo" @click="changeRotate('left')" />
+        <u-icon type="redo" @click="changeRotate('right')" />
       </div>
       <img ref="previewImg" :src="currentShow" alt="" class="preview-content" />
     </div>
@@ -193,9 +199,6 @@ const showPreview = () => {
     .u-image-preview-close {
       top: 65px;
       right: 65px;
-      &::before {
-        content: 'x';
-      }
     }
     .u-image-preview-prev {
       top: 0;
@@ -233,20 +236,10 @@ const showPreview = () => {
       height: 50px;
       border-radius: 25px;
       background-color: #00000085;
-      & > span {
-        display: flex;
-        justify-content: center;
-        // align-items: center;
+      .u-icon {
+        font-size: 26px;
         color: #fff;
-        font-size: 16px;
-        width: 22px;
-        height: 22px;
-        line-height: 16px;
-        border-radius: 11px;
-        border: 2px solid #fff;
-        box-sizing: border-box;
         cursor: pointer;
-        user-select: none;
       }
       .left,
       .right {
