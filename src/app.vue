@@ -5,7 +5,7 @@
     <u-filter-box type="insert">按钮</u-filter-box>
     <u-auth-code></u-auth-code>
     <u-image :src="url" :preview="previewList"></u-image>
-    <u-icon></u-icon>
+    <u-icon type="star"></u-icon>
   </div>
 </template>
 <script setup lang="ts">

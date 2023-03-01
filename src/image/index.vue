@@ -162,8 +162,6 @@ const showPreview = () => {
 .u-image {
   position: relative;
   display: inline-block;
-  width: 100px;
-  height: 100px;
   margin: auto;
 
   img {
