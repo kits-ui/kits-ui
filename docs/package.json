@@ -2,7 +2,7 @@
   "name": "useless-ui-docs",
   "version": "0.0.1",
   "description": "",
-  "main": "index.ts",
+  "main": "index.js",
   "keywords": [],
   "author": "useless",
   "type": "module",

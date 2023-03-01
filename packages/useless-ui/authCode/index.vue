@@ -137,15 +137,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-.u-authcode {
-  height: 50px;
-  width: 130px;
-  cursor: pointer;
-  .u-authcode__content {
-    height: 100%;
-    width: 100%;
-  }
-}
-</style>

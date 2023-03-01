@@ -19,9 +19,3 @@ const props = defineProps({
 //   return `i-simple-line-icons-${props.type}`;
 // });
 </script>
-
-<style scoped>
-i {
-  display: inline-block;
-}
-</style>
