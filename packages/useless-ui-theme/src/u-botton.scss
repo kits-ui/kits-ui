@@ -1,61 +1,3 @@
-<template>
-  <button
-    class="u-button font-semibold"
-    :class="btnClass()"
-    @click="handleClick"
-    :disabled="props.disabled"
-  >
-    <slot />
-  </button>
-</template>
-<script lang="ts" setup>
-import { computed } from 'vue';
-
-// defineOptions({
-//   name: "UButton",
-// });
-
-const props = defineProps({
-  color: {
-    type: String,
-    default: '#2bc0ac',
-  },
-  type: {
-    type: String,
-    default: 'default',
-  },
-  direction: {
-    type: String,
-    default: 'bottom',
-  },
-  disabled: {
-    type: Boolean,
-    default: false,
-  },
-});
-
-const emits = defineEmits(['click']);
-
-const color = computed(() => {
-  return props.color;
-});
-
-const btnClass = () => {
-  let classStr = 'default';
-  if (props.type === 'insert') {
-    classStr = `insert ${props.direction}`;
-  }
-  if (typeof props.disabled === 'boolean' && props.disabled) {
-    classStr += ' is-disabled';
-  }
-  return classStr;
-};
-
-const handleClick = () => {
-  emits('click');
-};
-</script>
-<style lang="scss">
 .u-button {
   border-radius: 5px;
   background-color: v-bind(color);
@@ -153,4 +95,3 @@ const handleClick = () => {
     }
   }
 }
-</style>

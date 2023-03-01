@@ -1,5 +1,6 @@
 import DefaultTheme from 'vitepress/theme';
-import UseLessUI from '../../../src/entry';
+
+import UseLessUI from '../../../packages/useless-ui/index';
 import './style/var.css';
 // 主题样式
 import 'vitepress-theme-demoblock/dist/theme/styles/index.css';
@@ -7,11 +8,16 @@ import 'vitepress-theme-demoblock/dist/theme/styles/index.css';
 import Demo from 'vitepress-theme-demoblock/dist/client/components/Demo.vue';
 import DemoBlock from 'vitepress-theme-demoblock/dist/client/components/DemoBlock.vue';
 
+import { globals } from '../demo';
+
 export default {
   ...DefaultTheme,
   enhanceApp({ app }) {
     app.use(UseLessUI);
     app.component('Demo', Demo);
     app.component('DemoBlock', DemoBlock);
+    globals.forEach(([name, Comp]) => {
+      app.component(name, Comp);
+    });
   },
 };

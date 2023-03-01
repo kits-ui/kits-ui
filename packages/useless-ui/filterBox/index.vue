@@ -35,9 +35,9 @@
       >
         <div class="row" :class="data.multipleIndex === i ? 'multiple' : ''">
           <div class="row-key">{{ item.name }}</div>
-          <div class="row-value" ref="rowValue">
-            <div class="list" ref="rowList">
-              <ul class="rowValueList" ref="rowValueList">
+          <div ref="rowValue" class="row-value">
+            <div ref="rowList" class="list">
+              <ul ref="rowValueList" class="rowValueList">
                 <li
                   v-for="iItem in item.childList"
                   :key="iItem.id"
@@ -76,8 +76,8 @@
 <script lang="ts" setup>
 import { ref, reactive, onMounted, nextTick } from 'vue';
 
-const rowValueList = ref(null);
-const rowValue = ref(null);
+const rowValueList = ref([]);
+const rowValue = ref();
 const rowList = ref(null);
 
 const props = defineProps({
@@ -113,6 +113,7 @@ onMounted(() => {
 
 const init = async () => {
   await getAllQueryTags();
+  console.log(rowValueList);
   const arr = [];
   for (let i = 0; i < rowValueList.value.length; i++) {
     if (rowValueList.value[i].clientHeight > 85) {

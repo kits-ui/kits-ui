@@ -1,11 +1,14 @@
 import { App } from 'vue';
 // import SFCButton from "./button/SFCButton.vue";
-import 'uno.css';
-import './style.css';
+import '../useless-ui-theme';
 import UButton from './button/index.vue';
-import FilterBox from './filterBox/index.vue';
+import UFilterBox from './filterBox/index.vue';
 import UAuthCode from './authCode/index.vue';
 import UNotification from './notification/index.vue';
+import UImage from './image/index.vue';
+import UIcon from './icon/index.vue';
+// import './assets/css/iconfont.css';
+// import './assets/js/iconfont.js';
 
 // 导出单独组件
 export { UButton };
@@ -15,8 +18,10 @@ export { UButton };
 export default {
   install(app: App): void {
     app.component('UButton', UButton);
-    app.component('UFilterBox', FilterBox);
+    app.component('UFilterBox', UFilterBox);
     app.component('UAuthCode', UAuthCode);
     app.component('UNotification', UNotification);
+    app.component('UImage', UImage);
+    app.component('UIcon', UIcon);
   },
 };
