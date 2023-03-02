@@ -2,7 +2,7 @@
   "name": "@useless/useless-ui-theme",
   "version": "0.0.1",
   "description": "",
-  "main": "index.css",
+  "main": "index.scss",
   "keywords": [],
   "author": "useless",
   "type": "module",
