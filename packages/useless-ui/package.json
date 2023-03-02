@@ -2,10 +2,35 @@
   "name": "@useless/useless-ui",
   "version": "0.0.1",
   "description": "",
-  "main": "index.ts",
   "keywords": [],
   "author": "useless",
   "type": "module",
   "license": "MIT",
-  "private": true
+  "private": false,
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "types": "es/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./es/index.js",
+      "require": "./lib/index.js",
+      "types": "./es/index.d.ts"
+    },
+    "./resolver": {
+      "require": "./resolver/index.js",
+      "import": "./resolver/index.js",
+      "types": "./resolver/index.d.ts"
+    },
+    "./dist": "./dist/",
+    "./theme": "./theme/",
+    "./es": "./es/index.js",
+    "./es/*": "./es/*.js",
+    "./es/*.js": "./es/*.js",
+    "./lib": "./lib/index.js",
+    "./lib/*": "./lib/*.js",
+    "./lib/*.js": "./lib/*.js",
+    "./*": "./*"
+  },
+  "unpkg": "dist/index.umd.js",
+  "style": "dist/index.css"
 }

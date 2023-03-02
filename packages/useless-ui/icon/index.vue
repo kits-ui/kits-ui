@@ -1,13 +1,13 @@
 <template>
   <i class="u-icon" :class="`icon-${props.type}`"></i>
-  <!-- <svg class="u-icon icon" aria-hidden="true">
+  <svg class="u-icon icon" aria-hidden="true">
     <use :xlink:href="`#icon-${props.type}`"></use>
-  </svg> -->
+  </svg>
 </template>
 
 <script setup lang="ts">
 // import { computed } from 'vue';
-// import '../assets/js/iconfont.js';
+import '../assets/js/iconfont.js';
 const props = defineProps({
   type: {
     type: String,
