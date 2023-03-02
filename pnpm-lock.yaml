@@ -66,6 +66,12 @@ importers:
       vitepress-theme-demoblock: 2.0.2_slde4wxf4hmvyjezdr4vuiuczy
       vue-tsc: 1.2.0_typescript@4.9.5
 
+  docs:
+    specifiers:
+      useless-ui-test: 0.0.2
+    dependencies:
+      useless-ui-test: 0.0.2
+
 packages:
   /@algolia/autocomplete-core/1.7.4:
     resolution:
@@ -6817,6 +6823,13 @@ packages:
     dependencies:
       punycode: 2.3.0
     dev: true
+
+  /useless-ui-test/0.0.2:
+    resolution:
+      {
+        integrity: sha512-vnur38U65AD/deLApObRJSZX1TY7ChiiF3et8iscwnYbfT9jLGk7GpkmqShiI54n261vUQNY9KA7UcArXfBIXA==,
+      }
+    dev: false
 
   /util-deprecate/1.0.2:
     resolution:
