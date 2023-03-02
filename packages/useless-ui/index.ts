@@ -1,12 +1,12 @@
 import { App } from 'vue';
 // import SFCButton from "./button/SFCButton.vue";
 // import '../useless-ui-theme';
-import UButton from './button/index.vue';
-import UFilterBox from './filterBox/index.vue';
-import UAuthCode from './authCode/index.vue';
-import UNotification from './notification/index.vue';
-import UImage from './image/index.vue';
-import UIcon from './icon/index.vue';
+import UButton from './src/button/index.vue';
+import UFilterBox from './src/filterBox/index.vue';
+import UAuthCode from './src/authCode/index.vue';
+import UNotification from './src/notification/index.vue';
+import UImage from './src/image/index.vue';
+import UIcon from './src/icon/index.vue';
 
 // 导出单独组件
 export { UButton };

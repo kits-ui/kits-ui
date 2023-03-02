@@ -2,10 +2,22 @@
   "name": "@useless/useless-ui",
   "version": "0.0.1",
   "description": "",
-  "main": "index.ts",
+  "main": "dist/index.js",
+  "module": "dist/es/index.js",
+  "types": "dist/lib/index.d.ts",
   "keywords": [],
   "author": "useless",
   "type": "module",
   "license": "MIT",
-  "private": true
+  "scripts": {
+    "build": "vite build"
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "peerDependencies": {
+    "vue": "^3.2.44"
+  }
 }

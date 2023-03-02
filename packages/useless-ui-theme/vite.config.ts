@@ -1,4 +1,3 @@
-import { resolve } from 'path';
 import postcssPresetEnv from 'postcss-preset-env';
 import autoprefixer from 'autoprefixer';
 import type { UserConfigExport } from 'vite';
@@ -17,10 +16,10 @@ export default (): UserConfigExport => {
       },
     },
     build: {
-      outDir: resolve(__dirname, 'dist/dist'),
+      outDir: './dist',
       emptyOutDir: false,
       rollupOptions: {
-        input: resolve(__dirname, 'packages/useless-ui-theme/index.scss'),
+        input: './index.scss',
         output: {
           assetFileNames: '[name].[ext]',
         },
