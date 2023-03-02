@@ -6,5 +6,6 @@
   "keywords": [],
   "author": "useless",
   "type": "module",
-  "license": "MIT"
+  "license": "MIT",
+  "private": true
 }

@@ -3,7 +3,10 @@
     <img
       :src="props.src"
       alt=""
-      :style="{ cursor: props.preview && props.preview.length === 0 ? 'auto' : 'pointer' }"
+      :style="{
+        cursor: props.preview && props.preview.length === 0 ? 'auto' : 'pointer',
+        '--u-image-fit': props.fit,
+      }"
       @click="showPreview"
     />
     <div v-show="isShowPre" ref="uImagePreview" class="u-image-preview">
@@ -28,7 +31,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, nextTick } from 'vue';
+import { ref, onMounted } from 'vue';
 
 const isShowPre = ref<Boolean>(false);
 const currentShow = ref<string>('');
@@ -54,11 +57,6 @@ const props = defineProps({
 });
 
 onMounted(() => {
-  nextTick(() => {
-    const root: any = document.querySelector(':root');
-    console.log(root.style.getProperty);
-    root.style.setProperty('--u-image-fit', props.fit);
-  });
   currentShow.value = props.preview[0] as string;
   currentIndex.value = 0;
   uImagePreview.value.addEventListener(

@@ -5,6 +5,7 @@
     --theme-hover-color: #40d9c4;
     --font-color: #606266;
     --zebra-bg: #fafafa;
+    --u-image-fit: fill;
   }
 }
 
@@ -15,6 +16,7 @@
     --theme-hover-color: #40d9c4;
     --font-color: #606266;
     --zebra-bg: #838383;
+    --u-image-fit: fill;
   }
 }
 
@@ -35,8 +37,12 @@
   --zebra-bg: #535353;
 }
 
-:root {
-  --u-image-fit: cover;
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
 }
 
 @import './src/u-authcode.scss';
