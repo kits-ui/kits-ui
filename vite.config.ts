@@ -6,7 +6,6 @@ import { resolve } from 'path';
 import { copyFileSync } from 'fs';
 
 // import { presetUno, presetAttributify, presetIcons } from 'unocss';
-import Unocss from './config/unocss';
 
 const rollupOptions: any = {
   external: ['vue', 'vue-router'],
@@ -64,7 +63,6 @@ export default defineConfig({
   plugins: [
     vue(),
     vueJsx({}), // 添加UnoCSS插件
-    Unocss(),
     dts({
       staticImport: true,
       //指定使用的tsconfig.json为我们整个项目根目录下掉,如果不配置,你也可以在components下新建tsconfig.json
@@ -82,7 +80,7 @@ export default defineConfig({
     cssCodeSplit: true, // 独立css
     outDir: resolve(__dirname, './dist'),
     lib: {
-      entry: './src/entry.ts',
+      entry: resolve(__dirname, 'packages/useless-ui/index.ts') /** 打包入口 */,
       name: 'UseLessUI',
       fileName: (format) => `index.${format}.js`,
       // 导出模块格式

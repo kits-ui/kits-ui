@@ -67,14 +67,14 @@ const glyphs = [
   },
   {
     icon_id: '4766298',
-    name: 'line chart',
+    name: 'linechart',
     font_class: 'linechart',
     unicode: 'e7af',
     unicode_decimal: 59311,
   },
   {
     icon_id: '4766299',
-    name: 'bar chart',
+    name: 'barchart',
     font_class: 'barchart',
     unicode: 'e7b0',
     unicode_decimal: 59312,
@@ -575,20 +575,23 @@ const glyphs = [
 <style lang="scss" scoped>
 .iconList {
   display: grid;
-  grid-template-columns: repeat(5, calc(20% - 0.7px));
-  grid-template-rows: repeat(16, 120px);
-  grid-row-gap: 1px;
-  grid-column-gap: 1px;
-  width: 715px;
-  border: 1px solid var(--block-border-color);
-  background-color: var(--block-border-color);
+  grid-template-columns: repeat(auto-fill, 20%);
+  // grid-template-rows: repeat(16, 120px);
+  // grid-row-gap: 1px;
+  // grid-column-gap: 1px;
+  max-width: 714px;
+  // border: 1px solid var(--block-border-color);
+  // background-color: var(--block-border-color);
   .iconItem {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    height: 120px;
     background-color: var(--vp-sidebar-bg-color);
+    box-sizing: border-box;
+    border: 1px solid var(--block-border-color);
     .u-icon {
       font-size: 30px;
       margin-bottom: 10px;
