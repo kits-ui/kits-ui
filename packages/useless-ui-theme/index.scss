@@ -35,6 +35,9 @@
   --zebra-bg: #535353;
 }
 
+:root {
+  --u-image-fit: cover;
+}
 
 @import './src/u-authcode.scss';
 @import './src/u-botton.scss';

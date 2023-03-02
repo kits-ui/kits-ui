@@ -28,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue';
+import { ref, onMounted, nextTick } from 'vue';
 
 const isShowPre = ref<Boolean>(false);
 const currentShow = ref<string>('');
@@ -53,11 +53,12 @@ const props = defineProps({
   },
 });
 
-const fit = computed(() => {
-  return props.fit;
-});
-
 onMounted(() => {
+  nextTick(() => {
+    const root: any = document.querySelector(':root');
+    console.log(root.style.getProperty);
+    root.style.setProperty('--u-image-fit', props.fit);
+  });
   currentShow.value = props.preview[0] as string;
   currentIndex.value = 0;
   uImagePreview.value.addEventListener(

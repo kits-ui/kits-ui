@@ -7,7 +7,7 @@
     cursor: pointer;
     width: inherit;
     height: inherit;
-    object-fit: v-bind(fit);
+    object-fit: var(--u-image-fit);
   }
   .u-image-preview {
     position: fixed;
