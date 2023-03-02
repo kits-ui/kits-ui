@@ -32,5 +32,16 @@
     "./*": "./*"
   },
   "unpkg": "dist/index.umd.js",
-  "style": "dist/index.css"
+  "style": "dist/index.css",
+  "scripts": {
+    "build": "vite build"
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "peerDependencies": {
+    "vue": "^3.2.44"
+  }
 }

@@ -6,5 +6,8 @@
   "keywords": [],
   "author": "useless",
   "type": "module",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "useless-ui-test": "0.0.2"
+  }
 }

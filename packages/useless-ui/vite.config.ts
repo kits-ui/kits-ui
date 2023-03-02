@@ -3,7 +3,7 @@ import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import dts from 'vite-plugin-dts';
 import { resolve } from 'path';
-import { readFileSync, writeFileSync } from 'fs';
+// import { readFileSync, writeFileSync } from 'fs';
 
 // import { presetUno, presetAttributify, presetIcons } from 'unocss';
 
@@ -20,7 +20,7 @@ const rollupOptions: any = {
       name: 'useless-ui',
       format: 'umd',
       sourcemap: false,
-      dir: 'dist/dist',
+      dir: './dist',
       entryFileNames: '[name].js',
       chunkFileNames: '[name].js',
       assetFileNames: '[name].[ext]',
@@ -78,7 +78,7 @@ export default defineConfig({
       outputDir: ['dist/es', 'dist/lib'],
       tsConfigFilePath: './tsconfig.json',
       afterBuild: (): void => {
-        writePublicFile();
+        // writePublicFile();
       },
     }),
   ],
@@ -90,7 +90,7 @@ export default defineConfig({
     emptyOutDir: true,
     outDir: resolve(__dirname, './dist'),
     lib: {
-      entry: resolve(__dirname, 'packages/useless-ui/index.ts') /** 打包入口 */,
+      entry: resolve(__dirname, './index.ts') /** 打包入口 */,
       name: 'UseLessUI',
       // fileName: (format) => `index.${format}.js`,
       // // 导出模块格式
@@ -101,14 +101,14 @@ export default defineConfig({
 });
 
 // // 静态文件移动
-const writePublicFile = (): void => {
-  const files = [{ input: './packages/useless-ui/package.json', outDir: 'dist/package.json' }];
-  files.forEach((item: any): void => {
-    const readData: any = readFileSync(item.input);
-    const writeData: any = JSON.parse(readData);
-    writeData.name = 'useless-ui-test';
-    writeFileSync(item.outDir, JSON.stringify(writeData, null, 2), 'utf8');
-  });
-};
+// const writePublicFile = (): void => {
+//   const files = [{ input: './packages/useless-ui/package.json', outDir: 'dist/package.json' }];
+//   files.forEach((item: any): void => {
+//     const readData: any = readFileSync(item.input);
+//     const writeData: any = JSON.parse(readData);
+//     writeData.name = 'useless-ui-test';
+//     writeFileSync(item.outDir, JSON.stringify(writeData, null, 2), 'utf8');
+//   });
+// };
 
 // move();

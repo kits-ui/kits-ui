@@ -68,9 +68,9 @@ importers:
 
   docs:
     specifiers:
-      useless-ui-test: ^0.0.1
+      useless-ui-test: 0.0.2
     dependencies:
-      useless-ui-test: 0.0.1
+      useless-ui-test: 0.0.2
 
 packages:
   /@algolia/autocomplete-core/1.7.4:
@@ -6824,10 +6824,10 @@ packages:
       punycode: 2.3.0
     dev: true
 
-  /useless-ui-test/0.0.1:
+  /useless-ui-test/0.0.2:
     resolution:
       {
-        integrity: sha512-d0QMlJHgdG34Bd7Y+crJoYioXzUNTg6rw/pvSUOlAI10XMWPqluARZoxxTU4hz4FzyXyQHyzOGF8fMdvqiMr4Q==,
+        integrity: sha512-vnur38U65AD/deLApObRJSZX1TY7ChiiF3et8iscwnYbfT9jLGk7GpkmqShiI54n261vUQNY9KA7UcArXfBIXA==,
       }
     dev: false
 

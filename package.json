@@ -11,12 +11,13 @@
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs",
     "start": "vite packages/useless-ui",
-    "build": "vite build && pnpm build:theme",
+    "build": "pnpm -r build --filter packages",
     "build:theme": "vite build --config vite.config.css.ts",
     "check:ts": "vue-tsc --noEmit",
     "check:eslint": "eslint \"**/*.{ts,tsx,vue}\"",
     "check:ci": "npm run check:ts && npm run check:eslint",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "publish": "bash ./scripts/publish.sh"
   },
   "lint-staged": {
     "*.{json,html,md,yaml}": [
