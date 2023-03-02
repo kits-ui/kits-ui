@@ -1,9 +1,9 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
-import dts from 'vite-plugin-dts';
+// import dts from 'vite-plugin-dts';
 import { resolve } from 'path';
-import { copyFileSync } from 'fs';
+// import { copyFileSync } from 'fs';
 
 // import { presetUno, presetAttributify, presetIcons } from 'unocss';
 
@@ -63,15 +63,15 @@ export default defineConfig({
   plugins: [
     vue(),
     vueJsx({}), // 添加UnoCSS插件
-    dts({
-      staticImport: true,
-      //指定使用的tsconfig.json为我们整个项目根目录下掉,如果不配置,你也可以在components下新建tsconfig.json
-      outputDir: ['dist/es', 'dist/lib'],
-      tsConfigFilePath: './tsconfig.json',
-      afterBuild: (): void => {
-        movePublicFile();
-      },
-    }),
+    // dts({
+    //   staticImport: true,
+    //   //指定使用的tsconfig.json为我们整个项目根目录下掉,如果不配置,你也可以在components下新建tsconfig.json
+    //   outputDir: ['dist/es', 'dist/lib'],
+    //   tsConfigFilePath: './tsconfig.json',
+    //   afterBuild: (): void => {
+    //     movePublicFile();
+    //   },
+    // }),
   ],
   // 添加库模式配置
   build: {
@@ -91,11 +91,11 @@ export default defineConfig({
 });
 
 // // 静态文件移动
-const movePublicFile = (): void => {
-  const files = [{ input: './README.md', outDir: 'dist/README.md' }];
-  files.forEach((item): void => {
-    copyFileSync(item.input, item.outDir);
-  });
-};
+// const movePublicFile = (): void => {
+//   const files = [{ input: './README.md', outDir: 'dist/README.md' }];
+//   files.forEach((item): void => {
+//     copyFileSync(item.input, item.outDir);
+//   });
+// };
 
 // move();

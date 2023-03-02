@@ -7,7 +7,7 @@
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs",
     "start": "vite packages/useless-ui",
-    "build": "vite build packages/useless-ui",
+    "build": "vite build",
     "check:ts": "vue-tsc --noEmit",
     "check:eslint": "eslint \"**/*.{ts,tsx,vue}\"",
     "check:ci": "npm run check:ts && npm run check:eslint",
