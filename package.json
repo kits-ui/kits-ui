@@ -19,7 +19,7 @@
     "check:ci": "npm run check:ts && npm run check:eslint",
     "prepare": "husky install",
     "publish": "bash ./scripts/publish.sh",
-    "prettier": "prettier --write"
+    "prettier": "prettier --write \"**/*.ts\""
   },
   "lint-staged": {
     "*.{json,html,md,yaml}": [
