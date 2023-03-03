@@ -16,4 +16,8 @@ cd packages/useless-ui-theme
 npm publish
 cd -
 
+cd packages/useless-ui-icon
+npm publish
+cd -
+
 echo "✅ Publish completed"

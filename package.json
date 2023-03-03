@@ -12,7 +12,7 @@
     "docs:serve": "vitepress serve docs",
     "start": "vite packages/useless-ui",
     "build": "pnpm -r build --filter packages",
-    "build:theme": "vite build --config vite.config.css.ts",
+    "build:theme": "pnpm -C packages/useless-ui-theme build",
     "build:icon": "pnpm -C packages/useless-ui-icon build",
     "check:ts": "vue-tsc --noEmit",
     "check:eslint": "eslint \"**/*.{ts,tsx,vue}\"",
@@ -39,7 +39,7 @@
   ],
   "author": "Uselsess",
   "license": "MIT",
-  "private": true,
+  "private": false,
   "devDependencies": {
     "@commitlint/cli": "^17.4.2",
     "@commitlint/config-conventional": "^17.4.2",

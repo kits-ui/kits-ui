@@ -29,5 +29,8 @@
   ],
   "peerDependencies": {
     "vue": "^3.2.44"
+  },
+  "dependencies": {
+    "@useless/useless-ui-theme": "workspace:*"
   }
 }

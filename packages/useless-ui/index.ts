@@ -6,7 +6,7 @@ import UFilterBox from './src/filterBox/index.vue';
 import UAuthCode from './src/authCode/index.vue';
 import UNotification from './src/notification/index.vue';
 import UImage from './src/image/index.vue';
-import UIcon from './src/icon/index.vue';
+// import UIcon from './src/icon/index.vue';
 
 // 导出单独组件
 export { UButton };
@@ -20,6 +20,6 @@ export default {
     app.component('UAuthCode', UAuthCode);
     app.component('UNotification', UNotification);
     app.component('UImage', UImage);
-    app.component('UIcon', UIcon);
+    // app.component('UIcon', UIcon);
   },
 };
