@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.ts",
   "module": "index.js",
-  "private": false,
   "keywords": [],
   "author": "useless",
   "type": "module",
@@ -16,5 +15,8 @@
     "dist",
     "LICENSE",
     "README.md"
-  ]
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
 }

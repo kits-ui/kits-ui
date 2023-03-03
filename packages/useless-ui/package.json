@@ -32,5 +32,8 @@
   },
   "dependencies": {
     "@useless/useless-ui-theme": "workspace:*"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
