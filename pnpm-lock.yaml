@@ -10,6 +10,7 @@ importers:
       '@typescript-eslint/eslint-plugin': ^5.50.0
       '@typescript-eslint/parser': ^5.50.0
       '@useless/useless-ui': workspace:*
+      '@useless/useless-ui-icon': workspace:*
       '@useless/useless-ui-theme': workspace:*
       '@vitejs/plugin-vue': ^4.0.0
       '@vitejs/plugin-vue-jsx': ^3.0.0
@@ -35,6 +36,7 @@ importers:
       vue-tsc: ^1.0.24
     dependencies:
       '@useless/useless-ui': link:packages/useless-ui
+      '@useless/useless-ui-icon': link:packages/useless-ui-icon
       '@useless/useless-ui-theme': link:packages/useless-ui-theme
       sass: 1.58.3
       scss: 0.2.4
