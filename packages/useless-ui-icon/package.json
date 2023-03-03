@@ -1,0 +1,18 @@
+{
+  "name": "@useless/useless-ui-icon",
+  "version": "0.0.1",
+  "description": "",
+  "main": "dist/index.js",
+  "keywords": [],
+  "author": "useless",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "build": "vite build"
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ]
+}

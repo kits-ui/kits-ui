@@ -13,11 +13,13 @@
     "start": "vite packages/useless-ui",
     "build": "pnpm -r build --filter packages",
     "build:theme": "vite build --config vite.config.css.ts",
+    "build:icon": "pnpm -C packages/useless-ui-icon build",
     "check:ts": "vue-tsc --noEmit",
     "check:eslint": "eslint \"**/*.{ts,tsx,vue}\"",
     "check:ci": "npm run check:ts && npm run check:eslint",
     "prepare": "husky install",
-    "publish": "bash ./scripts/publish.sh"
+    "publish": "bash ./scripts/publish.sh",
+    "prettier": "prettier --write"
   },
   "lint-staged": {
     "*.{json,html,md,yaml}": [
@@ -48,12 +50,14 @@
     "@vitejs/plugin-vue": "^4.0.0",
     "@vitejs/plugin-vue-jsx": "^3.0.0",
     "@vue/eslint-config-prettier": "^7.0.0",
+    "autoprefixer": "^10.4.13",
     "eslint": "^8.33.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-vue": "^9.9.0",
     "husky": "^8.0.3",
     "lint-staged": "^13.1.0",
+    "postcss-preset-env": "^8.0.1",
     "prettier": "^2.8.3",
     "typescript": "^4.9.5",
     "unocss": "0.45.6",
@@ -61,12 +65,11 @@
     "vite-plugin-dts": "^1.7.2",
     "vitepress": "1.0.0-alpha.44",
     "vitepress-theme-demoblock": "^2.0.2",
-    "vue-tsc": "^1.0.24",
-    "autoprefixer": "^10.4.13",
-    "postcss-preset-env": "^8.0.1"
+    "vue-tsc": "^1.0.24"
   },
   "dependencies": {
     "@useless/useless-ui": "workspace:*",
+    "@useless/useless-ui-icon": "workspace:*",
     "@useless/useless-ui-theme": "workspace:*",
     "sass": "^1.58.0",
     "scss": "^0.2.4",
