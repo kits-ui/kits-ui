@@ -17,7 +17,7 @@ export default (): UserConfigExport => {
     },
     build: {
       outDir: './dist',
-      emptyOutDir: false,
+      emptyOutDir: true,
       rollupOptions: {
         input: './index.scss',
         output: {

@@ -75,6 +75,12 @@ importers:
       useless-ui-test: 0.0.2
 
   packages/useless-ui:
+    specifiers:
+      '@useless/useless-ui-theme': workspace:*
+    dependencies:
+      '@useless/useless-ui-theme': link:../useless-ui-theme
+
+  packages/useless-ui-icon:
     specifiers: {}
 
   packages/useless-ui-theme:

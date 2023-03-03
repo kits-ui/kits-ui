@@ -4,6 +4,7 @@ import DefaultTheme from 'vitepress/theme';
 // import '@useless/useless-ui-theme/index.scss';
 import UseLessUI from 'useless-ui-test';
 import 'useless-ui-test/dist/index.css';
+import { BACK } from '@useless/useless-ui-icon';
 
 import './style/var.css';
 // 主题样式
@@ -18,6 +19,8 @@ export default {
   ...DefaultTheme,
   enhanceApp({ app }) {
     app.use(UseLessUI);
+    // app.use(uselessIcon);
+    app.component('BACK', BACK);
     app.component('Demo', Demo);
     app.component('DemoBlock', DemoBlock);
     globals.forEach(([name, Comp]) => {
