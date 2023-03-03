@@ -1,0 +1,18 @@
+{
+  "name": "@useless/useless-ui-theme",
+  "version": "0.0.1",
+  "description": "",
+  "main": "dist/index.css",
+  "keywords": [],
+  "author": "useless",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "build": "vite build"
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ]
+}

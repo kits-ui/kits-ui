@@ -1,6 +1,10 @@
 import DefaultTheme from 'vitepress/theme';
 
-import UseLessUI from '../../../src/entry';
+// 组件包与css引入
+// import '@useless/useless-ui-theme/index.scss';
+import UseLessUI from 'useless-ui-test';
+import 'useless-ui-test/dist/index.css';
+
 import './style/var.css';
 // 主题样式
 import 'vitepress-theme-demoblock/dist/theme/styles/index.css';
