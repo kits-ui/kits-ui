@@ -1,6 +1,6 @@
 {
-  "name": "@useless/useless-ui",
-  "version": "0.0.1",
+  "name": "@qianshi/useless-ui",
+  "version": "0.0.3",
   "description": "",
   "keywords": [],
   "author": "useless",
@@ -13,8 +13,7 @@
   "exports": {
     ".": {
       "import": "./es/index.js",
-      "require": "./lib/index.js",
-      "types": "./es/index.d.ts"
+      "require": "./lib/index.js"
     }
   },
   "unpkg": "dist/index.umd.js",
@@ -23,15 +22,12 @@
     "build": "vite build"
   },
   "files": [
-    "dist",
+    "dist/*",
     "LICENSE",
     "README.md"
   ],
   "peerDependencies": {
     "vue": "^3.2.44"
-  },
-  "dependencies": {
-    "@useless/useless-ui-theme": "workspace:*"
   },
   "publishConfig": {
     "access": "public"

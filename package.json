@@ -1,5 +1,5 @@
 {
-  "name": "uselsess-ui",
+  "name": "uselsess-ui-test",
   "version": "0.0.1",
   "description": "",
   "workspaces": [
@@ -68,9 +68,9 @@
     "vue-tsc": "^1.0.24"
   },
   "dependencies": {
-    "@useless/useless-ui": "workspace:*",
-    "@useless/useless-ui-icon": "workspace:*",
-    "@useless/useless-ui-theme": "workspace:*",
+    "@qianshi/useless-ui": "workspace:*",
+    "@qianshi/useless-ui-icon": "workspace:*",
+    "@qianshi/useless-ui-theme": "workspace:*",
     "sass": "^1.58.0",
     "scss": "^0.2.4",
     "vue": "3.2.44"

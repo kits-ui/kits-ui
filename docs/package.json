@@ -8,6 +8,6 @@
   "type": "module",
   "license": "MIT",
   "dependencies": {
-    "useless-ui-test": "0.0.2"
+    "@qianshi/useless-ui": "^0.0.1"
   }
 }

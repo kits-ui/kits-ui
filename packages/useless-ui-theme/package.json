@@ -1,9 +1,14 @@
 {
-  "name": "@useless/useless-ui-theme",
+  "name": "@qianshi/useless-ui-theme",
   "version": "0.0.1",
   "description": "",
   "main": "index.scss",
-  "module": "index.css",
+  "module": "index.scss",
+  "exports": {
+    ".": {
+      "import": "index.scss"
+    }
+  },
   "private": false,
   "keywords": [],
   "author": "useless",

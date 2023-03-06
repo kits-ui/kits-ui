@@ -1,9 +1,16 @@
 {
-  "name": "@useless/useless-ui-icon",
+  "name": "@qianshi/useless-ui-icon",
   "version": "0.0.1",
   "description": "",
-  "main": "index.ts",
+  "main": "index.js",
   "module": "index.js",
+  "exports": {
+    ".": {
+      "import": "index.js",
+      "require": "index.js",
+      "type": "index.d.ts"
+    }
+  },
   "keywords": [],
   "author": "useless",
   "type": "module",

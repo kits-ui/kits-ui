@@ -1,7 +1,8 @@
 <template>
   <div class="iconList">
     <div v-for="item in glyphs" :key="item.name" class="iconItem">
-      <u-icon :type="item.name" />
+      <!-- <u-icon :type="item.name" /> -->
+      <component :is="item.name" />
       <span>{{ item.name }}</span>
     </div>
   </div>
@@ -18,8 +19,8 @@ const glyphs = [
   },
   {
     icon_id: '1494656',
-    name: 'menu',
-    font_class: 'menu',
+    name: 'liebiao',
+    font_class: 'liebiao',
     unicode: 'e60c',
     unicode_decimal: 58892,
   },
@@ -592,10 +593,6 @@ const glyphs = [
     background-color: var(--vp-sidebar-bg-color);
     box-sizing: border-box;
     border: 1px solid var(--block-border-color);
-    .u-icon {
-      font-size: 30px;
-      margin-bottom: 10px;
-    }
     span {
       font-size: 14px;
     }

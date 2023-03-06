@@ -7,7 +7,8 @@
 ```vue
 <template>
   <div class="block">
-    <BACK />
+    <back />
+    <edit />
   </div>
 </template>
 ```

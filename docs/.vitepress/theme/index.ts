@@ -2,9 +2,8 @@ import DefaultTheme from 'vitepress/theme';
 
 // 组件包与css引入
 // import '@useless/useless-ui-theme/index.scss';
-import UseLessUI from 'useless-ui-test';
-import 'useless-ui-test/dist/index.css';
-import { BACK } from '@useless/useless-ui-icon';
+import UseLessUI from '@qianshi/useless-ui/dist';
+// import * as uselessIcon from '@UseLessUI/useless-ui-icon';
 
 import './style/var.css';
 // 主题样式
@@ -19,8 +18,9 @@ export default {
   ...DefaultTheme,
   enhanceApp({ app }) {
     app.use(UseLessUI);
-    // app.use(uselessIcon);
-    app.component('BACK', BACK);
+    // for (const [key, component] of Object.entries(uselessIcon)) {
+    //   app.component(key, component)
+    // }
     app.component('Demo', Demo);
     app.component('DemoBlock', DemoBlock);
     globals.forEach(([name, Comp]) => {
