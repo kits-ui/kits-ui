@@ -1,0 +1,13 @@
+{
+  "name": "useless-ui-docs",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "author": "useless",
+  "type": "module",
+  "license": "MIT",
+  "dependencies": {
+    "@qianshi/useless-ui": "^0.0.1"
+  }
+}

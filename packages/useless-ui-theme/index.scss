@@ -1,0 +1,55 @@
+@media (prefers-color-scheme: light) {
+  :root {
+    --border-color: #ebeef5;
+    --theme-color: #3bd3be;
+    --theme-hover-color: #40d9c4;
+    --font-color: #606266;
+    --zebra-bg: #fafafa;
+    --u-image-fit: fill;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --border-color: #7c7c7c;
+    --theme-color: #3bd3be;
+    --theme-hover-color: #40d9c4;
+    --font-color: #606266;
+    --zebra-bg: #838383;
+    --u-image-fit: fill;
+  }
+}
+
+/* 主动变更 */
+.light {
+  --border-color: #ebeef5;
+  --theme-color: #3bd3be;
+  --theme-hover-color: #40d9c4;
+  --font-color: #606266;
+  --zebra-bg: #fafafa;
+}
+
+.dark {
+  --border-color: #797979;
+  --theme-color: #3bd3be;
+  --theme-hover-color: #40d9c4;
+  --font-color: #fff;
+  --zebra-bg: #535353;
+}
+
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+
+@import './src/u-authcode.scss';
+@import './src/u-botton.scss';
+@import './src/u-filterBox.scss';
+@import './src/u-icon.scss';
+@import './src/u-image.scss';
+@import './src/u-notification.scss';
+@import './assets/iconfont.css';
+
