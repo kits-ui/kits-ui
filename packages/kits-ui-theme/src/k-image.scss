@@ -1,0 +1,123 @@
+.k-image {
+  position: relative;
+  display: inline-block;
+  margin: auto;
+
+  img {
+    cursor: pointer;
+    width: inherit;
+    height: inherit;
+    object-fit: var(--k-image-fit);
+  }
+  .k-image-preview {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    // opacity: 0.5;
+    background: #00000073;
+    z-index: 999;
+    user-select: none;
+    & > span {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 22px;
+      background-color: #646464;
+      cursor: pointer;
+      color: #fff;
+      font-size: 26px;
+      z-index: 1000;
+      user-select: none;
+    }
+    .k-image-preview-close {
+      top: 65px;
+      right: 65px;
+    }
+    .k-image-preview-prev {
+      top: 0;
+      bottom: 0;
+      left: 65px;
+      margin: auto;
+    }
+    .k-image-preview-next {
+      top: 0;
+      bottom: 0;
+      right: 65px;
+      margin: auto;
+    }
+    .preview-content {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      object-fit: contain;
+      transition: all 0.3s;
+      user-select: none;
+    }
+    .k-image-bar {
+      position: absolute;
+      bottom: 30px;
+      left: 0;
+      right: 0;
+      margin: auto;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      width: 235px;
+      height: 50px;
+      border-radius: 25px;
+      background-color: #00000085;
+      user-select: none;
+      svg[id*=icon] {
+        font-size: 26px;
+        color: #fff;
+        cursor: pointer;
+        user-select: none;
+      }
+      .left,
+      .right {
+        position: relative;
+        border: none;
+        &::before,
+        &::after {
+          display: inline-block;
+          content: '';
+          box-sizing: border-box;
+        }
+        &::before {
+          position: absolute;
+          border: 5px solid transparent;
+          border-top-color: #fff;
+          transform: rotate(20deg);
+          top: 7px;
+          left: -4px;
+        }
+        &::after {
+          width: 22px;
+          height: 22px;
+          border-radius: 11px;
+          border: 2px solid #fff;
+        }
+      }
+      .right {
+        &::before {
+          position: absolute;
+          border: 5px solid transparent;
+          border-top-color: #fff;
+          transform: rotate(-20deg);
+          top: 7px;
+          left: unset;
+          right: -4px;
+        }
+      }
+    }
+  }
+}

@@ -6,7 +6,7 @@ const sidebar = {
       text: '快速开始',
       items: [
         { text: '介绍', link: '/guide/' },
-        { text: '通用变量', link: '/guide/variable' },
+        { text: '快速上手', link: '/guide/use' },
       ],
     },
     { text: '反馈' },
@@ -20,6 +20,7 @@ const sidebar = {
         { text: 'authCode 验证码', link: '/components/authCode/' },
         { text: 'notification 通知', link: '/components/notification/' },
         { text: 'image图片', link: '/components/image/' },
+        { text: 'icon图标', link: '/components/icon/' },
       ],
     },
     { text: '导航' },
@@ -27,7 +28,7 @@ const sidebar = {
   ],
 };
 const config = {
-  title: 'Useless UI🌟',
+  title: 'Kits UI🌟',
   themeConfig: {
     nav: [
       { text: '指南', link: '/guide/', activeMatch: '/guide/' },
@@ -41,9 +42,9 @@ const config = {
         ],
       },
     ],
-    siteTitle: 'Useless UI🌟',
+    siteTitle: 'Kits UI🌟',
     sidebar,
-    socialLinks: [{ icon: 'github', link: 'https://github.com/useless-ui/useless-ui' }],
+    socialLinks: [{ icon: 'github', link: 'https://github.com/kits-ui/kits-ui' }],
   },
   markdown: {
     theme: {
