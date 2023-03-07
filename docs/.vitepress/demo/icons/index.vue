@@ -1,7 +1,7 @@
 <template>
   <div class="iconList">
     <div v-for="item in glyphs" :key="item.name" class="iconItem">
-      <!-- <u-icon :type="item.name" /> -->
+      <!-- <k-icon :type="item.name" /> -->
       <component :is="item.name" />
       <span>{{ item.name }}</span>
     </div>
@@ -599,6 +599,13 @@ const glyphs = [
     &:hover {
       background-color: #2fd3bd2a;
     }
+  }
+  svg[id*=icon] {
+    width: 1.5em;
+    height: 1.5em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
   }
 }
 </style>

@@ -1,19 +1,19 @@
 {
-  "name": "@qianshi/useless-ui",
-  "version": "0.0.3",
+  "name": "kits-ui",
+  "version": "0.0.1",
   "description": "",
   "keywords": [],
-  "author": "useless",
+  "author": "kits-ui",
   "type": "module",
   "license": "MIT",
   "private": false,
-  "main": "lib/index.js",
-  "module": "es/index.js",
-  "types": "es/index.d.ts",
+  "main": "dist/lib/index.js",
+  "module": "dist/es/index.js",
+  "types": "dist/es/index.d.ts",
   "exports": {
     ".": {
-      "import": "./es/index.js",
-      "require": "./lib/index.js"
+      "import": "./dist/es/index.js",
+      "require": "./dist/lib/index.js"
     }
   },
   "unpkg": "dist/index.umd.js",
@@ -22,7 +22,7 @@
     "build": "vite build"
   },
   "files": [
-    "dist/*",
+    "dist",
     "LICENSE",
     "README.md"
   ],

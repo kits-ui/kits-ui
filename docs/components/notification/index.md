@@ -6,16 +6,16 @@
 
 ```vue
 <template>
-  <u-notification>
-    <template #default="scope"><u-button type="insert">自定义按钮</u-button></template>
-  </u-notification>
-  <u-notification body="从右到左" dir="rtl">
-    <template #default="scope"><u-button type="insert">从右到左</u-button></template>
-  </u-notification>
-  <u-notification body="从左到右" dir="ltr">
-    <template #default="scope"><u-button type="insert">从左到右</u-button></template>
-  </u-notification>
-  <u-notification dir="ltr"></u-notification>
+  <k-notification>
+    <template #default="scope"><k-button type="insert">自定义按钮</k-button></template>
+  </k-notification>
+  <k-notification body="从右到左" dir="rtl">
+    <template #default="scope"><k-button type="insert">从右到左</k-button></template>
+  </k-notification>
+  <k-notification body="从左到右" dir="ltr">
+    <template #default="scope"><k-button type="insert">从左到右</k-button></template>
+  </k-notification>
+  <k-notification dir="ltr"></k-notification>
 </template>
 ```
 

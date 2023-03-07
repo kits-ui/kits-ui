@@ -7,7 +7,7 @@
 ```vue
 <template>
   <div class="block" v-for="fit in fits" :key="fit">
-    <u-image style="width: 100px; height: 100px" :src="url" :fit="fit"></u-image>
+    <k-image style="width: 100px; height: 100px" :src="url" :fit="fit"></k-image>
     <span class="general-span">{{ fit }}</span>
   </div>
 </template>
@@ -28,10 +28,10 @@ const url =
 ```vue
 <template>
   <div class="block">
-    <u-image style="width: 100px; height: 100px" :src="url1" :preview="previewList"></u-image>
+    <k-image style="width: 100px; height: 100px" :src="url1" :preview="previewList"></k-image>
   </div>
   <div class="block">
-    <u-image style="width: 100px; height: 100px" :src="url2" :preview="previewList"></u-image>
+    <k-image style="width: 100px; height: 100px" :src="url2" :preview="previewList"></k-image>
   </div>
 </template>
 

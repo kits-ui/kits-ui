@@ -4,24 +4,24 @@
  * @Date: 2023-02-07 09:54:09
  * @LastEditTime: 2023-02-24 13:13:46
  * @Description: 验证码
- * @FilePath: \useless-ui\src\authCode\index.vue
+ * @FilePath: \kit-ui\src\authCode\index.vue
 -->
 <template>
   <div
-    class="u-authcode"
+    class="k-authcode"
     :style="{
       height: height + 'px',
       width: width + 'px',
     }"
     @click="createCodeHandle"
   >
-    <canvas ref="authCode" class="u-authcode__content" />
+    <canvas ref="authCode" class="k-authcode__content" />
   </div>
 </template>
 
 <script lang="ts">
 export default {
-  name: 'UAuthCode',
+  name: 'KAuthCode',
   props: {
     height: {
       default: 36,

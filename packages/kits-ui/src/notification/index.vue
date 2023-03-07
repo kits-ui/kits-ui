@@ -4,7 +4,7 @@
       <slot></slot>
     </template>
     <template v-else>
-      <u-button type="insert">默认按钮</u-button>
+      <k-button type="insert">默认按钮</k-button>
     </template>
   </div>
 </template>

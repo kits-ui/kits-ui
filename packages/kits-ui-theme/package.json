@@ -1,18 +1,17 @@
 {
-  "name": "@qianshi/useless-ui-icon",
+  "name": "@kits-ui/theme",
   "version": "0.0.1",
   "description": "",
-  "main": "index.js",
-  "module": "index.js",
+  "main": "dist/index.css",
+  "module": "dist/index.css",
   "exports": {
     ".": {
-      "import": "index.js",
-      "require": "index.js",
-      "type": "index.d.ts"
+      "import": "./dist/index.css"
     }
   },
+  "private": false,
   "keywords": [],
-  "author": "useless",
+  "author": "kits-ui",
   "type": "module",
   "license": "MIT",
   "scripts": {

@@ -1,5 +1,5 @@
 {
-  "name": "uselsess-ui-test",
+  "name": "kits-ui",
   "version": "0.0.1",
   "description": "",
   "workspaces": [
@@ -10,10 +10,10 @@
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs",
-    "start": "vite packages/useless-ui",
+    "start": "vite packages/kits-ui",
     "build": "pnpm -r build --filter packages",
-    "build:theme": "pnpm -C packages/useless-ui-theme build",
-    "build:icon": "pnpm -C packages/useless-ui-icon build",
+    "build:theme": "pnpm -C packages/kits-ui-theme build",
+    "build:icon": "pnpm -C packages/kits-ui-icon build",
     "check:ts": "vue-tsc --noEmit",
     "check:eslint": "eslint \"**/*.{ts,tsx,vue}\"",
     "check:ci": "npm run check:ts && npm run check:eslint",
@@ -37,9 +37,8 @@
     "UI",
     "useless"
   ],
-  "author": "Uselsess",
+  "author": "kits-ui",
   "license": "MIT",
-  "private": false,
   "devDependencies": {
     "@commitlint/cli": "^17.4.2",
     "@commitlint/config-conventional": "^17.4.2",
@@ -68,9 +67,6 @@
     "vue-tsc": "^1.0.24"
   },
   "dependencies": {
-    "@qianshi/useless-ui": "workspace:*",
-    "@qianshi/useless-ui-icon": "workspace:*",
-    "@qianshi/useless-ui-theme": "workspace:*",
     "sass": "^1.58.0",
     "scss": "^0.2.4",
     "vue": "3.2.44"

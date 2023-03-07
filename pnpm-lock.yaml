@@ -70,15 +70,25 @@ importers:
 
   docs:
     specifiers:
-      '@qianshi/useless-ui': ^0.0.1
+      '@kits-ui/icons': workspace:^0.0.1
+      '@kits-ui/theme': workspace:^0.0.1
+      kits-ui: workspace:^0.0.1
     dependencies:
-      '@qianshi/useless-ui': link:../packages/useless-ui
+      '@kits-ui/icons': link:../packages/kits-ui-icons
+      '@kits-ui/theme': link:../packages/kits-ui-theme
+      kits-ui: link:../packages/kits-ui
+
+  packages/useless-plus:
+    specifiers:
+      '@useless-plus/icons': workspace:^0.0.1
+    dependencies:
+      '@useless-plus/icons': link:../useless-plus-icon
 
   packages/useless-ui:
     specifiers:
-      '@qianshi/useless-ui-theme': workspace:*
+      '@qianshi/useless-ui-icon': workspace:^0.0.2
     dependencies:
-      '@qianshi/useless-ui-theme': link:../useless-ui-theme
+      '@qianshi/useless-ui-icon': link:../useless-ui-icon
 
   packages/useless-ui-icon:
     specifiers: {}
