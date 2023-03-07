@@ -8,15 +8,15 @@ pnpm i --frozen-lockfile
 
 pnpm build
 
-cd packages/kitui
+cd packages/kitsui
 npm publish
 cd -
 
-cd packages/kitui-theme
+cd packages/kitsui-theme
 npm publish
 cd -
 
-cd packages/kitui-icon
+cd packages/kitsui-icon
 npm publish
 cd -
 
