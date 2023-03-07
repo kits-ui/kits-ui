@@ -8,15 +8,15 @@ pnpm i --frozen-lockfile
 
 pnpm build
 
-cd packages/useless-ui
+cd packages/kitui
 npm publish
 cd -
 
-cd packages/useless-ui-theme
+cd packages/kitui-theme
 npm publish
 cd -
 
-cd packages/useless-ui-icon
+cd packages/kitui-icon
 npm publish
 cd -
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="u-filter-box">
+  <div class="k-filter-box">
     <section class="top">
       <div class="left">标签筛选 ></div>
       <div class="center">

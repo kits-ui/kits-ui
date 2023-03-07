@@ -1,6 +1,6 @@
 <template>
   <button
-    class="u-button font-semibold"
+    class="k-button font-semibold"
     :class="btnClass()"
     :disabled="props.disabled"
     :style="{ backgroundColor: props.color }"

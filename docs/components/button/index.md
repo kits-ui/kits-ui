@@ -11,18 +11,18 @@
 ```vue
 <template>
   <div style="margin-bottom:20px;">
-    <u-button>default</u-button>
-    <u-button color="#22c55e">绿色按钮</u-button>
-    <u-button color="#6b7280">灰色按钮</u-button>
-    <u-button color="#eab308">黄色按钮</u-button>
-    <u-button color="#ef4444">红色按钮</u-button>
+    <k-button>default</k-button>
+    <k-button color="#22c55e">绿色按钮</k-button>
+    <k-button color="#6b7280">灰色按钮</k-button>
+    <k-button color="#eab308">黄色按钮</k-button>
+    <k-button color="#ef4444">红色按钮</k-button>
   </div>
   <div style="margin-bottom:20px;">
-    <u-button type="insert">insert</u-button>
-    <u-button color="#22c55e" type="insert" direction="left">左->右</u-button>
-    <u-button color="#6b7280" type="insert" direction="right">右->左</u-button>
-    <u-button color="#eab308" type="insert" direction="top">上->下</u-button>
-    <u-button color="#ef4444" type="insert" direction="bottom">下->上</u-button>
+    <k-button type="insert">insert</k-button>
+    <k-button color="#22c55e" type="insert" direction="left">左->右</k-button>
+    <k-button color="#6b7280" type="insert" direction="right">右->左</k-button>
+    <k-button color="#eab308" type="insert" direction="top">上->下</k-button>
+    <k-button color="#ef4444" type="insert" direction="bottom">下->上</k-button>
   </div>
 </template>
 ```
@@ -40,18 +40,18 @@
 ```vue
 <template>
   <div style="margin-bottom:20px;">
-    <u-button disabled>default</u-button>
-    <u-button color="#22c55e" disabled>绿色按钮</u-button>
-    <u-button color="#6b7280" disabled>灰色按钮</u-button>
-    <u-button color="#eab308" disabled>黄色按钮</u-button>
-    <u-button color="#ef4444" disabled>红色按钮</u-button>
+    <k-button disabled>default</k-button>
+    <k-button color="#22c55e" disabled>绿色按钮</k-button>
+    <k-button color="#6b7280" disabled>灰色按钮</k-button>
+    <k-button color="#eab308" disabled>黄色按钮</k-button>
+    <k-button color="#ef4444" disabled>红色按钮</k-button>
   </div>
   <div style="margin-bottom:20px;">
-    <u-button type="insert" disabled>insert</u-button>
-    <u-button color="#22c55e" type="insert" direction="left" disabled>左->右</u-button>
-    <u-button color="#6b7280" type="insert" direction="right" disabled>右->左</u-button>
-    <u-button color="#eab308" type="insert" direction="top" disabled>上->下</u-button>
-    <u-button color="#ef4444" type="insert" direction="bottom" disabled>下->上</u-button>
+    <k-button type="insert" disabled>insert</k-button>
+    <k-button color="#22c55e" type="insert" direction="left" disabled>左->右</k-button>
+    <k-button color="#6b7280" type="insert" direction="right" disabled>右->左</k-button>
+    <k-button color="#eab308" type="insert" direction="top" disabled>上->下</k-button>
+    <k-button color="#ef4444" type="insert" direction="bottom" disabled>下->上</k-button>
   </div>
 </template>
 ```

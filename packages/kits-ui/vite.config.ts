@@ -17,7 +17,7 @@ const rollupOptions: any = {
   // input: [resolve(__dirname, 'packages/useless-ui/index.ts')],
   output: [
     {
-      name: 'useless-ui',
+      name: 'kits-ui',
       format: 'umd',
       sourcemap: false,
       dir: './dist',
@@ -91,7 +91,7 @@ export default defineConfig({
     outDir: resolve(__dirname, './dist'),
     lib: {
       entry: resolve(__dirname, './index.ts') /** 打包入口 */,
-      name: 'UseLessUI',
+      name: 'kits-ui',
       // fileName: (format) => `index.${format}.js`,
       // // 导出模块格式
       // formats: ['es', 'umd', 'iife'],

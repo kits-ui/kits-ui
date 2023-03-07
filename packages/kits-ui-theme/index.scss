@@ -5,7 +5,7 @@
     --theme-hover-color: #40d9c4;
     --font-color: #606266;
     --zebra-bg: #fafafa;
-    --u-image-fit: fill;
+    --k-image-fit: fill;
   }
 }
 
@@ -16,7 +16,7 @@
     --theme-hover-color: #40d9c4;
     --font-color: #606266;
     --zebra-bg: #838383;
-    --u-image-fit: fill;
+    --k-image-fit: fill;
   }
 }
 
@@ -45,11 +45,10 @@
   overflow: hidden;
 }
 
-@import './src/u-authcode.scss';
-@import './src/u-botton.scss';
-@import './src/u-filterBox.scss';
-@import './src/u-icon.scss';
-@import './src/u-image.scss';
-@import './src/u-notification.scss';
-@import './assets/iconfont.css';
+@import './src/k-authcode.scss';
+@import './src/k-botton.scss';
+@import './src/k-filterBox.scss';
+@import './src/k-icon.scss';
+@import './src/k-image.scss';
+@import './src/k-notification.scss';
 

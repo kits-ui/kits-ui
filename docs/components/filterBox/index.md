@@ -6,7 +6,7 @@
 
 ```vue
 <template>
-  <u-filter-box :filterData="data" :isClean="isClean" @onSelectData="onSelectData"></u-filter-box>
+  <k-filter-box :filterData="data" :isClean="isClean" @onSelectData="onSelectData"></k-filter-box>
 </template>
 
 <script lang="ts" setup>

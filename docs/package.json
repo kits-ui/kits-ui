@@ -1,13 +1,15 @@
 {
-  "name": "useless-ui-docs",
+  "name": "kits-ui-docs",
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "keywords": [],
-  "author": "useless",
+  "author": "kits-ui",
   "type": "module",
   "license": "MIT",
   "dependencies": {
-    "useless-ui-test": "0.0.2"
+    "@kits-ui/icons": "workspace:^0.0.1",
+    "@kits-ui/theme": "workspace:^0.0.1",
+    "kits-ui": "workspace:^0.0.1"
   }
 }

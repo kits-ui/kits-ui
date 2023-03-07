@@ -2,9 +2,9 @@
 layout: home
 
 hero:
-  name: Useless UI
+  name: Kits UI
   text: 给你不一样的体验
-  tagline: 基于Vite构建的Vue3组件库
+  tagline: 基于Vite构建的多样化Vue3组件库
   image:
     src: /logo.png
     alt:
@@ -14,7 +14,7 @@ hero:
       link: /guide/
     - theme: alt
       text: 在 github 上查看
-      link: https://github.com/useless-ui/useless-ui
+      link: https://github.com/kits-ui/kits-ui
 features:
   - icon: ⚡️
     title: 这里是功能区 1

@@ -1,29 +1,30 @@
 <template>
-  <div class="u-image">
+  <div class="k-image">
     <img
       :src="props.src"
       alt=""
       :style="{
         cursor: props.preview && props.preview.length === 0 ? 'auto' : 'pointer',
-        '--u-image-fit': props.fit,
+        '--k-image-fit': props.fit,
       }"
       @click="showPreview"
     />
-    <div v-show="isShowPre" ref="uImagePreview" class="u-image-preview">
-      <span class="u-image-preview-close" @click="close">
-        <u-icon type="shut" />
+    <div v-show="isShowPre" ref="uImagePreview" class="k-image-preview">
+      <span class="k-image-preview-close" @click="close">
+        <shut />
       </span>
-      <span class="u-image-preview-prev" @click="switchImg('prev')">
-        <u-icon type="arrowleft" />
+      <span class="k-image-preview-prev" @click="switchImg('prev')">
+        <arrowleft />
       </span>
-      <span class="u-image-preview-next" @click="switchImg('next')">
-        <u-icon type="arrowright" />
+      <span class="k-image-preview-next" @click="switchImg('next')">
+        <k-icon type="arrowright" />
+        <arrowright />
       </span>
-      <div class="u-image-bar">
-        <u-icon type="narrow" @click="changeScale('reduce')" />
-        <u-icon type="enlarge" @click="changeScale('amplify')" />
-        <u-icon type="undo" @click="changeRotate('left')" />
-        <u-icon type="redo" @click="changeRotate('right')" />
+      <div class="k-image-bar">
+        <narrow @click="changeScale('reduce')" />
+        <enlarge @click="changeScale('amplify')" />
+        <undo @click="changeRotate('left')" />
+        <redo @click="changeRotate('right')" />
       </div>
       <img ref="previewImg" :src="currentShow" alt="" class="preview-content" />
     </div>

@@ -1,11 +1,18 @@
 {
-  "name": "@useless/useless-ui-icon",
+  "name": "@kits-ui/icons",
   "version": "0.0.1",
   "description": "",
-  "main": "index.ts",
-  "module": "index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.js",
+      "type": "./dist/index.d.ts"
+    }
+  },
   "keywords": [],
-  "author": "useless",
+  "author": "kits-ui",
   "type": "module",
   "license": "MIT",
   "scripts": {

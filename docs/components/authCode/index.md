@@ -10,9 +10,9 @@
 
 ```vue
 <template>
-  <u-auth-code ref="authCodeRef" v-model:code="authCode"></u-auth-code>
+  <k-auth-code ref="authCodeRef" v-model:code="authCode"></k-auth-code>
   <div class="py-4">
-    <u-button type="insert" @click="reset">重新生成</u-button>
+    <k-button type="insert" @click="reset">重新生成</k-button>
     <div>{{ authCode }}</div>
   </div>
 </template>
