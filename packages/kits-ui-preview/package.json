@@ -1,0 +1,10 @@
+{
+  "name": "kits-ui-preview",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "author": "kits-ui",
+  "type": "module",
+  "license": "MIT"
+}

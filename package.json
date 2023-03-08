@@ -10,7 +10,7 @@
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs",
-    "start": "vite packages/kits-ui",
+    "start": "vite packages/kits-ui-preview",
     "build": "pnpm -r build --filter packages",
     "build:theme": "pnpm -C packages/kits-ui-theme build",
     "build:icon": "pnpm -C packages/kits-ui-icon build",
