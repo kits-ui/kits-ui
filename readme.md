@@ -67,7 +67,15 @@
 
 ```
 
-> **文档页面如何打开?** > **运行 npm run build 生成各包对应的 dist 文件, 再运行 npm run docs:dev 打开文档页面** > **预览页面如何打开?** > **运行 npm start 打开预览页面** > **在目前结构中 docs 中的文档模块分别引用了 packages 下的 ui 模块 icon 模块 theme 模块, 具体引用路径为 /docs/.vitepress/theme/index.ts**
+## 提示
+
+> **文档页面如何打开? 运行 npm run build 生成各包对应的 dist 文件, 再运行 npm run docs:dev 打开文档页面**
+
+> **预览页面如何打开? 运行 npm start 打开预览页面**
+
+> **在目前结构中 docs 中的文档模块分别引用了 packages 下的 ui 模块 icon 模块 theme 模块, 具体引用路径为 /docs/.vitepress/theme/index.ts**
+
+## 注意事项
 
 因本项目使用 monorepo 方式进行管理, 项目分为主包与子包, 有以下几点需要注意
 
@@ -79,6 +87,7 @@
 6. icon 中为当前项目中默认预置的 icon 图标,后续需要添加请在 issues 中声明
 7. theme 目前为所有组件的样式集合,对应组件的样式写在 theme 下 src 文件中
 8. preview 为预览页面, 开发组件时在该页面调试,随便写,随便删!!!!!!!!!!!!!!!!!!
+9. 在预览页面中调试无问题后,再按提示第一条打开文档书写组件文档
 
 ## 主题色 (默认色)
 
