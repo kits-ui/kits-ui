@@ -28,6 +28,7 @@ const sidebar = {
   ],
 };
 const config = {
+  base: '/kits-ui/',
   title: 'Kits UI🌟',
   themeConfig: {
     nav: [
@@ -53,8 +54,6 @@ const config = {
     },
     config: (md) => {
       // 添加DemoBlock插槽
-      // const { demoBlockPlugin } = require('vitepress-theme-demoblock')
-      md.set({ publicPath: '/kits-ui/' });
       md.use(demoBlockPlugin);
     },
   },
