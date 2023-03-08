@@ -99,18 +99,23 @@ const switchImg = (value) => {
   rotate.value = 0;
   previewImg.value.style.transform = `scale(${scale.value})`;
   previewImg.value.style.transition = `none`;
-  if (value === 'prev') {
-    if (currentIndex.value === 0) {
-      currentIndex.value = props.preview.length - 1;
+  if (props.preview.length > 1) {
+    if (value === 'prev') {
+      if (currentIndex.value === 0) {
+        currentIndex.value = props.preview.length - 1;
+      } else {
+        currentIndex.value -= 1;
+      }
     } else {
-      currentIndex.value -= 1;
+      if (currentIndex.value === props.preview.length - 1) {
+        currentIndex.value = 0;
+      } else {
+        currentIndex.value += 1;
+      }
     }
   } else {
-    if (currentIndex.value === props.preview.length - 1) {
-      currentIndex.value = 0;
-    } else {
-      currentIndex.value += 1;
-    }
+    console.log(currentIndex.value, 522222);
+    currentIndex.value = 0;
   }
   currentShow.value = props.preview[currentIndex.value] as string;
 };
