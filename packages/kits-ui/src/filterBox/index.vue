@@ -76,9 +76,9 @@
 <script lang="ts" setup>
 import { ref, reactive, onMounted, nextTick } from 'vue';
 
-const rowValueList = ref([]);
+const rowValueList = ref<any>([]);
 const rowValue = ref();
-const rowList = ref(null);
+const rowList = ref<any>(null);
 
 const props = defineProps({
   isClean: {
@@ -113,7 +113,6 @@ onMounted(() => {
 
 const init = async () => {
   await getAllQueryTags();
-  console.log(rowValueList);
   const arr = [];
   for (let i = 0; i < rowValueList.value.length; i++) {
     if (rowValueList.value[i].clientHeight > 85) {
@@ -132,13 +131,13 @@ const rowBtn = (value: any, i: number) => {
   // 赋值当前触发行的index 改变样式
   data.multipleIndex = i;
   // 从已选择的列表中获取当前行中的选中项 -----回显
-  const arr = data.navList.filter((item) => {
+  const arr = data.navList.filter((item: any) => {
     return item.id === value.id;
   });
   // 当选中列表中有当前列的已选项时
   if (arr.length > 0) {
     // 将已选择项赋值当前行的选择数组this.selectList
-    data.selectList = arr[0].selectedList.map((item) => {
+    data.selectList = arr[0].selectedList.map((item: any) => {
       return item.id;
     });
   } else {
@@ -149,7 +148,7 @@ const rowBtn = (value: any, i: number) => {
   resetscroll(i);
 };
 
-const open = (i) => {
+const open = (i: any) => {
   // 赋值当前触发行的index 改变样式
   // 先将非当前列的展开样式变为收起,一次只能展开一行 dom元素数组为伪数组因此无法使用map filter
   for (let ii = 0; ii < rowValue.value.length; ii++) {
@@ -169,7 +168,7 @@ const open = (i) => {
 };
 
 // 收起
-const folded = (i) => {
+const folded = (i: any) => {
   // 去除当前行的展开样式
   rowValue.value[i].classList.remove('openRow');
   // 将index清空
@@ -177,7 +176,7 @@ const folded = (i) => {
 };
 
 // 点击收起时,将滚动到最上面
-const resetscroll = (i) => {
+const resetscroll = (i: any) => {
   nextTick(() => {
     rowList.value[i].scrollTop = 0;
   });
@@ -191,20 +190,20 @@ const close = () => {
 };
 
 // 单选
-const liClick = async (item, value) => {
+const liClick = async (item: any, value: any) => {
   // num 0 单选  1多选
   await liSelected(value);
   await confirm(item, 0);
 };
 
 // 点击勾选(多选)
-const liSelected = (value) => {
+const liSelected = (value: any) => {
   // 判断当前是否已勾选
   if (data.selectList.includes(value)) {
-    data.selectList = data.selectList.filter((item) => {
+    data.selectList = data.selectList.filter((item: any) => {
       return item !== value;
     });
-    data.selectLi = data.selectLi.filter((item) => {
+    data.selectLi = data.selectLi.filter((item: any) => {
       return item !== value;
     });
   } else {
@@ -216,25 +215,25 @@ const liSelected = (value) => {
 };
 
 // 数据整理
-const organizeData = (value, num) => {
+const organizeData = (value: any, num: any) => {
   if (data.selectList.length === 0) {
     return;
   }
-  const obj = {
+  const obj: any = {
     id: value.id,
     name: value.name,
     selectedList: [],
   };
-  data.selectList.map((item) => {
-    value.childList.filter((i) => {
+  data.selectList.map((item: any) => {
+    value.childList.filter((i: any) => {
       if (item === i.id) {
         obj.selectedList.push(i);
       }
     });
   });
   // 判断当前是新增列表还是修改列表
-  let currentIndex = null;
-  const currentArr = data.navList.filter((item, i) => {
+  let currentIndex: any = null;
+  const currentArr = data.navList.filter((item: any, i: any) => {
     if (item.id === value.id) {
       currentIndex = i;
       return item;
@@ -257,7 +256,7 @@ const organizeData = (value, num) => {
 };
 
 // 多选确定
-const confirm = (value, num) => {
+const confirm = (value: any, num: any) => {
   organizeData(value, num);
   // this.close()
   data.multipleIndex = '';
@@ -265,10 +264,10 @@ const confirm = (value, num) => {
 };
 
 const filterBoxObj = () => {
-  const obj = {};
-  data.navList.map((item) => {
+  const obj: any = {};
+  data.navList.map((item: any) => {
     const childIdStr = item.selectedList
-      .map((iItem) => {
+      .map((iItem: any) => {
         return iItem.id;
       })
       .join(',');
@@ -282,15 +281,15 @@ const isFold = () => {
 };
 
 // 删除所选大类
-const closeNav = (value) => {
-  const arr = [];
+const closeNav = (value: any) => {
+  const arr: any = [];
   // 删除所选navList
-  data.navList = data.navList.filter((item) => {
+  data.navList = data.navList.filter((item: any) => {
     return item.id !== value.id;
   });
   // 清除高亮
-  data.navList.map((item) => {
-    item.selectedList.map((ii) => {
+  data.navList.map((item: any) => {
+    item.selectedList.map((ii: any) => {
       arr.push(ii.id);
     });
   });

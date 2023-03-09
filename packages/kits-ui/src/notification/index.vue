@@ -51,7 +51,7 @@ onMounted(() => {
   }
 });
 // 播放消息声音
-function popNotice(Data) {
+function popNotice(Data: any) {
   if (Notification.permission == 'granted') {
     let notification = new Notification('收到一条新消息', {
       dir: Data.dir,

@@ -52,7 +52,7 @@ export default {
       get() {
         return this.$attrs.value;
       },
-      set(val) {
+      set(val: any) {
         // console.log({ val });
         this.$emit('update:code', val);
       },
@@ -75,7 +75,7 @@ export default {
         const b = Math.floor(Math.random() * 256);
         return 'rgb(' + r + ',' + g + ',' + b + ')';
       };
-      const canvas = this.$refs.authCode;
+      const canvas: any = this.$refs.authCode;
       const { width, height } = canvas.getBoundingClientRect();
       const canvasWidth = width;
       const canvasHeight = height;
@@ -92,7 +92,7 @@ export default {
       let authCode = ''; // 随机号码
       // 这里的for循环可以控制验证码位数（如果想显示6位数，4改成6即可）
       for (let i = 0; i < showNum; i++) {
-        let txt = '';
+        let txt: any = '';
         if (codes.length) {
           txt = codes[i];
         } else {

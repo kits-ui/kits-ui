@@ -62,16 +62,15 @@ onMounted(() => {
   currentIndex.value = 0;
   uImagePreview.value.addEventListener(
     'wheel',
-    (e) => {
+    (e: any) => {
       e.preventDefault();
       scale.value += e.deltaY * -0.0001;
-      if (scale.value < 0.2) {
+      if (scale.value <= 0.2) {
         scale.value = 0.2;
-      } else if (scale.value > 3) {
-        scale.value = 3;
+      } else if (scale.value >= 2) {
+        scale.value = 2;
       }
-      console.log(scale);
-      scale.value = Math.min(Math.max(0.125, scale.value), 4);
+      scale.value = Math.min(Math.max(0.2, scale.value), 4);
       previewImg.value.style.transform = `scale(${scale.value}) rotate(${rotate.value}deg)`;
       previewImg.value.style.transition = `all 0.3s`;
     },
@@ -94,7 +93,7 @@ const close = () => {
  * 左右切换
  * @param value 参数: 前一个prev  下一个 next
  */
-const switchImg = (value) => {
+const switchImg = (value: string) => {
   scale.value = 1;
   rotate.value = 0;
   previewImg.value.style.transform = `scale(${scale.value})`;
@@ -114,7 +113,6 @@ const switchImg = (value) => {
       }
     }
   } else {
-    console.log(currentIndex.value, 522222);
     currentIndex.value = 0;
   }
   currentShow.value = props.preview[currentIndex.value] as string;
@@ -125,10 +123,20 @@ const switchImg = (value) => {
  * @param value 参数 放大或缩小
  */
 const changeScale = (value: string) => {
+  console.log();
+  const currentScale = Number(scale.value.toFixed(1));
   if (value === 'reduce') {
-    scale.value -= 0.1;
+    if (currentScale <= 0.2) {
+      scale.value = 0.2;
+    } else {
+      scale.value -= 0.1;
+    }
   } else {
-    scale.value += 0.1;
+    if (currentScale >= 2) {
+      scale.value = 2;
+    } else {
+      scale.value += 0.1;
+    }
   }
   previewImg.value.style.transform = `scale(${scale.value}) rotate(${rotate.value}deg)`;
   previewImg.value.style.transition = `all 0.3s`;
