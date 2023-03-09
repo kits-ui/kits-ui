@@ -80,16 +80,18 @@ importers:
 
   packages/kits-ui-preview:
     specifiers:
-      '@kits-ui/icons': workspace:*
-      '@kits-ui/theme': workspace:*
-      kits-ui: workspace:*
+      vue-router: '4'
     dependencies:
-      '@kits-ui/icons': link:../kits-ui-icons
-      '@kits-ui/theme': link:../kits-ui-theme
-      kits-ui: link:../kits-ui
+      vue-router: 4.1.6
 
   packages/kits-ui-theme:
     specifiers: {}
+
+  start:
+    specifiers:
+      vue-router: '4'
+    dependencies:
+      vue-router: 4.1.6
 
 packages:
   /@algolia/autocomplete-core/1.7.4:
@@ -2569,7 +2571,6 @@ packages:
       {
         integrity: sha512-o9KfBeaBmCKl10usN4crU53fYtC1r7jJwdGKjPT24t348rHxgfpZ0xL3Xm/gLUYnc0oTp8LAmrxOeLyu6tbk2Q==,
       }
-    dev: true
 
   /@vue/eslint-config-prettier/7.1.0_rlq4czn2p5niyau36qwtjimf2y:
     resolution:
@@ -7081,6 +7082,17 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /vue-router/4.1.6:
+    resolution:
+      {
+        integrity: sha512-DYWYwsG6xNPmLq/FmZn8Ip+qrhFEzA14EI12MsMgVxvHFDYvlr4NXpVF5hrRH1wVcDP8fGi5F4rxuJSl8/r+EQ==,
+      }
+    peerDependencies:
+      vue: ^3.2.0
+    dependencies:
+      '@vue/devtools-api': 6.5.0
+    dev: false
 
   /vue-template-compiler/2.7.14:
     resolution:

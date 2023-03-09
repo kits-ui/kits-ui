@@ -4,13 +4,14 @@
   "description": "",
   "workspaces": [
     "packages/*",
-    "docs"
+    "docs",
+    "start"
   ],
   "scripts": {
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs",
-    "start": "vite packages/kits-ui-preview",
+    "start": "vite start",
     "build": "pnpm -r build --filter packages",
     "build:theme": "pnpm -C packages/kits-ui-theme build",
     "build:icon": "pnpm -C packages/kits-ui-icon build",
