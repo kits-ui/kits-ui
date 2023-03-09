@@ -1,18 +1,23 @@
 import { createRouter, RouteRecordRaw, createWebHistory } from 'vue-router';
 
+// 懒加载
 const moduleFiles = import.meta.glob('../components/*.vue');
-console.log(moduleFiles, 36669999);
+// 获取components中所有路由
+const arr = Object.keys(moduleFiles).map((item: any) => {
+  const obj = {
+    name: item.replace('../components/', '').slice(0, -4),
+    path: item.replace('../components', '').slice(0, -4),
+    component: moduleFiles[item],
+  };
+  return obj;
+});
 const routes: Array<RouteRecordRaw> = [
   {
-    name: 'button',
-    path: '/button',
-    component: moduleFiles['../components/button.vue'],
+    name: 'home',
+    path: '/',
+    component: () => import('../home.vue'),
   },
-  {
-    name: 'image',
-    path: '/image',
-    component: moduleFiles['../components/image.vue'],
-  },
+  ...arr,
 ];
 
 const router = createRouter({
