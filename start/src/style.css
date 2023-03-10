@@ -38,6 +38,8 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background: url('./assets/bg.png');
+  background-color: #9fe5da42;
 }
 
 h1 {
