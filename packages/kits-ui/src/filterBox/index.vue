@@ -1,7 +1,7 @@
 <template>
   <div class="k-filter-box">
     <section class="top">
-      <div class="left">标签筛选 ></div>
+      <div class="left">筛选></div>
       <div class="center">
         <div>
           <div v-for="item in data.navList" :key="item.id" class="navlist">
