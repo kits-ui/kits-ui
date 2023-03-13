@@ -17,7 +17,6 @@
         <arrowleft />
       </span>
       <span class="k-image-preview-next" @click="switchImg('next')">
-        <k-icon type="arrowright" />
         <arrowright />
       </span>
       <div class="k-image-bar">

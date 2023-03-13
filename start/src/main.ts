@@ -2,7 +2,7 @@ import { createApp } from 'vue';
 import './style.css';
 import App from './App.vue';
 import Router from './router/index';
-import kitsUI from '../../packages/kits-ui';
+import kitsUI from '../../packages/kits-ui/index';
 import kitsIcon from '../../packages/kits-ui-icons/index';
 import '../../packages/kits-ui-theme/index.scss';
 
