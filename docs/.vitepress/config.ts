@@ -13,18 +13,24 @@ const sidebar = {
   ],
   '/components/': [
     {
-      text: '通用',
+      text: '基础组件',
       items: [
         { text: 'Button 按钮', link: '/components/button/' },
-        { text: 'filterBox 搜索面板', link: '/components/filterBox/' },
-        { text: 'authCode 验证码', link: '/components/authCode/' },
-        { text: 'notification 通知', link: '/components/notification/' },
-        { text: 'image图片', link: '/components/image/' },
         { text: 'icon图标', link: '/components/icon/' },
       ],
     },
-    { text: '导航' },
-    { text: '布局' },
+    {
+      text: '数据组件',
+      items: [
+        { text: 'authCode 验证码', link: '/components/authCode/' },
+        { text: 'filterBox 搜索面板', link: '/components/filterBox/' },
+        { text: 'image图片', link: '/components/image/' },
+      ],
+    },
+    {
+      text: '其他组件',
+      items: [{ text: 'notification 通知', link: '/components/notification/' }],
+    },
   ],
 };
 const config = {
