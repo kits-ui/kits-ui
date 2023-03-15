@@ -1,0 +1,18 @@
+.k-watermark {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  z-index: 5;
+  inset: 0;
+  margin: auto;
+  overflow: hidden;
+  pointer-events: none;
+
+  &::before {
+    width: 2000vw;
+    height: 2000vh;
+    position: absolute;
+    content: '';
+    pointer-events: none;
+  }
+}
