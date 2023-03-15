@@ -3,6 +3,7 @@ import FilterBox from './src/filterBox/index.vue';
 import AuthCode from './src/authCode/index.vue';
 import Notification from './src/notification/index.vue';
 import Image from './src/image/index.vue';
+import Watermark from './src/watermark/index.vue';
 
 export default {
   Button,
@@ -10,4 +11,5 @@ export default {
   AuthCode,
   Notification,
   Image,
+  Watermark,
 };

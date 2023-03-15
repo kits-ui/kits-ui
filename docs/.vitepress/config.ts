@@ -16,20 +16,23 @@ const sidebar = {
       text: '基础组件',
       items: [
         { text: 'Button 按钮', link: '/components/button/' },
-        { text: 'icon图标', link: '/components/icon/' },
+        { text: 'Icon 图标', link: '/components/icon/' },
       ],
     },
     {
       text: '数据组件',
       items: [
-        { text: 'authCode 验证码', link: '/components/authCode/' },
-        { text: 'filterBox 搜索面板', link: '/components/filterBox/' },
-        { text: 'image图片', link: '/components/image/' },
+        { text: 'AuthCode 验证码', link: '/components/authCode/' },
+        { text: 'FilterBox 搜索面板', link: '/components/filterBox/' },
+        { text: 'Image 图片', link: '/components/image/' },
       ],
     },
     {
       text: '其他组件',
-      items: [{ text: 'notification 通知', link: '/components/notification/' }],
+      items: [
+        { text: 'Notification 桌面通知', link: '/components/notification/' },
+        { text: 'Watermark 水印', link: '/components/watermark/' },
+      ],
     },
   ],
 };

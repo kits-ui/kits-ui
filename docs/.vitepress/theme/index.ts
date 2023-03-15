@@ -2,8 +2,8 @@ import DefaultTheme from 'vitepress/theme';
 
 // 组件包与css引入
 import kitsUI from 'kits-ui';
-import * as kitsIcon from '@kits-ui/icons';
 import '@kits-ui/theme';
+import * as kitsIcon from '@kits-ui/icons';
 
 import './style/var.css';
 // 主题样式

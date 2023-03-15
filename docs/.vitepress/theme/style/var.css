@@ -114,6 +114,7 @@ table thead, table tbody {
 }
 
 .block {
+  position: relative;
   padding: 20px 0;
   text-align: center;
   display: inline-block;

@@ -8,8 +8,8 @@
   "type": "module",
   "license": "MIT",
   "dependencies": {
-    "@kits-ui/icons": "workspace:^0.0.1",
-    "@kits-ui/theme": "workspace:^0.0.1",
-    "kits-ui": "workspace:^0.0.1"
+    "@kits-ui/icons": "workspace:*",
+    "@kits-ui/theme": "workspace:*",
+    "kits-ui": "workspace:*"
   }
 }
