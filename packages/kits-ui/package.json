@@ -17,7 +17,7 @@
     }
   },
   "unpkg": "dist/index.umd.js",
-  "style": "dist/index.css",
+  "style": "dist/style.css",
   "scripts": {
     "build": "vite build"
   },
