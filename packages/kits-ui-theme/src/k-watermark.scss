@@ -8,11 +8,15 @@
   overflow: hidden;
   pointer-events: none;
 
-  &::before {
+  .watermarkText {
     width: 2000vw;
     height: 2000vh;
     position: absolute;
-    content: '';
+    top: 50%;
+    left: 50%;
+    translate: -1000vw -1000vh;
     pointer-events: none;
+    opacity: v-bind('params.opacity');
+    rotate: v-bind('params.rotate');
   }
 }

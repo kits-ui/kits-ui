@@ -19,6 +19,8 @@ const options1 = {
   textColor: 'red',
   textWidth: 170,
   textHeight: 80,
+  opacity: 0.1,
+  rotate: '-20deg',
 };
 </script>
 
