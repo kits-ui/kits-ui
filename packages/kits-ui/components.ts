@@ -4,6 +4,7 @@ import AuthCode from './src/authCode/index.vue';
 import Notification from './src/notification/index.vue';
 import Image from './src/image/index.vue';
 import Watermark from './src/watermark/index.vue';
+import Loading from './src/loading';
 
 export default {
   Button,
@@ -12,4 +13,5 @@ export default {
   Notification,
   Image,
   Watermark,
+  Loading,
 };
