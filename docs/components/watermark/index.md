@@ -44,3 +44,24 @@ const options = {
 :::
 
 ---
+
+# Watermark API
+
+## Watermark 属性
+
+| 属性名  | 说明       | 类型     | 可选值      | 默认值 |
+| ------- | ---------- | -------- | ----------- | ------ |
+| width   | 水印的宽度 | `string` | ----------- | 100vw  |
+| height  | 水印的高度 | `string` | ----------- | 100vh  |
+| options | 水印配置项 | `Object` | ---------   | -      |
+
+## options 属性
+
+| 属性名        | 说明                                              | 类型     | 可选值   | 默认值  |
+| ------------- | ------------------------------------------------- | -------- | -------- | ------- |
+| waterMarkText | 水印的内容                                        | `string` | -------- | kits-ui |
+| textColor     | 水印的颜色(仅支持单词所支持的颜色,例如 red black) | `string` | -        | black   |
+| textWidth     | 水印内容的宽度                                    | `string` | -        | 150     |
+| textHeight    | 水印内容的高度                                    | `string` | -        | 100     |
+| opacity       | 水印内容的透明度(0 - 1)                           | `number` | -        | 0.5     |
+| rotate        | 水印内容的旋转角度                                | `string` | -        | -30deg  |

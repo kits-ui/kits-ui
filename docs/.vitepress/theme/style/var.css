@@ -133,4 +133,42 @@ table thead, table tbody {
   margin-top: 15px;
 }
 
+.vp-doc table, table thead, table tbody {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+} 
+
+table tr {
+  width: 100%;
+  display: flex;
+}
+
+table th, table td {
+  flex: 1;
+}
+
+table td code {
+  background-color: #2fd3bd2a !important;
+}
+
+table th:nth-child(3), table td:nth-child(3) {
+  flex: none;
+  width: 70px;
+}
+
+table th:nth-child(4), table td:nth-child(4) {
+  flex: none;
+  width: 180px;
+}
+
+table th:last-child, table td:last-child {
+  flex: none;
+  width: 90px;
+}
+
+table th:first-child, table td:first-child {
+  flex: none;
+  width: 120px;
+}
 
