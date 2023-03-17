@@ -27,7 +27,7 @@
       "prettier --write",
       "git add"
     ],
-    "*.{js,jsx,ts,tsx}": [
+    "*.{vue,js,jsx,ts,tsx}": [
       "prettier --write",
       "npm run check:ci",
       "git add"
