@@ -85,7 +85,7 @@ const showMyLoading = () => {};
 
 :::
 
-# Loading API
+## Loading API
 
 ```typescript
 export interface LoadingOptions {
@@ -105,14 +105,14 @@ export function showLoading(props: LoadingOptions): { close: () => void };
 
 ## Loading 属性
 
-| 属性名             | 说明                     | 类型               | 可选值 | 默认值                |
-| ------------------ | ------------------------ | ------------------ | ------ | --------------------- |
-| modelValue/v-model | 显示 loading             | `boolean`          | -      | -                     |
-| text               | 指定通知中所使用的语言。 | `string`           | -      | 'loading...'          |
-| background         | 遮罩背景色               | `string`           | -      | 'rgba(0, 0, 0, 0.38)' |
-| customClass        | 自定义组件根元素 class   | ` string` `number` | -      | -                     |
-| clickHide          | 是否点击后隐藏           | `boolean`          | -      | false                 |
-| zIndex             | 组件层级                 | `number`           | -      | 1                     |
+| 属性名             | 说明                     | 类型      | 可选值 | 默认值                |
+| ------------------ | ------------------------ | --------- | ------ | --------------------- |
+| modelValue/v-model | 显示 loading             | `boolean` | -      | -                     |
+| text               | 指定通知中所使用的语言。 | `string`  | -      | 'loading...'          |
+| background         | 遮罩背景色               | `string`  | -      | 'rgba(0, 0, 0, 0.38)' |
+| customClass        | 自定义组件根元素 class   | ` string` | -      | -                     |
+| clickHide          | 是否点击后隐藏           | `boolean` | -      | false                 |
+| zIndex             | 组件层级                 | `number`  | -      | 1                     |
 
 ## Loading 插槽
 
