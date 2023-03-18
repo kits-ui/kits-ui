@@ -37,14 +37,13 @@ const _insertToSlot = (insert: JSX.Element, slot: Slot): VNode[] => {
   return res;
 };
 
+const rootClass = 'k-loading';
+const refClass = `${rootClass}_ref`;
 const defaultOptions = {
   background: 'rgba(0, 0, 0, 0.38)',
   text: 'loading...',
   zIndex: 100,
 } satisfies Partial<LoadingOptions>;
-
-const rootClass = 'k-loading';
-const refClass = `${rootClass}_ref`;
 
 /**
  * loading组件
@@ -71,7 +70,7 @@ export default function Loading(props: LoadingOptions, ctx: SetupContext): VNode
             zIndex: props.zIndex ?? defaultOptions.zIndex,
           }}
         >
-          <div class="loading-content">
+          <div class="loading-box">
             <div class="loading-icon">{slots.icon?.() ?? LoadingIcon}</div>
             <div class="loading-text">{slots.text?.() ?? props.text ?? defaultOptions.text}</div>
           </div>
@@ -95,7 +94,6 @@ export default function Loading(props: LoadingOptions, ctx: SetupContext): VNode
   );
 }
 
-Loading.inheritAttrs = true;
 Loading.props = [
   'modelValue',
   'closeOnClick',
@@ -104,4 +102,5 @@ Loading.props = [
   'background',
   'mode',
 ] satisfies (keyof LoadingOptions)[];
+Loading.inheritAttrs = true;
 Loading.emits = ['update:modelValue', 'leave'];
