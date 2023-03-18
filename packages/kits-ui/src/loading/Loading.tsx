@@ -1,4 +1,4 @@
-import { Teleport, SetupContext, ref, Transition } from 'vue';
+import { Teleport, SetupContext, ref, Transition, h, VNodeArrayChildren, Text, Slot } from 'vue';
 import { LoadingIcon } from './loading.icon';
 import { LoadingOptions } from './loading.types';
 
@@ -7,13 +7,37 @@ const defaultOptions = {
   text: 'loading...',
   zIndex: 1,
 } satisfies Partial<LoadingOptions>;
+
+const rootClass = 'k-loading';
+const refClass = `${rootClass}_ref`;
+
+const insertToSlot = (slot: Slot, insert: JSX.Element) => () => {
+  const res = slot();
+  const firstChild = res[0];
+  firstChild.props.class = ((firstChild.props.class || '') + ' ' + refClass).trim();
+
+  if (typeof firstChild.children === 'string') {
+    const newFirstChild = h(firstChild.type as string, firstChild.props, [
+      h(Text, firstChild.children),
+      h(insert),
+    ]);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { children: _, shapeFlag: _2, ...rest } = firstChild;
+    Object.assign(newFirstChild, rest);
+    return [newFirstChild, ...res.slice(1)];
+  }
+
+  (firstChild.children as VNodeArrayChildren).push(h(insert));
+  return res;
+};
+
 /**
  * loading组件
  */
 export default function Loading(props: LoadingOptions, ctx: SetupContext): JSX.Element {
   const { slots, emit } = ctx;
   const loading = ref(props.modelValue);
-  const defaultSlot = slots.default?.();
+  const defaultSlot = slots.default;
 
   const closeLoading = () => {
     if ([undefined, false].includes(props.clickHide)) return;
@@ -25,7 +49,7 @@ export default function Loading(props: LoadingOptions, ctx: SetupContext): JSX.E
     <Transition name="loading" appear mode="out-in" onLeave={() => emit('leave')}>
       {loading.value && (
         <div
-          class={'k-loading ' + (props.customClass || '')}
+          class={`${rootClass} ${props.customClass || ''}`}
           onClick={closeLoading}
           style={{
             background: props.background ?? defaultOptions.background,
@@ -44,10 +68,15 @@ export default function Loading(props: LoadingOptions, ctx: SetupContext): JSX.E
   // 没有slot转到body下
   if (!defaultSlot) return <Teleport to="body">{transitionLoading}</Teleport>;
 
-  // 有slot，用div包一层
+  // 插入slot
+  if (!props.mode || props.mode === 'insert') {
+    return h(insertToSlot(defaultSlot, transitionLoading));
+  }
+
+  // 包裹slot
   return (
-    <div class="k-loading_ref">
-      {defaultSlot}
+    <div class={refClass}>
+      {defaultSlot()}
       {transitionLoading}
     </div>
   );
@@ -60,5 +89,6 @@ Loading.props = [
   'text',
   'customClass',
   'background',
+  'mode',
 ] satisfies (keyof LoadingOptions)[];
 Loading.emits = ['update:modelValue', 'leave'];

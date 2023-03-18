@@ -4,9 +4,24 @@
     <k-button @click="showFnLoading"> 函数调用显示全局loading </k-button>
     <div>
       <k-loading v-model="globalLoading" :text="countdownText" />
-      <k-loading v-model="loading" click-hide>
-        <template #icon><div>123123</div></template>
+      <h3>插入slot</h3>
+      <p>slot有多个根元素时，只对第一个生效，loading会插入第一个元素内部</p>
+      <k-loading v-model="loading" mode="insert" click-hide>
+        <template #icon><div>loading</div></template>
 
+        <div class="loading-ref" id="test">
+          {{ text }}
+        </div>
+        <div class="loading-ref">
+          {{ text }}
+        </div>
+      </k-loading>
+      <h3>包裹slot</h3>
+      <p>slot有多个根元素时，对全部生效，loading会生成一个包裹的div，loading与slot同级</p>
+      <k-loading v-model="loading" mode="wrap" click-hide>
+        <div class="loading-ref" id="test">
+          {{ text }}
+        </div>
         <div class="loading-ref">
           {{ text }}
         </div>
@@ -45,9 +60,7 @@ function switchLoading() {
 }
 
 const text =
-  '如果这个 props 选项没有被定义，那么被传入函数的 props 对象就会像 attrs 一样会包含所有 attribute。除非指定了 props 选项，否则每个 prop 的名字将不会基于驼峰命名法被一般化处理。\n' +
-  '\n' +
-  '对于有明确 props 的函数式组件，attribute 透传的原理与普通组件基本相同。然而，对于没有明确指定 props 的函数式组件，只有 class、style 和 onXxx 事件监听器将默认从 attrs 中继承。在这两种情况下，可以将 inheritAttrs 设置为 false 来禁用属性继承：';
+  '如果这个 props 选项没有被定义，那么被传入函数的 props 对象就会像 attrs 一样会包含所有 attribute。除非指定了 props 选项，否则每个 prop 的名字将不会基于驼峰命名法被一般化处理。\n';
 </script>
 
 <style scoped lang="scss">

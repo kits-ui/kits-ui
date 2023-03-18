@@ -7,4 +7,5 @@ export interface LoadingOptions {
   background?: string;
   customClass?: string;
   zIndex?: number;
+  mode?: 'insert' | 'wrap';
 }
