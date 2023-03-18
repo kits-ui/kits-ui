@@ -12,15 +12,6 @@ import {
 import { LoadingIcon } from './loading.icon';
 import { LoadingOptions } from './loading.types';
 
-const defaultOptions = {
-  background: 'rgba(0, 0, 0, 0.38)',
-  text: 'loading...',
-  zIndex: 1,
-} satisfies Partial<LoadingOptions>;
-
-const rootClass = 'k-loading';
-const refClass = `${rootClass}_ref`;
-
 const _cloneVNode = (target: VNode, children: VNodeArrayChildren) => {
   const node = h(target.type as string, target.props, children);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -33,6 +24,7 @@ const _insertToSlot = (insert: JSX.Element, slot: Slot): VNode[] => {
   const res = slot();
   const firstChild = res[0];
   const children = firstChild.children;
+  if (!firstChild.props) firstChild.props = {};
   firstChild.props.class = ((firstChild.props.class || '') + ' ' + refClass).trim();
 
   if (typeof children === 'string') {
@@ -44,6 +36,15 @@ const _insertToSlot = (insert: JSX.Element, slot: Slot): VNode[] => {
 
   return res;
 };
+
+const defaultOptions = {
+  background: 'rgba(0, 0, 0, 0.38)',
+  text: 'loading...',
+  zIndex: 100,
+} satisfies Partial<LoadingOptions>;
+
+const rootClass = 'k-loading';
+const refClass = `${rootClass}_ref`;
 
 /**
  * loading组件
