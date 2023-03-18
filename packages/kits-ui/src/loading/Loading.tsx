@@ -2,28 +2,21 @@ import { Teleport, SetupContext, ref, Transition } from 'vue';
 import { LoadingIcon } from './loading.icon';
 import { LoadingOptions } from './loading.types';
 
+const defaultOptions = {
+  background: 'rgba(0, 0, 0, 0.38)',
+  text: 'loading...',
+  zIndex: 1,
+} satisfies Partial<LoadingOptions>;
 /**
  * loading组件
  */
 export default function Loading(props: LoadingOptions, ctx: SetupContext): JSX.Element {
-  const options = {
-    background: 'rgba(0, 0, 0, 0.38)',
-    text: 'loading...',
-    customClass: '',
-    zIndex: 1,
-    // 清洗掉undefined
-    ...Object.entries(props).reduce(
-      (prev, [k, v]) => (v !== undefined && (prev[k] = v), prev),
-      {} as LoadingOptions,
-    ),
-  };
-
   const { slots, emit } = ctx;
   const loading = ref(props.modelValue);
   const defaultSlot = slots.default?.();
 
   const closeLoading = () => {
-    if ([undefined, false].includes(options.clickHide)) return;
+    if ([undefined, false].includes(props.clickHide)) return;
     loading.value = false;
     emit('update:modelValue', loading.value);
   };
@@ -32,13 +25,16 @@ export default function Loading(props: LoadingOptions, ctx: SetupContext): JSX.E
     <Transition name="loading" appear mode="out-in" onLeave={() => emit('leave')}>
       {loading.value && (
         <div
-          class={'k-loading ' + options.customClass}
+          class={'k-loading ' + (props.customClass || '')}
           onClick={closeLoading}
-          style={{ background: options.background, zIndex: options.zIndex }}
+          style={{
+            background: props.background ?? defaultOptions.background,
+            zIndex: props.zIndex ?? defaultOptions.zIndex,
+          }}
         >
           <div class="loading-content">
             <div class="loading-icon">{slots.icon?.() ?? LoadingIcon}</div>
-            <div class="loading-text">{slots.text?.() ?? options.text}</div>
+            <div class="loading-text">{slots.text?.() ?? props.text ?? defaultOptions.text}</div>
           </div>
         </div>
       )}
