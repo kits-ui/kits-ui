@@ -2,7 +2,7 @@ import type { ComputedRef, Ref } from 'vue';
 
 export interface LoadingOptions {
   modelValue: boolean | Ref<boolean>;
-  clickHide?: boolean;
+  closeOnClick?: boolean;
   text?: string | ComputedRef<string>;
   background?: string;
   customClass?: string;

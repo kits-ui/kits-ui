@@ -6,8 +6,8 @@
       <k-loading v-model="globalLoading" :text="countdownText" />
       <h3>插入slot</h3>
       <p>slot有多个根元素时，只对第一个生效，loading会插入第一个元素内部</p>
-      <k-loading v-model="loading" mode="insert" click-hide>
-        <template #icon><div>loading</div></template>
+      <k-loading v-model="loading" mode="insert" text="slot多个元素" close-on-click>
+        <template #icon><div class="loading-rotate">更换icon</div></template>
 
         <div class="loading-ref" id="test">
           {{ text }}
@@ -16,10 +16,15 @@
           {{ text }}
         </div>
       </k-loading>
+      <k-loading v-model="loading" mode="insert" text="slot单个元素" close-on-click>
+        <div class="loading-ref">
+          {{ text }}
+        </div>
+      </k-loading>
       <h3>包裹slot</h3>
       <p>slot有多个根元素时，对全部生效，loading会生成一个包裹的div，loading与slot同级</p>
-      <k-loading v-model="loading" mode="wrap" click-hide>
-        <div class="loading-ref" id="test">
+      <k-loading v-model="loading" mode="wrap" close-on-click>
+        <div class="loading-ref" id="test2">
           {{ text }}
         </div>
         <div class="loading-ref">
@@ -40,7 +45,7 @@ const loading = ref(true);
 const showFnLoading = () =>
   showLoading({
     text: '函数调用的loading,点击任意地方关闭loading',
-    clickHide: true,
+    closeOnClick: true,
     customClass: 'red',
   });
 

@@ -1,4 +1,14 @@
-import { Teleport, SetupContext, ref, Transition, h, VNodeArrayChildren, Text, Slot } from 'vue';
+import {
+  h,
+  ref,
+  Slot,
+  Text,
+  VNode,
+  Teleport,
+  Transition,
+  SetupContext,
+  VNodeArrayChildren,
+} from 'vue';
 import { LoadingIcon } from './loading.icon';
 import { LoadingOptions } from './loading.types';
 
@@ -11,41 +21,45 @@ const defaultOptions = {
 const rootClass = 'k-loading';
 const refClass = `${rootClass}_ref`;
 
-const insertToSlot = (slot: Slot, insert: JSX.Element) => () => {
+const _cloneVNode = (target: VNode, children: VNodeArrayChildren) => {
+  const node = h(target.type as string, target.props, children);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { children: _, shapeFlag: _2, ...rest } = target;
+  Object.assign(node, rest);
+  return node;
+};
+
+const _insertToSlot = (insert: JSX.Element, slot: Slot): VNode[] => {
   const res = slot();
   const firstChild = res[0];
+  const children = firstChild.children;
   firstChild.props.class = ((firstChild.props.class || '') + ' ' + refClass).trim();
 
-  if (typeof firstChild.children === 'string') {
-    const newFirstChild = h(firstChild.type as string, firstChild.props, [
-      h(Text, firstChild.children),
-      h(insert),
-    ]);
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { children: _, shapeFlag: _2, ...rest } = firstChild;
-    Object.assign(newFirstChild, rest);
-    return [newFirstChild, ...res.slice(1)];
+  if (typeof children === 'string') {
+    const _children = [h(Text, children), h(insert)];
+    return [_cloneVNode(firstChild, _children), ...res.slice(1)];
   }
 
-  (firstChild.children as VNodeArrayChildren).push(h(insert));
+  if (Array.isArray(children)) children.push(h(insert));
+
   return res;
 };
 
 /**
  * loading组件
  */
-export default function Loading(props: LoadingOptions, ctx: SetupContext): JSX.Element {
+export default function Loading(props: LoadingOptions, ctx: SetupContext): VNode[] | JSX.Element {
   const { slots, emit } = ctx;
   const loading = ref(props.modelValue);
   const defaultSlot = slots.default;
 
   const closeLoading = () => {
-    if ([undefined, false].includes(props.clickHide)) return;
+    if ([undefined, false].includes(props.closeOnClick)) return;
     loading.value = false;
     emit('update:modelValue', loading.value);
   };
 
-  const transitionLoading = (
+  const TransitionLoading = (
     <Transition name="loading" appear mode="out-in" onLeave={() => emit('leave')}>
       {loading.value && (
         <div
@@ -65,19 +79,17 @@ export default function Loading(props: LoadingOptions, ctx: SetupContext): JSX.E
     </Transition>
   );
 
-  // 没有slot转到body下
-  if (!defaultSlot) return <Teleport to="body">{transitionLoading}</Teleport>;
+  // 没有slot传到body下
+  if (!defaultSlot) return <Teleport to="body">{TransitionLoading}</Teleport>;
 
   // 插入slot
-  if (!props.mode || props.mode === 'insert') {
-    return h(insertToSlot(defaultSlot, transitionLoading));
-  }
+  if (!props.mode || props.mode === 'insert') return _insertToSlot(TransitionLoading, defaultSlot);
 
   // 包裹slot
   return (
     <div class={refClass}>
       {defaultSlot()}
-      {transitionLoading}
+      {TransitionLoading}
     </div>
   );
 }
@@ -85,7 +97,7 @@ export default function Loading(props: LoadingOptions, ctx: SetupContext): JSX.E
 Loading.inheritAttrs = true;
 Loading.props = [
   'modelValue',
-  'clickHide',
+  'closeOnClick',
   'text',
   'customClass',
   'background',

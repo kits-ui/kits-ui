@@ -1,5 +1,6 @@
 export const LoadingIcon = (
   <svg
+    class="loading-rotate"
     xmlns="http://www.w3.org/2000/svg"
     style="margin: auto;display: block;shape-rendering: auto;"
     width="200px"

@@ -20,7 +20,9 @@
     $w: 60px;
     width: $w;
     height: $w;
-    animation: loading-rotate 1.5s linear infinite;
+    .loading-rotate {
+      animation: loading-rotate 1.5s linear infinite;
+    }
     svg {
       width: 100%;
       height: 100%;
