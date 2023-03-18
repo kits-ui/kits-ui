@@ -9,6 +9,8 @@ export default function Loading(props: LoadingOptions, ctx: SetupContext): JSX.E
   const options = {
     background: 'rgba(0, 0, 0, 0.38)',
     text: 'loading...',
+    customClass: '',
+    zIndex: 1,
     // 清洗掉undefined
     ...Object.entries(props).reduce(
       (prev, [k, v]) => (v !== undefined && (prev[k] = v), prev),
@@ -32,7 +34,7 @@ export default function Loading(props: LoadingOptions, ctx: SetupContext): JSX.E
         <div
           class={'k-loading ' + options.customClass}
           onClick={closeLoading}
-          style={{ background: options.background }}
+          style={{ background: options.background, zIndex: options.zIndex }}
         >
           <div class="loading-content">
             <div class="loading-icon">{slots.icon?.() ?? LoadingIcon}</div>

@@ -6,4 +6,5 @@ export interface LoadingOptions {
   text?: string | ComputedRef<string>;
   background?: string;
   customClass?: string;
+  zIndex?: number;
 }
