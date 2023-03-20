@@ -28,11 +28,11 @@ const _insertToSlot = (insert: JSX.Element, slot: Slot): VNode[] => {
   firstChild.props.class = ((firstChild.props.class || '') + ' ' + refClass).trim();
 
   if (typeof children === 'string') {
-    const _children = [h(Text, children), h(insert)];
+    const _children = [h(Text, children), insert];
     return [_cloneVNode(firstChild, _children), ...res.slice(1)];
   }
 
-  if (Array.isArray(children)) children.push(h(insert));
+  if (Array.isArray(children)) children.push(insert);
 
   return res;
 };
@@ -40,9 +40,9 @@ const _insertToSlot = (insert: JSX.Element, slot: Slot): VNode[] => {
 const rootClass = 'k-loading';
 const refClass = `${rootClass}_ref`;
 const defaultOptions = {
-  background: 'rgba(0, 0, 0, 0.38)',
-  text: 'loading...',
   zIndex: 100,
+  text: 'loading...',
+  background: 'rgba(0, 0, 0, 0.38)',
 } satisfies Partial<LoadingOptions>;
 
 /**
@@ -50,8 +50,8 @@ const defaultOptions = {
  */
 export default function Loading(props: LoadingOptions, ctx: SetupContext): VNode[] | JSX.Element {
   const { slots, emit } = ctx;
-  const loading = ref(props.modelValue);
   const defaultSlot = slots.default;
+  const loading = ref(props.modelValue);
 
   const closeLoading = () => {
     if ([undefined, false].includes(props.closeOnClick)) return;
