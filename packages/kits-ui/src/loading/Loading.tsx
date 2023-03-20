@@ -1,68 +1,106 @@
-import { Teleport, SetupContext, ref, Transition } from 'vue';
+import {
+  h,
+  ref,
+  Slot,
+  Text,
+  VNode,
+  Teleport,
+  Transition,
+  SetupContext,
+  VNodeArrayChildren,
+} from 'vue';
 import { LoadingIcon } from './loading.icon';
 import { LoadingOptions } from './loading.types';
+
+const _cloneVNode = (target: VNode, children: VNodeArrayChildren) => {
+  const node = h(target.type as string, target.props, children);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { children: _, shapeFlag: _2, ...rest } = target;
+  Object.assign(node, rest);
+  return node;
+};
+
+const _insertToSlot = (insert: JSX.Element, slot: Slot): VNode[] => {
+  const res = slot();
+  const firstChild = res[0];
+  const children = firstChild.children;
+  if (!firstChild.props) firstChild.props = {};
+  firstChild.props.class = ((firstChild.props.class || '') + ' ' + refClass).trim();
+
+  if (typeof children === 'string') {
+    const _children = [h(Text, children), h(insert)];
+    return [_cloneVNode(firstChild, _children), ...res.slice(1)];
+  }
+
+  if (Array.isArray(children)) children.push(h(insert));
+
+  return res;
+};
+
+const rootClass = 'k-loading';
+const refClass = `${rootClass}_ref`;
+const defaultOptions = {
+  background: 'rgba(0, 0, 0, 0.38)',
+  text: 'loading...',
+  zIndex: 100,
+} satisfies Partial<LoadingOptions>;
 
 /**
  * loading组件
  */
-export default function Loading(props: LoadingOptions, ctx: SetupContext): JSX.Element {
-  const options = {
-    background: 'rgba(0, 0, 0, 0.38)',
-    text: 'loading...',
-    customClass: '',
-    zIndex: 1,
-    // 清洗掉undefined
-    ...Object.entries(props).reduce(
-      (prev, [k, v]) => (v !== undefined && (prev[k] = v), prev),
-      {} as LoadingOptions,
-    ),
-  };
-
+export default function Loading(props: LoadingOptions, ctx: SetupContext): VNode[] | JSX.Element {
   const { slots, emit } = ctx;
   const loading = ref(props.modelValue);
-  const defaultSlot = slots.default?.();
+  const defaultSlot = slots.default;
 
   const closeLoading = () => {
-    if ([undefined, false].includes(options.clickHide)) return;
+    if ([undefined, false].includes(props.closeOnClick)) return;
     loading.value = false;
     emit('update:modelValue', loading.value);
   };
 
-  const transitionLoading = (
+  const TransitionLoading = (
     <Transition name="loading" appear mode="out-in" onLeave={() => emit('leave')}>
       {loading.value && (
         <div
-          class={'k-loading ' + options.customClass}
+          class={`${rootClass} ${props.customClass || ''}`}
           onClick={closeLoading}
-          style={{ background: options.background, zIndex: options.zIndex }}
+          style={{
+            background: props.background ?? defaultOptions.background,
+            zIndex: props.zIndex ?? defaultOptions.zIndex,
+          }}
         >
-          <div class="loading-content">
+          <div class="loading-box">
             <div class="loading-icon">{slots.icon?.() ?? LoadingIcon}</div>
-            <div class="loading-text">{slots.text?.() ?? options.text}</div>
+            <div class="loading-text">{slots.text?.() ?? props.text ?? defaultOptions.text}</div>
           </div>
         </div>
       )}
     </Transition>
   );
 
-  // 没有slot转到body下
-  if (!defaultSlot) return <Teleport to="body">{transitionLoading}</Teleport>;
+  // 没有slot传到body下
+  if (!defaultSlot) return <Teleport to="body">{TransitionLoading}</Teleport>;
 
-  // 有slot，用div包一层
+  // 插入slot
+  if (!props.mode || props.mode === 'insert') return _insertToSlot(TransitionLoading, defaultSlot);
+
+  // 包裹slot
   return (
-    <div class="k-loading_ref">
-      {defaultSlot}
-      {transitionLoading}
+    <div class={refClass}>
+      {defaultSlot()}
+      {TransitionLoading}
     </div>
   );
 }
 
-Loading.inheritAttrs = true;
 Loading.props = [
   'modelValue',
-  'clickHide',
+  'closeOnClick',
   'text',
   'customClass',
   'background',
+  'mode',
 ] satisfies (keyof LoadingOptions)[];
+Loading.inheritAttrs = true;
 Loading.emits = ['update:modelValue', 'leave'];
