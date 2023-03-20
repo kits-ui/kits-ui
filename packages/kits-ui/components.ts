@@ -5,6 +5,7 @@ import Notification from './src/notification/index.vue';
 import Image from './src/image/index.vue';
 import Watermark from './src/watermark/index.vue';
 import Loading from './src/loading';
+import ContextMenu from './src/contextMenu/components/Vue3Menus.vue';
 
 export default {
   Button,
@@ -14,4 +15,5 @@ export default {
   Image,
   Watermark,
   Loading,
+  ContextMenu,
 };
