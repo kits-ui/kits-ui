@@ -6,7 +6,7 @@
 
 ```vue
 <template>
-  <div class="box" @contextmenu="rightClick1">组件右击方式打开菜单</div>
+  <div class="k-contextMenu-box" @contextmenu="rightClick1">组件右击方式打开菜单</div>
   <k-contextMenu
     v-model:open="isOpen1"
     :event="eventVal"

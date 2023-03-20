@@ -1,0 +1,9 @@
+.k-contextMenu-box {
+    width: 200px;
+    height: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2fd3bd7c;
+    cursor: default;
+}

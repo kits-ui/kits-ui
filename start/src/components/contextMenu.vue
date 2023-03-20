@@ -347,3 +347,13 @@ const menusOtions = shallowRef({
   menus: menus,
 });
 </script>
+<style scoped>
+.box {
+  display: inline-block;
+  background-color: aqua;
+  margin: 20px;
+  line-height: 200px;
+  padding: 0 20px;
+  height: 200px;
+}
+</style>
