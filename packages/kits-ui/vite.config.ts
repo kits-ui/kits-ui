@@ -85,8 +85,8 @@ export default defineConfig({
   // 添加库模式配置
   build: {
     target: 'modules',
-    minify: false,
-    cssCodeSplit: true, // 独立css
+    minify: true,
+    cssCodeSplit: false, // 独立css
     emptyOutDir: true,
     outDir: resolve(__dirname, './dist'),
     lib: {

@@ -34,6 +34,7 @@
 │  │      │  index.ts
 │  │      │
 │  │      └─style                   // 自定义主题样式文件
+│  │         componrnts.css         // 组件文档中使用demo展示需要的样式文件
 │  │         var.css
 │  │
 │  ├─components                     // 组件文档

@@ -54,6 +54,6 @@ const init = () => {
 </script>
 <style scoped>
 .k-watermark {
-  font-weight: 700;
+  background-color: aquamarine;
 }
 </style>
