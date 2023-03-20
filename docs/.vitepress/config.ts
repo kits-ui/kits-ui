@@ -35,6 +35,10 @@ const sidebar = {
         { text: 'Watermark 水印', link: '/components/watermark/' },
       ],
     },
+    {
+      text: '主题',
+      items: [{ text: 'Theme 主题', link: '/components/theme/' }],
+    },
   ],
 };
 const config = {
