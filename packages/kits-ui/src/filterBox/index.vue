@@ -26,7 +26,7 @@
     <section v-if="data.currentType">
       <div style="border: none; border-top: 1px solid #ebeef5"></div>
     </section>
-    <section v-else class="content">
+    <section v-else class="k-filter-content">
       <div
         v-for="(item, i) in data.filterBoxData"
         v-show="item.childList.length > 0"
@@ -106,8 +106,7 @@ const data = reactive<any>({
 });
 
 onMounted(() => {
-  console.log(props.isClean, 33333);
-  console.log(props.filterData, 55555);
+  // console.log(props.isClean, 33333);
   init();
 });
 

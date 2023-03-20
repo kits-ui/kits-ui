@@ -2,151 +2,93 @@
 
 ## 基础用法
 
-:::demo 使用 `onSelectData` 来接收所选标签的信息。
+:::demo
 
 ```vue
 <template>
-  <k-filter-box :filterData="data" :isClean="isClean" @onSelectData="onSelectData"></k-filter-box>
+  <k-filter-box :filterData="data" @onSelectData="onSelectData"></k-filter-box>
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue';
 
-const isClean = ref(true);
 const data = ref([
   {
     id: 'f9ff118f9bd94f2ab6b1afdcef7efa16',
-    parentId: null,
-    name: 'aa',
+    name: '分类1',
     childList: [
       {
         id: '9fc33fbc7503403dbbc58ac1c11789da',
-        parentId: '0',
-        title: 'aaaaa66',
-        name: 'aaaaaa',
+        title: '标签1-1',
+        name: '标签1-1',
       },
     ],
   },
   {
     id: '45446ae2aecf4a10b40df4253d6dece4',
-    parentId: null,
-    name: 'bb',
+    name: '分类2',
     childList: [
       {
         id: '259736e9b406451f9bd3eb85fe83155e',
-        parentId: '0',
-        title: 'bbbb',
-        name: 'bbbb',
+        title: '标签2-1',
+        name: '标签2-1',
       },
     ],
   },
   {
     id: 'd6f9f70df6184bc8ba29dd50d8841d89',
-    parentId: null,
-    name: 'cc',
+    name: '分类3',
     childList: [
       {
+        id: '174622ef5f0f11ec94b70242ac140004',
+        title: '标签3-1',
+        name: '标签3-1',
+      },
+      {
         id: 'e9679319beb74e208b72b55f3a0fca6e',
-        parentId: '0',
-        title: 'cccc',
-        name: 'cccc',
+        title: '标签3-2',
+        name: '标签3-2',
       },
     ],
   },
   {
     id: '6d22479b128240f4be6dd7885e4d884c',
-    parentId: null,
-    name: 'dd',
+    name: '分类4',
     childList: [
       {
         id: 'dcb0a6daa7ef11ebbfb2000c299a2318',
-        parentId: '0',
-        title: 'da',
-        name: 'da',
+        title: '标签4-1',
+        name: '标签4-1',
       },
       {
         id: '345cc5f5b85411eb91ee000c299a2318',
-        parentId: '0',
-        title: 'db',
-        name: 'db',
+        title: '标签4-2',
+        name: '标签4-2',
       },
       {
         id: 'd88fd45d5f0c11ec94b70242ac140004',
-        parentId: '612b28fdb85411eb91ee000c299a2318',
-        title: 'dc-a',
-        name: 'dc',
+        title: '标签4-3',
+        name: '标签4-3',
       },
       {
         id: 'c6689a84ed2111ec8052000c299a2318',
-        parentId: '0',
-        title: 'dd',
-        name: 'dd',
+        title: '标签4-4',
+        name: '标签4-4',
       },
       {
         id: 'e36e7ee6a7ef11ebbfb2000c299a2318',
-        parentId: '0',
-        title: 'de',
-        name: 'de',
+        title: '标签4-5',
+        name: '标签4-5',
       },
       {
         id: '6ebc6b8b5f0e11ec94b70242ac140004',
-        parentId: 'e36e7ee6a7ef11ebbfb2000c299a2318',
-        title: 'df-a',
-        name: 'df',
+        title: '标签4-6',
+        name: '标签4-6',
       },
       {
         id: '42733678ed2211ec8052000c299a2318',
-        parentId: 'e36e7ee6a7ef11ebbfb2000c299a2318',
-        title: 'dg-a',
-        name: 'dg',
-      },
-      {
-        id: '796e392f5f0e11ec94b70242ac140004',
-        parentId: 'e36e7ee6a7ef11ebbfb2000c299a2318',
-        title: 'dh-a',
-        name: 'dh',
-      },
-      {
-        id: 'b8c1aa45ed2211ec8052000c299a2318',
-        parentId: 'e36e7ee6a7ef11ebbfb2000c299a2318',
-        title: 'di-a',
-        name: 'di',
-      },
-      {
-        id: '612b28fdb85411eb91ee000c299a2318',
-        parentId: '0',
-        title: 'dj',
-        name: 'dj',
-      },
-      {
-        id: '8990cdd15f0e11ec94b70242ac140004',
-        parentId: '345cc5f5b85411eb91ee000c299a2318',
-        title: 'dk-a',
-        name: 'dk',
-      },
-      {
-        id: '000db46ced2311ec8052000c299a2318',
-        parentId: '0',
-        title: 'dl',
-        name: 'dl',
-      },
-      {
-        id: 'f5e40f8c5f0e11ec94b70242ac140004',
-        parentId: 'e36e7ee6a7ef11ebbfb2000c299a2318',
-        title: 'dm-a',
-        name: 'dm',
-      },
-      {
-        id: '146f518fed2311ec8052000c299a2318',
-        parentId: '0',
-        title: 'dn',
-        name: 'dn',
-      },
-      {
-        id: '174622ef5f0f11ec94b70242ac140004',
-        parentId: 'e36e7ee6a7ef11ebbfb2000c299a2318',
-        title: 'do-a',
-        name: 'do',
+        title: '标签4-7',
+        name: '标签4-7',
       },
     ],
   },
@@ -157,3 +99,19 @@ const onSelectData = (value) => {
 };
 </script>
 ```
+
+:::
+
+## Filter API
+
+## 属性
+
+| 属性名     | 说明              | 类型    | 可选值      | 默认值 |
+| ---------- | ----------------- | ------- | ----------- | ------ |
+| filterData | filterData 的数据 | `Array` | ----------- | -      |
+
+## Events
+
+| 方法         | 说明                         | 参数 |
+| ------------ | ---------------------------- | ---- |
+| onSelectData | 获取所选标签的 id 集合的回调 | --   |
