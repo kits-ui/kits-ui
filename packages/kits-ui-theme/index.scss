@@ -1,42 +1,3 @@
-@media (prefers-color-scheme: light) {
-  :root {
-    --border-color: #ebeef5;
-    --theme-color: #3bd3be;
-    --theme-hover-color: #40d9c4;
-    --font-color: #606266;
-    --zebra-bg: #fafafa;
-    --k-image-fit: fill;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --border-color: #7c7c7c;
-    --theme-color: #3bd3be;
-    --theme-hover-color: #40d9c4;
-    --font-color: #606266;
-    --zebra-bg: #838383;
-    --k-image-fit: fill;
-  }
-}
-
-/* 主动变更 */
-.light {
-  --border-color: #ebeef5;
-  --theme-color: #3bd3be;
-  --theme-hover-color: #40d9c4;
-  --font-color: #606266;
-  --zebra-bg: #fafafa;
-}
-
-.dark {
-  --border-color: #797979;
-  --theme-color: #3bd3be;
-  --theme-hover-color: #40d9c4;
-  --font-color: #fff;
-  --zebra-bg: #535353;
-}
-
 .icon {
   width: 1em;
   height: 1em;
@@ -45,6 +6,7 @@
   overflow: hidden;
 }
 
+@import './var.scss';
 @import './src/k-authcode.scss';
 @import './src/k-botton.scss';
 @import './src/k-filterBox.scss';
