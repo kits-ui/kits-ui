@@ -49,6 +49,9 @@ h1 {
 
 
 #app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   max-width: 1280px;
   margin: 0 auto;
   min-height: 755px;
