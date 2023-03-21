@@ -247,28 +247,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style scoped>
-.menus {
-  position: fixed;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
-  background: #fff;
-  border-radius: 4px;
-  padding: 8px 0;
-  user-select: none;
-  box-sizing: border-box;
-}
-
-.menus_body {
-  display: block;
-}
-
-.menus-fade-enter-active,
-.menus-fade-leave-active {
-  transition: opacity 0.1s ease-in-out;
-}
-.menus-fade-enter-from,
-.menus-fade-leave-to {
-  opacity: 0;
-}
-</style>
