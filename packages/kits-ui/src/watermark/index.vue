@@ -52,8 +52,3 @@ const init = () => {
   watermarkText.value.style.rotate = params.value.rotate;
 };
 </script>
-<style scoped>
-.k-watermark {
-  background-color: aquamarine;
-}
-</style>

@@ -9,14 +9,12 @@
   pointer-events: none;
 
   .watermarkText {
-    width: 2000vw;
-    height: 2000vh;
+    width: 400vw;
+    height: 400vh;
     position: absolute;
     top: 50%;
     left: 50%;
-    translate: -1000vw -1000vh;
+    translate: -50% -50%;
     pointer-events: none;
-    opacity: v-bind('params.opacity');
-    rotate: v-bind('params.rotate');
   }
 }
