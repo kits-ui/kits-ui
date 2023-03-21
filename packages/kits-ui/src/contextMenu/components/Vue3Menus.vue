@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 import { watch, h, defineComponent, createApp } from 'vue';
 import Menus from './Menus.vue';
 
@@ -50,7 +50,6 @@ export default defineComponent({
   },
   setup(props, { emit, slots }) {
     let lastInstance = null;
-
     function mouseEvent() {
       emit('update:open', false);
       if (lastInstance) {
