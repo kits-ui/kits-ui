@@ -6,24 +6,31 @@
 
 ```vue
 <template>
-  <div class="k-contextMenu-box" @contextmenu="rightClick1">组件右击方式打开菜单</div>
-  <k-contextMenu
-    v-model:open="isOpen1"
-    :event="eventVal"
-    :menus="menusOtions.menus"
-  ></k-contextMenu>
-  <k-contextMenu v-model:open="isOpen3" :event="eventVal" :menus="menusOtions.menus">
-  </k-contextMenu>
+  <div>
+    <div class="k-contextMenu-box" @contextmenu="rightClick1">组件右击方式打开菜单</div>
+    <k-context-menu
+      v-model:open="isOpen1"
+      :event="eventVal"
+      :menus="menusOtions.menus"
+    ></k-context-menu>
+    <k-context-menu v-model:open="isOpen3" :event="eventVal" :menus="menusOtions.menus">
+    </k-context-menu>
+
+    <!-- <div class="box" @contextmenu="($event) => contextmenu($event, menusOtions)">
+      事件右击方式打开菜单
+    </div> -->
+  </div>
 </template>
 
 <script lang="ts" setup>
 import { nextTick, ref, shallowRef } from 'vue';
+// import {Top} from 'element-icon'
 const menus = [
   {
     label: '返回(B)',
     tip: 'Alt+向左箭头',
     click: () => {
-      window.history.back(-1);
+      window.history.back();
     },
   },
   {
@@ -73,7 +80,7 @@ const menus = [
         label: '返回(B)',
         tip: 'Alt+向左箭头',
         click: () => {
-          window.history.back(-1);
+          window.history.back();
         },
       },
       {
@@ -228,7 +235,7 @@ const menus = [
         label: '返回(B)',
         tip: 'Alt+向左箭头',
         click: () => {
-          window.history.back(-1);
+          window.history.back();
         },
       },
       {
@@ -333,7 +340,6 @@ const menus = [
   { label: '检查(N)', tip: 'Ctrl+Shift+I' },
 ];
 const isOpen1 = ref(false);
-const isOpen2 = ref(false);
 const isOpen3 = ref(false);
 const eventVal = ref({});
 function rightClick1(event) {
@@ -344,46 +350,27 @@ function rightClick1(event) {
   });
   event.preventDefault();
 }
-function rightClick2(event) {
-  isOpen2.value = false;
-  nextTick(() => {
-    eventVal.value = event;
-    isOpen2.value = true;
-  });
-  event.preventDefault();
-}
-function rightClick3(event) {
-  isOpen3.value = false;
-  nextTick(() => {
-    eventVal.value = event;
-    isOpen3.value = true;
-  });
-  event.preventDefault();
-}
+
 const menusOtions = shallowRef({
   menus: menus,
 });
-console.log(menus);
-const menusStyleOtions = shallowRef({
-  menus: menus,
-  menusStyle: {
-    background: '#343131',
-  },
-});
-const menusItemClassOtions = shallowRef({
-  menus: menus,
-  menusStyle: {
-    background: '#343131',
-  },
-  menusItemClass: 'menus-item-class',
-});
-const menusMinWidthOtions = shallowRef({
-  menus: menus,
-  minWidth: 300,
-});
-const menusMaxWidthOtions = shallowRef({
-  menus: menus,
-  maxWidth: 200,
-});
 </script>
 ```
+
+:::
+
+---
+
+# ContextMenu 属性
+
+| 属性名         | 说明           | 类型             | 可选值                                                                                                       | 默认值 |
+| -------------- | -------------- | ---------------- | ------------------------------------------------------------------------------------------------------------ | ------ |
+| menus          | 菜单列表       | `array`          | {label: '打印(P)...',tip: 'Ctrl+P', icon: {node: Top,option: {color: 'red',},},click: () => window.print(),} |        |
+| menusStyle     | 菜单样式       | `Object`         | -                                                                                                            |        |
+| menusItemClass | 菜单列表 class | `string`         | -                                                                                                            |        |
+| position       | 偏移量         | `Object`         | `{x: 0, y 0}`                                                                                                |        |
+| minWidth       | 最小宽度       | `Number, String` | 1                                                                                                            | none   |
+| maxWidth       | 最大宽度       | `Number, String` | 1                                                                                                            | none   |
+| zIndex         |                | `Number, String` | 1                                                                                                            | 3      |
+| direction      | 弹出位置       | `String`         | right,left                                                                                                   | right  |
+| open           | 打开状态       | `Boolean`        | true, false                                                                                                  | false  |
