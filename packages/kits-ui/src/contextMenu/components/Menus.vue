@@ -5,19 +5,12 @@
         v-if="open_"
         ref="menusRef"
         class="menus"
-        :style="{
-          ...menusStyle,
-          top: `${style.top}px`,
-          left: `${style.left}px`,
-          minWidth: style.minWidth,
-          maxWidth: style.maxWidth,
-          zIndex: style.zIndex,
-        }"
+        :style="getStyleObject"
         @contextmenu="(e) => e.preventDefault()"
         @mousewheel.stop
       >
         <div class="menus_body">
-          <template v-for="(item, index) of menus" :key="index">
+          <template v-for="(item, index) in menus" :key="index">
             <template v-if="!item.hidden">
               <MenusItem
                 :item="item"
@@ -48,20 +41,34 @@
   </Teleport>
 </template>
 
-<script>
-import { ref, h, defineComponent, onMounted, createApp, nextTick } from 'vue';
+<script lang="ts">
+import { ref, h, defineComponent, onMounted, createApp, nextTick, PropType } from 'vue';
 import Menus from './Menus.vue';
 import MenusItem from './MenusItem.vue';
-
+interface v_for_ts {
+  [key: string]: any;
+}
 export default defineComponent({
   name: 'menus',
   components: {
     MenusItem,
   },
+  computed: {
+    getStyleObject(): Record<string, string> {
+      return {
+        ...this.menusStyle,
+        top: `${this.style.top}px`,
+        left: `${this.style.left}px`,
+        minWidth: this.style.minWidth,
+        maxWidth: this.style.maxWidth,
+        zIndex: this.style.zIndex,
+      };
+    },
+  },
   props: {
     menus: {
-      type: Array,
-      default: () => [],
+      type: Array as PropType<v_for_ts[]>,
+      required: true,
     },
     menusStyle: {
       type: Object,
@@ -107,10 +114,10 @@ export default defineComponent({
     },
   },
   setup(props, { slots }) {
-    const ctx = {};
+    const ctx = {} as any;
     const windowWidth = document.documentElement.clientWidth;
     const windowHeight = document.documentElement.clientHeight;
-    const _position =
+    const _position: any =
       props.position.x && props.position.y
         ? ref(props.position)
         : ref({
@@ -119,7 +126,7 @@ export default defineComponent({
             width: 0,
             height: 0,
           });
-    const menusRef = ref(null);
+    const menusRef: any = ref(null);
     const style = ref({
       left: 0,
       top: 0,
@@ -160,7 +167,7 @@ export default defineComponent({
 
     onMounted(() => {
       open_.value = true;
-      props.menus.forEach((menu) => {
+      props.menus.forEach((menu: any) => {
         hasIcon.value = hasIcon.value || menu.icon !== undefined;
         if (hasIcon.value) {
           return;

@@ -51,7 +51,7 @@
   </template>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from 'vue';
 
 import MenusIcon from './MenusIcon.vue';
