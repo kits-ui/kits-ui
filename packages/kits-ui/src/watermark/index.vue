@@ -80,7 +80,7 @@ onMounted(() => {
 });
 
 const init = (params: watemarkParams) => {
-  // 设置水印样式
+  // 设置水印本体样式
   setStyle(watermarkText.value, {
     background: `url('data:image/svg+xml;utf8,<svg  xmlns="http://www.w3.org/2000/svg" version="1.1" width="${params.textWidth}" height="${params.textHeight}" stroke="${params.textColor}"><text x="20" y="20" >${params.waterMarkText}</text> </svg>')`,
     opacity: params.opacity,
@@ -93,7 +93,17 @@ const init = (params: watemarkParams) => {
     translate: '-50% -50%',
     'pointer-events': 'none',
   });
-  setStyle(kWatermark.value, { width: props.width, height: props.height });
+  // 水印外层样式
+  setStyle(kWatermark.value, {
+    width: props.width,
+    height: props.height,
+    position: 'absolute',
+    'z-index': 5,
+    inset: 0,
+    margin: 'auto',
+    overflow: 'hidden',
+    'pointer-events': 'none',
+  });
 };
 
 const setStyle = (obj: any, json: any) => {
