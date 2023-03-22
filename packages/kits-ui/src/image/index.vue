@@ -9,24 +9,26 @@
       }"
       @click="showPreview"
     />
-    <div v-show="isShowPre" ref="uImagePreview" class="k-image-preview">
-      <span class="k-image-preview-close" @click="close">
-        <shut />
-      </span>
-      <span class="k-image-preview-prev" @click="switchImg('prev')">
-        <arrowleft />
-      </span>
-      <span class="k-image-preview-next" @click="switchImg('next')">
-        <arrowright />
-      </span>
-      <div class="k-image-bar">
-        <narrow @click="changeScale('reduce')" />
-        <enlarge @click="changeScale('amplify')" />
-        <undo @click="changeRotate('left')" />
-        <redo @click="changeRotate('right')" />
+    <Teleport v-if="props.preview.length !== 0" to="body">
+      <div v-show="isShowPre" ref="uImagePreview" class="k-image-preview">
+        <span class="k-image-preview-close" @click="close">
+          <shut />
+        </span>
+        <span class="k-image-preview-prev" @click="switchImg('prev')">
+          <arrowleft />
+        </span>
+        <span class="k-image-preview-next" @click="switchImg('next')">
+          <arrowright />
+        </span>
+        <div class="k-image-bar">
+          <narrow @click="changeScale('reduce')" />
+          <enlarge @click="changeScale('amplify')" />
+          <undo @click="changeRotate('left')" />
+          <redo @click="changeRotate('right')" />
+        </div>
+        <img ref="previewImg" :src="currentShow" alt="" class="preview-content" />
       </div>
-      <img ref="previewImg" :src="currentShow" alt="" class="preview-content" />
-    </div>
+    </Teleport>
   </div>
 </template>
 
@@ -59,22 +61,24 @@ const props = defineProps({
 onMounted(() => {
   currentShow.value = props.preview[0] as string;
   currentIndex.value = 0;
-  uImagePreview.value.addEventListener(
-    'wheel',
-    (e: any) => {
-      e.preventDefault();
-      scale.value += e.deltaY * -0.0001;
-      if (scale.value <= 0.2) {
-        scale.value = 0.2;
-      } else if (scale.value >= 2) {
-        scale.value = 2;
-      }
-      scale.value = Math.min(Math.max(0.2, scale.value), 4);
-      previewImg.value.style.transform = `scale(${scale.value}) rotate(${rotate.value}deg)`;
-      previewImg.value.style.transition = `all 0.3s`;
-    },
-    { capture: true, passive: false },
-  );
+  if (props.preview.length !== 0) {
+    uImagePreview.value.addEventListener(
+      'wheel',
+      (e: any) => {
+        e.preventDefault();
+        scale.value += e.deltaY * -0.0001;
+        if (scale.value <= 0.2) {
+          scale.value = 0.2;
+        } else if (scale.value >= 2) {
+          scale.value = 2;
+        }
+        scale.value = Math.min(Math.max(0.2, scale.value), 4);
+        previewImg.value.style.transform = `scale(${scale.value}) rotate(${rotate.value}deg)`;
+        previewImg.value.style.transition = `all 0.3s`;
+      },
+      { capture: true, passive: false },
+    );
+  }
 });
 
 /**

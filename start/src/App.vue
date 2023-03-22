@@ -8,7 +8,9 @@ const backToHome = () => {
 </script>
 
 <template>
-  <router-view />
+  <div class="appContent">
+    <router-view />
+  </div>
   <div v-if="route.name !== 'home'" class="goHome" title="GoHome" @click="backToHome">GoHome</div>
 </template>
 
@@ -59,5 +61,8 @@ pre {
     }
     color: transparent;
   }
+}
+
+.appContent {
 }
 </style>

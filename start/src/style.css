@@ -36,7 +36,7 @@ body {
   margin: 0;
   display: flex;
   place-items: center;
-  min-width: 320px;
+  min-width: 755px;
   min-height: 100vh;
   background: url('./assets/bg.png');
   background-color: #9fe5da42;
@@ -49,10 +49,15 @@ h1 {
 
 
 #app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   max-width: 1280px;
   margin: 0 auto;
+  min-height: 755px;
   /* padding: 2rem; */
   text-align: center;
+  width: 100%;
 }
 
 @media (prefers-color-scheme: light) {

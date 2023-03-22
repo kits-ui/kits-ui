@@ -1,0 +1,124 @@
+.menus {
+  position: fixed;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
+  background: #fff;
+  border-radius: 4px;
+  padding: 8px 0;
+  user-select: none;
+  box-sizing: border-box;
+}
+
+.menus_body {
+  display: block;
+}
+
+.menus-fade-enter-active,
+.menus-fade-leave-active {
+  transition: opacity 0.1s ease-in-out;
+}
+.menus-fade-enter-from,
+.menus-fade-leave-to {
+  opacity: 0;
+}
+
+
+.menus-item-class:hover {
+  background: #090a0b;
+  color: #ff0202;
+}
+
+.my-menus-item {
+  display: flex;
+  line-height: 2rem;
+  padding: 0 1rem;
+  margin: 0;
+  font-size: 0.8rem;
+  outline: 0;
+  align-items: center;
+  transition: 0.2s;
+  box-sizing: border-box;
+  list-style: none;
+  border-bottom: 1px solid #00000000;
+}
+
+.my-menus-item-divided {
+  border-bottom-color: #ebeef5;
+}
+
+.my-menus-item-available {
+  color: #606266;
+  cursor: pointer;
+}
+
+.my-menus-item-available:hover {
+  background: #ecf5ff;
+  color: #409eff;
+}
+
+.my-menus-item-disabled {
+  color: #c0c4cc;
+  cursor: not-allowed;
+}
+.menus-item {
+  display: flex;
+  line-height: 2rem;
+  padding: 0 1rem;
+  margin: 0;
+  font-size: 0.8rem;
+  outline: 0;
+  align-items: center;
+  transition: 0.2s;
+  box-sizing: border-box;
+  list-style: none;
+  border-bottom: 1px solid #00000000;
+}
+
+.menus-item-divided {
+  border-bottom-color: #ebeef5;
+}
+
+.menus-item .menus-item-icon {
+  display: flex;
+  margin-right: 0.6rem;
+  width: 1rem;
+}
+
+.menus-item .menus-item-label {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.menus-item .menus-item-suffix {
+  margin-left: 1.5rem;
+  font-size: 0.39rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.menus-item-available {
+  color: #606266;
+  cursor: pointer;
+}
+
+.menus-item-available:hover {
+  background: #ecf5ff;
+  color: #409eff;
+}
+
+.menus-item-disabled {
+  color: #c0c4cc;
+  cursor: not-allowed;
+}
+
+.menus-item-active {
+  background: #ecf5ff;
+  color: #409eff;
+}
+
+.menus-item-tip {
+  font-size: 9px;
+  color: #999;
+}

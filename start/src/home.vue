@@ -31,8 +31,13 @@ const jumpTo = (value: any) => {
 
 <style scoped lang="scss">
 #home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   min-height: 500px;
   height: auto;
+  width: 100%;
   .nav {
     font-size: 10em;
     font-weight: 700;
@@ -43,11 +48,13 @@ const jumpTo = (value: any) => {
     -webkit-background-clip: text;
   }
   .content {
-    width: 1280px;
+    max-width: 1280px;
+    min-width: 755px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, 18%);
+    grid-template-columns: repeat(auto-fill, 230px);
     grid-row-gap: 40px;
     grid-column-gap: 32px;
+    width: 100%;
     .item {
       position: relative;
       display: flex;

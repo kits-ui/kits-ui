@@ -169,6 +169,6 @@ table th:last-child, table td:last-child {
 
 table th:first-child, table td:first-child {
   flex: none;
-  width: 120px;
+  width: 130px;
 }
 
