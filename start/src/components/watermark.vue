@@ -1,6 +1,7 @@
 <template>
   <div id="watermark">
     <k-watermark width="50vw" height="30vh" :options="options" />
+    <div>61545643134</div>
   </div>
   <div id="watermark1">
     <k-watermark width="50vw" height="30vh" :options="options1" name="mmm" />
