@@ -1,11 +1,12 @@
 <template>
-  <div class="k-watermark" :style="{ width: props.width, height: props.height }">
+  <div ref="kWatermark" class="k-watermark">
     <div ref="watermarkText" class="watermarkText"></div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { /*computed,*/ onMounted, ref } from 'vue';
+import type { watemarkParams } from '../types/index.types';
 
 const props = defineProps({
   name: {
@@ -28,15 +29,12 @@ const props = defineProps({
   },
 });
 
+const kWatermark = ref<any>();
 const watermarkText = ref<any>();
-const params = ref<any>({});
 
 onMounted(() => {
-  init();
-});
-
-const init = () => {
-  params.value = Object.assign(
+  // 默认属性与props合并以props为主
+  const params = Object.assign(
     {
       waterMarkText: 'kits-ui',
       textColor: 'black',
@@ -47,13 +45,72 @@ const init = () => {
     },
     props.options,
   );
-  watermarkText.value.style.background = `url('data:image/svg+xml;utf8,<svg  xmlns="http://www.w3.org/2000/svg" version="1.1" width="${params.value.textWidth}" height="${params.value.textHeight}" stroke="${params.value.textColor}"><text x="20" y="20" >${params.value.waterMarkText}</text> </svg>')`;
-  watermarkText.value.style.opacity = params.value.opacity;
-  watermarkText.value.style.rotate = params.value.rotate;
+
+  // 获取当前水印的父元素
+  const parentDom = kWatermark.value.parentNode;
+
+  init(params);
+  // 观察器配置选项
+  const options = {
+    attributes: true,
+    childList: true,
+    subtree: true,
+  };
+  // 创建观察器
+  const observer: any = new MutationObserver(async (mutationsList) => {
+    for (let mutation of mutationsList) {
+      // childlist的监测
+      if (mutation.type === 'childList') {
+        console.log('有子元素被删除了.');
+        observer.disconnect();
+        parentDom.appendChild(kWatermark.value);
+        kWatermark.value.appendChild(watermarkText.value);
+        observer.observe(kWatermark.value.parentNode, options);
+      } else if (mutation.type === 'attributes') {
+        // 停止观察
+        observer.disconnect();
+        init(params);
+        observer.observe(kWatermark.value, options);
+        console.log('水印样式已重置....');
+      }
+    }
+  });
+  // 开始观察节点
+  observer.observe(kWatermark.value.parentNode, options);
+});
+
+const init = (params: watemarkParams) => {
+  // 设置水印本体样式
+  setStyle(watermarkText.value, {
+    background: `url('data:image/svg+xml;utf8,<svg  xmlns="http://www.w3.org/2000/svg" version="1.1" width="${params.textWidth}" height="${params.textHeight}" stroke="${params.textColor}"><text x="20" y="20" >${params.waterMarkText}</text> </svg>')`,
+    opacity: params.opacity,
+    rotate: params.rotate,
+    width: '400vw',
+    height: '400vh',
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    translate: '-50% -50%',
+    'pointer-events': 'none',
+  });
+  // 水印外层样式
+  setStyle(kWatermark.value, {
+    width: props.width,
+    height: props.height,
+    position: 'absolute',
+    'z-index': 5,
+    inset: 0,
+    margin: 'auto',
+    overflow: 'hidden',
+    'pointer-events': 'none',
+  });
+};
+
+const setStyle = (obj: any, json: any) => {
+  let styleStr = '';
+  for (let i in json) {
+    styleStr += `${i}: ${json[i]};`;
+  }
+  obj.setAttribute('style', styleStr);
 };
 </script>
-<style scoped>
-.k-watermark {
-  background-color: aquamarine;
-}
-</style>
