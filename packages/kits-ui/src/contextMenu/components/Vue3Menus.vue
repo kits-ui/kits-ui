@@ -49,7 +49,7 @@ export default defineComponent({
     },
   },
   setup(props, { emit, slots }) {
-    let lastInstance = null;
+    let lastInstance;
     function mouseEvent() {
       emit('update:open', false);
       if (lastInstance) {

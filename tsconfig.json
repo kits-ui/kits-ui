@@ -27,5 +27,5 @@
     "lib": ["ESNext", "DOM"],
     "skipLibCheck": true
   },
-  "include": ["./shims-vue.d.ts", "src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx"]
+  "include": ["./**/*.*", "./shims-vue.d.ts", "src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx"]
 }
