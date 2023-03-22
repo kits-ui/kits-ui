@@ -12,25 +12,29 @@ function closeAllLoading() {
 /**
  * 调用函数开启loading
  */
-export function showLoading(props: Partial<LoadingOptions & { target?: string }> = {}) {
+export function showLoading(props: Partial<LoadingOptions> = {}) {
   closeAllLoading();
 
-  const loading = ref(props.modelValue ?? true);
+  const { modelValue = true } = props;
+  // 可以通过外面传入的modelValue控制显隐
+  const loading = ref(modelValue);
 
   const app = createApp(Loading, {
     ...props,
     modelValue: loading,
-    onLeave() {
-      setTimeout(() => app.unmount());
-    },
+    'onUpdate:modelValue': (v: boolean) => (loading.value = v),
+    // onLeave: () => setTimeout(() => app.unmount()),
   });
   app.mount(document.createElement('div'));
 
   const close = () => {
     loading.value = false;
-    closeSet.delete(close);
+    // closeSet.delete(close);
   };
-  closeSet.add(close);
+  closeSet.add(() => {
+    close();
+    setTimeout(() => app.unmount());
+  });
 
   return { close };
 }
