@@ -86,10 +86,6 @@
   width: 100% !important;
 }
 
-.VPDoc.has-aside .container .content .content-container {
-  max-width: 815px;
-}
-
 table thead, table tbody {
   width: 100%;
 }
@@ -144,7 +140,10 @@ table thead, table tbody {
   .VPDocAside .VPDocAsideOutline.has-outline .content .root li .outline-link.active{
     color: #2bc0ac;
   }
-  
+  .VPDoc.has-aside .container .content .content-container {
+    max-width: 815px;
+    margin-left: 40px;
+  }
 }
 
 .block {
