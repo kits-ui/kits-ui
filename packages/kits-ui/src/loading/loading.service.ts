@@ -2,20 +2,15 @@ import { h, ref, render } from 'vue';
 import Loading from './Loading';
 import type { LoadingOptions } from './loading.types';
 
-const closeSet = new Set<() => void>();
-const container = document.createElement('div');
-
-function closeAllLoading() {
-  closeSet.forEach((close) => close());
-  closeSet.clear();
-}
+const defaultContainer = document.createElement('div');
 
 /**
  * 调用函数开启loading
+ *
+ * @param props Loading组件的props
+ * @param container 使用默认容器是单例模式；添加container后不会被后面的loading覆盖
  */
-export function showLoading(props: Partial<LoadingOptions> = {}) {
-  closeAllLoading();
-
+export function showLoading(props: Partial<LoadingOptions> = {}, container = defaultContainer) {
   const { modelValue = true } = props;
   // 可以通过外面传入的modelValue控制显隐
   const loading = ref(modelValue);
@@ -29,12 +24,9 @@ export function showLoading(props: Partial<LoadingOptions> = {}) {
 
   const close = () => {
     loading.value = false;
-    // closeSet.delete(close);
+    // 移除
+    // render(null, container);
   };
-  closeSet.add(() => {
-    close();
-    setTimeout(() => render(null, container));
-  });
 
   return { close };
 }
