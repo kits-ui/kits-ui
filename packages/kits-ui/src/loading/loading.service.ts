@@ -1,8 +1,9 @@
-import { createApp, ref } from 'vue';
+import { h, ref, render } from 'vue';
 import Loading from './Loading';
 import type { LoadingOptions } from './loading.types';
 
 const closeSet = new Set<() => void>();
+const container = document.createElement('div');
 
 function closeAllLoading() {
   closeSet.forEach((close) => close());
@@ -19,13 +20,12 @@ export function showLoading(props: Partial<LoadingOptions> = {}) {
   // 可以通过外面传入的modelValue控制显隐
   const loading = ref(modelValue);
 
-  const app = createApp(Loading, {
+  const app = h(Loading, {
     ...props,
     modelValue: loading,
     'onUpdate:modelValue': (v: boolean) => (loading.value = v),
-    // onLeave: () => setTimeout(() => app.unmount()),
   });
-  app.mount(document.createElement('div'));
+  render(app, container);
 
   const close = () => {
     loading.value = false;
@@ -33,7 +33,7 @@ export function showLoading(props: Partial<LoadingOptions> = {}) {
   };
   closeSet.add(() => {
     close();
-    setTimeout(() => app.unmount());
+    setTimeout(() => render(null, container));
   });
 
   return { close };
