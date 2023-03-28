@@ -35,6 +35,9 @@ Loading.props = {
     type: String,
     default: 'rgba(0, 0, 0, 0.38)',
   },
+  color: {
+    type: String,
+  },
   mode: {
     type: String as PropType<LoadingOptions['mode']>,
     default: 'insert',
@@ -73,6 +76,7 @@ export default function Loading(props: LoadingOptions, ctx: SetupContext): VNode
           style={{
             background: props.background,
             zIndex: props.zIndex,
+            color: props.color,
           }}
         >
           <div class="loading-box">

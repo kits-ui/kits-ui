@@ -8,6 +8,7 @@ export interface LoadingOptions {
   closeOnClick?: boolean;
   text?: WatchAbleOrT<string>;
   background?: string;
+  color?: string;
   customClass?: string;
   zIndex?: number;
   mode?: 'insert' | 'wrap';
