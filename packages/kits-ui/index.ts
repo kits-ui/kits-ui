@@ -1,6 +1,6 @@
 import { App } from 'vue';
 import components from './components';
-import directives from'./src/directives';
+import directives from './src/directives';
 const prefix = 'K';
 // 导出单独组件
 // export { Button };
@@ -15,7 +15,6 @@ export default {
     // 指令注册
     Object.keys(directives).forEach((key) => {
       app.directive(key, directives[key]);
-      console.log(key, directives[key])
     });
   },
 };
