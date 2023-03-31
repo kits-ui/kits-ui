@@ -7,7 +7,7 @@ import Watermark from './src/watermark/index.vue';
 import Loading from './src/loading';
 import ContextMenu from './src/contextMenu/components/Vue3Menus.vue';
 import Tooltips from './src/tooltips/index.vue';
-
+import Popover from './src/popover/index.vue';
 export default {
   Button,
   FilterBox,
@@ -18,4 +18,5 @@ export default {
   Loading,
   ContextMenu,
   Tooltips,
+  Popover,
 };
