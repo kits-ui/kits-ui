@@ -12,7 +12,6 @@ dist
 dist-ssr
 *.local
 
-.vitepress
 docs/.vitepress/cache
 yarn.lock
 package-lock.json
