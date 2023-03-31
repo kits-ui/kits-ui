@@ -1,4 +1,4 @@
-import { DirectiveBinding, App } from 'vue';
+import { DirectiveBinding } from 'vue';
 interface El extends HTMLTextAreaElement {
   $value?: string;
   handler: (this: El, ev: MouseEvent) => any;
@@ -36,18 +36,18 @@ const copy = {
     el.addEventListener('click', el.handler);
   },
   // 当传进来的值更新的时候触发
-  updated(el:El, { value }) {
+  updated(el: El, { value }) {
     el.$value = value;
   },
   // 指令与元素解绑的时候，移除事件绑定
-  unmounted(el:El) {
+  unmounted(el: El) {
     el.removeEventListener('click', el.handler);
   },
 };
 // 长按
 const longpress = {
   created: function (el: HTMLElement, binding: DirectiveBinding) {
-    console.log('>>>>>>>>>>>>>>>>>>>绑定',binding)
+    // console.log('>>>>>>>>>>>>>>>>>>>绑定', binding);
     if (typeof binding.value !== 'function') {
       throw new Error('callback must be a function');
     }
@@ -112,4 +112,4 @@ const directives = {
   debounce,
 };
 
-export default directives
+export default directives;

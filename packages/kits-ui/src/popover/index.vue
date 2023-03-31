@@ -5,7 +5,7 @@
         <div
           v-if="data.showPopup"
           class="k-popover-popup"
-          :class="theme==='light'?'light':''"
+          :class="theme === 'light' ? 'light' : ''"
           :style="{
             top: data.top + 'px',
             left: data.left + 'px',
@@ -34,7 +34,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, reactive, nextTick, ref } from 'vue';
+import { onMounted, reactive, nextTick, ref, onUnmounted } from 'vue';
 
 const props = defineProps({
   trigger: {
@@ -58,25 +58,22 @@ const data = reactive({
 const reference = ref();
 const popupContent = ref();
 onMounted(() => {
-  console.log({props})
-  document.addEventListener(
-    'click',
-    () => {
-      data.showPopup = false;
-    },
-    false,
-  );
-  window.addEventListener(
-    'scroll',
-    () => {
-      data.showPopup = false;
-    },
-    true,
-  );
+  console.log({ props });
+  document.addEventListener('click', close, false);
+  window.addEventListener('scroll', close, true);
+  window.addEventListener('resize', close, true);
 });
+onUnmounted(() => {
+  document.removeEventListener('scroll', close);
+  window.removeEventListener('click', close);
+  window.removeEventListener('resize', close);
+});
+const close = () => {
+  data.showPopup = false;
+};
 const eventHandler = () => {
   data.showPopup = true;
-  console.log(data.showPopup)
+  console.log(data.showPopup);
   nextTick(() => {
     const info = popupContent.value.getBoundingClientRect();
     const info2 = reference.value.getBoundingClientRect();
