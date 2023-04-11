@@ -11,6 +11,9 @@
 ```vue
 <template>
   <div style="margin-bottom:20px;">
+    <k-tooltips content="我是span-上面提示">
+      <k-button>我是span</k-button>
+    </k-tooltips>
     <k-button>default</k-button>
     <k-button color="#22c55e">绿色按钮</k-button>
     <k-button color="#6b7280">灰色按钮</k-button>

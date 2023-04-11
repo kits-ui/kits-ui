@@ -3,6 +3,7 @@ import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import dts from 'vite-plugin-dts';
 import { resolve } from 'path';
+import VitePluginStyleInject from 'vite-plugin-style-inject';
 // import { readFileSync, writeFileSync } from 'fs';
 
 // import { presetUno, presetAttributify, presetIcons } from 'unocss';
@@ -23,7 +24,7 @@ const rollupOptions: any = {
       dir: './dist',
       entryFileNames: '[name].js',
       chunkFileNames: '[name].js',
-      assetFileNames: '[name].[ext]',
+      // assetFileNames: '[name].[ext]',
       manualChunks: undefined,
       inlineDynamicImports: false,
       globals: { vue: 'Vue' },
@@ -38,7 +39,7 @@ const rollupOptions: any = {
       // sourcemap: false,
       entryFileNames: '[name].js', // 输出后的文件名
       chunkFileNames: '[name].js', // 输出的 chunk文件名
-      assetFileNames: '[name].[ext]', // 输出资产文件名
+      // assetFileNames: '[name].[ext]', // 输出资产文件名
       inlineDynamicImports: false,
       manualChunks: undefined,
       preserveModules: true,
@@ -55,7 +56,7 @@ const rollupOptions: any = {
       // sourcemap: false,
       entryFileNames: '[name].js',
       chunkFileNames: '[name].js',
-      assetFileNames: '[name].[ext]',
+      // assetFileNames: '[name].[ext]',
       inlineDynamicImports: false,
       manualChunks: undefined,
       preserveModules: true,
@@ -72,6 +73,7 @@ export default defineConfig({
   plugins: [
     vue(),
     vueJsx({}), // 添加UnoCSS插件
+    VitePluginStyleInject(),
     dts({
       staticImport: true,
       //指定使用的tsconfig.json为我们整个项目根目录下掉,如果不配置,你也可以在components下新建tsconfig.json
@@ -86,7 +88,7 @@ export default defineConfig({
   build: {
     target: 'modules',
     minify: true,
-    cssCodeSplit: false, // 独立css
+    cssCodeSplit: true, // 独立css
     emptyOutDir: true,
     outDir: resolve(__dirname, './dist'),
     lib: {
