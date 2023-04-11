@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="index1" style="width: 500px; display: flex">
     <k-tooltips content="我是span-上面提示">
-      <span>我是span</span>
+      <k-button>我是span</k-button>
     </k-tooltips>
   </div>
 </template>
