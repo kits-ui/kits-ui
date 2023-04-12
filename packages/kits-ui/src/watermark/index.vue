@@ -7,6 +7,7 @@
 <script setup lang="ts">
 import { /*computed,*/ onMounted, ref } from 'vue';
 import type { watemarkParams } from '../types/index.types';
+import { setStyle } from '../utils/index';
 
 const props = defineProps({
   name: {
@@ -104,13 +105,5 @@ const init = (params: watemarkParams) => {
     overflow: 'hidden',
     'pointer-events': 'none',
   });
-};
-
-const setStyle = (obj: any, json: any) => {
-  let styleStr = '';
-  for (let i in json) {
-    styleStr += `${i}: ${json[i]};`;
-  }
-  obj.setAttribute('style', styleStr);
 };
 </script>

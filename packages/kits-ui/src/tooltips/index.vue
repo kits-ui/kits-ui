@@ -1,13 +1,11 @@
 <template>
-  <slot></slot>
-  <div class="tooltip-content" ref="tooltipContent">
-    {{ props.content }}
-    <span></span>
-  </div>
+  <kSlot :vnode="defaultSlot"></kSlot>
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, watch } from 'vue';
+import { onMounted, ref, useSlots } from 'vue';
+import { setStyle } from '../utils/index';
+import createSlot from './createSlots';
 
 const props = defineProps({
   content: {
@@ -15,65 +13,65 @@ const props = defineProps({
     default: '',
   },
 });
+
+const slots = useSlots();
+const defaultSlot = slots.default && slots.default()[0];
 const tooltipContent = ref<any>();
 const dom = ref<any>();
-const prevSiblingTop = ref<number>(0);
-const prevSiblingLeft = ref<number>(0);
-const prevSiblingWidth = ref<number>(0);
-const prevSiblingHeight = ref<number>(0);
+const prevSiblingDom = ref<any>({});
 
-onMounted(async () => {
-  await init();
-});
-
-watch(
-  () => {
-    return {
-      top: prevSiblingTop,
-      left: prevSiblingLeft,
-    };
-  },
-  (newVal) => {
-    console.log(newVal, 1111);
-  },
-);
-
-const init = () => {
-  dom.value = tooltipContent.value.previousElementSibling;
-  dom.value.classList.add('k-tooltips');
-  // 获取兄弟节点定位信息
-  prevSiblingTop.value = dom.value.offsetTop;
-  prevSiblingLeft.value = dom.value.offsetLeft;
-  prevSiblingWidth.value = dom.value.offsetWidth;
-  prevSiblingHeight.value = dom.value.offsetHeight;
-  const width = tooltipContent.value.offsetWidth;
-  const height = tooltipContent.value.offsetHeight;
-  // prevSiblingLeft - width / 2 - prevSiblingWidth / 2
-  console.log(
-    prevSiblingLeft,
-    width,
-    prevSiblingWidth.value / 2,
-    width / 2 - prevSiblingWidth.value / 2,
-    prevSiblingLeft.value - (width / 2 - prevSiblingWidth.value / 2),
-  );
-  setStyle(tooltipContent.value, {
-    top: `${prevSiblingTop.value - height - 10}px`,
-    left: `${prevSiblingLeft.value - (width / 2 - prevSiblingWidth.value / 2)}px`,
-  });
+// 自定义template 内容mounted事件
+const mountedCallFun = (args) => {
+  console.log('mounted', args);
+  dom.value = args;
+};
+// 自定义template 内容updated事件
+const updatedCallFun = (args) => {
+  console.log(args);
+};
+// 自定义template 内容unMounted卸载事件
+const unmountedCallFun = (args) => {
+  console.log(args);
 };
 
-const setStyle = (obj: any, json: any) => {
-  let styleStr = '';
-  for (let i in json) {
-    styleStr += `${i}: ${json[i]};`;
+const kSlot = createSlot({ mountedCallFun, updatedCallFun, unmountedCallFun });
+
+onMounted(async () => {
+  dom.value.addEventListener('mouseover', () => {
+    init();
+  });
+  dom.value.addEventListener('mouseout', () => {
+    document.body.removeChild(tooltipContent.value);
+  });
+});
+
+const init = () => {
+  // dom.value = tooltipContent.value.previousElementSibling;
+  tooltipContent.value = document.createElement('div');
+  tooltipContent.value.className = 'tooltip-content';
+  tooltipContent.value.innerHTML = `${props.content}<span></span>`;
+  console.log(document.body.contains(document.querySelector('.tooltip-content')));
+  // 删除所有多余节点
+  if (document.body.contains(document.querySelector('.tooltip-content'))) {
+    document.body.removeChild(document.querySelector('.tooltip-content'));
   }
-  obj.setAttribute('style', styleStr);
+  document.body.append(tooltipContent.value);
+  dom.value.classList.add('k-tooltips');
+  // nextTick(() => {
+  prevSiblingDom.value = dom.value.getBoundingClientRect();
+  // 获取兄弟节点定位信息
+  const width = tooltipContent.value.offsetWidth;
+  const height = tooltipContent.value.offsetHeight;
+  setStyle(tooltipContent.value, {
+    top: `${prevSiblingDom.value.top - height - 10}px`,
+    left: `${prevSiblingDom.value.left - (width / 2 - prevSiblingDom.value.width / 2)}px`,
+  });
+  // });
 };
 </script>
 <style lang="scss">
 .tooltip-content {
   position: absolute;
-  opacity: 0;
   width: auto;
   height: auto;
   background: rgb(26, 26, 26);
@@ -82,7 +80,7 @@ const setStyle = (obj: any, json: any) => {
   box-sizing: border-box;
   border-radius: 5px;
   filter: drop-shadow(0px 0px 5px #747474);
-  transition: all 0.3s;
+  // transition: opacity 0.3s;
   cursor: pointer;
   user-select: none;
   font-size: 12px;
