@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="k-emoji">
     <div class="container">
       <div height="30px" class="header">
         <span v-text="showTitle"></span>
