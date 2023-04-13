@@ -4,14 +4,14 @@ type Funs = Record<'mountedCallFun' | 'updatedCallFun' | 'unmountedCallFun', Cal
 export default ({ mountedCallFun }: Funs) => {
   return defineComponent({
     props: ['vnode'],
-    setup(props, ctx) {
-      console.log(props, ctx);
+    setup() {
+      // console.log(props, ctx);
     },
     mounted() {
       mountedCallFun(this.$el);
     },
-    render(props: any, ctx: any) {
-      console.log(props, ctx);
+    render(props: any) {
+      // console.log(props, ctx);
       return props.vnode;
     },
   });

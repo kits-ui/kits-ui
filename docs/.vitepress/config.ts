@@ -30,7 +30,10 @@ const sidebar = {
     },
     {
       text: '反馈组件',
-      items: [{ text: 'Popover 气泡框', link: '/components/popover/' }],
+      items: [
+        { text: 'Popover 气泡框', link: '/components/popover/' },
+        { text: 'Tooltip 文字提示', link: '/components/tooltip/' },
+      ],
     },
     {
       text: '其他组件',
