@@ -41,6 +41,7 @@ const sidebar = {
         { text: 'Notification 桌面通知', link: '/components/notification/' },
         { text: 'Watermark 水印', link: '/components/watermark/' },
         { text: 'contextMenu 右键菜单', link: '/components/contextMenu/' },
+        { text: 'emoji 表情', link: '/components/emoji/' },
       ],
     },
     {
