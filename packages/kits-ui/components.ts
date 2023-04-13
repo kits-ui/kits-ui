@@ -8,6 +8,7 @@ import Loading from './src/loading';
 import ContextMenu from './src/contextMenu/components/Vue3Menus.vue';
 import Tooltips from './src/tooltips/index.vue';
 import Popover from './src/popover/index.vue';
+import Emoji from './src/emoji/index.vue';
 export default {
   Button,
   FilterBox,
@@ -19,4 +20,5 @@ export default {
   ContextMenu,
   Tooltips,
   Popover,
+  Emoji,
 };
