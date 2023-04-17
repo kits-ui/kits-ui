@@ -20,6 +20,7 @@
   user-select: none;
   font-size: 12px;
   z-index: 90;
+  white-space: nowrap;
   &::before {
     position: absolute;
     inset: 0;
@@ -56,6 +57,62 @@
     }
   }
   &.tooltip-position-bottom {
+    &::before {
+      bottom: unset;
+      top: -12px;
+      border-bottom-color: rgb(26, 26, 26);
+    }
+  }
+  &.tooltip-position-left-start {
+    &::before {
+      right: -12px;
+      left: unset;
+      border-left-color: rgb(26, 26, 26);
+    }
+  }
+  &.tooltip-position-left-end {
+    &::before {
+      right: -12px;
+      left: unset;
+      border-left-color: rgb(26, 26, 26);
+    }
+  }
+  &.tooltip-position-top-start {
+    &::before {
+      bottom: -12px;
+      top: unset;
+      border-top-color: rgb(26, 26, 26);
+    }
+  }
+  &.tooltip-position-top-end {
+    &::before {
+      bottom: -12px;
+      top: unset;
+      border-top-color: rgb(26, 26, 26);
+    }
+  }
+  &.tooltip-position-right-start {
+    &::before {
+      left: -12px;
+      right: unset;
+      border-right-color: rgb(26, 26, 26);
+    }
+  }
+  &.tooltip-position-right-end {
+    &::before {
+      left: -12px;
+      right: unset;
+      border-right-color: rgb(26, 26, 26);
+    }
+  }
+  &.tooltip-position-bottom-start {
+    &::before {
+      bottom: unset;
+      top: -12px;
+      border-bottom-color: rgb(26, 26, 26);
+    }
+  }
+  &.tooltip-position-bottom-end {
     &::before {
       bottom: unset;
       top: -12px;
