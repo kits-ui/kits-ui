@@ -9,6 +9,7 @@ import ContextMenu from './src/contextMenu/components/Vue3Menus.vue';
 import Tooltip from './src/tooltip/index.vue';
 import Popover from './src/popover/index.vue';
 import Emoji from './src/emoji/index.vue';
+import Skeleton from './src/skeleton/index.vue';
 export default {
   Button,
   FilterBox,
@@ -21,4 +22,5 @@ export default {
   Tooltip,
   Popover,
   Emoji,
+  Skeleton,
 };
