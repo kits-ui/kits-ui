@@ -22,7 +22,7 @@
   z-index: 90;
   white-space: nowrap;
   &::before {
-    position: absolute;
+    position: fixed;
     inset: 0;
     margin: auto;
     content: '';

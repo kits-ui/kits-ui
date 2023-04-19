@@ -95,7 +95,7 @@ const init = () => {
   // dom.value = tooltipContent.value.previousElementSibling;
   tooltipContent.value = document.createElement('div');
   tooltipContent.value.className = 'tooltip-content';
-  tooltipContent.value.innerHTML = `${props.content}`;
+  tooltipContent.value.innerHTML = `${props.content}<span class="tooltip-triangle"></span>`;
   // 删除所有多余节点
   if (document.body.contains(document.querySelector('.tooltip-content'))) {
     document.body.removeChild(document.querySelector('.tooltip-content'));
@@ -182,7 +182,7 @@ const setTooltipStyle = () => {
   });
   tooltipContent.value.className = `tooltip-content ${`tooltip-position-${position.value}`}`;
   // 定位后获取最新高度重新赋值
-  // currentTooltipHeight.value = tooltipContent.value.offsetHeight;
+  currentTooltipHeight.value = tooltipContent.value.offsetHeight;
 };
 
 // watch(
@@ -193,3 +193,4 @@ const setTooltipStyle = () => {
 //   },
 // );
 </script>
+<style lang="scss" scoped></style>
