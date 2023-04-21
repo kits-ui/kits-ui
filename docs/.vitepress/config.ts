@@ -52,7 +52,7 @@ const sidebar = {
   ],
 };
 const config = {
-  base: '/kits-ui/',
+  // base: '/kits-ui/',
   title: 'Kits UI🌟',
   themeConfig: {
     nav: [
