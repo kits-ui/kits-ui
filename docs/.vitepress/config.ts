@@ -9,7 +9,6 @@ const sidebar = {
         { text: '快速上手', link: '/guide/use' },
       ],
     },
-    { text: '反馈' },
   ],
   '/components/': [
     {
@@ -51,7 +50,7 @@ const sidebar = {
     },
   ],
 };
-const config = {
+const config: any = {
   base: '/kits-ui/',
   title: 'Kits UI🌟',
   themeConfig: {

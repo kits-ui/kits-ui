@@ -7,4 +7,7 @@ export default defineConfig({
     // 添加JSX插件
     vueJsx(),
   ],
+  define: {
+    'process.env': process.env,
+  },
 });
