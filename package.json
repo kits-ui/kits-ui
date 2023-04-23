@@ -70,7 +70,7 @@
   "dependencies": {
     "sass": "^1.58.0",
     "scss": "^0.2.4",
-    "vue": "3.2.44",
+    "vue": "3.2.47",
     "vite-plugin-style-inject": "^0.0.1"
   }
 }
