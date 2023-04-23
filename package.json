@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "docs:dev": "npm run build && vitepress dev docs",
-    "docs:build": "npm run build && vitepress build docs",
+    "docs:build": "npm run build && vitepress build docs --mode production",
     "docs:serve": "vitepress serve docs",
     "start": "vite start",
     "build": "pnpm -r build --filter packages",

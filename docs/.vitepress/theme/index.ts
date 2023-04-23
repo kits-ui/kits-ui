@@ -1,5 +1,4 @@
 import DefaultTheme from 'vitepress/theme';
-
 // 组件包与css引入
 // import kitsUI from 'kits-ui';
 import '@kits-ui/theme';
@@ -14,12 +13,11 @@ import Demo from 'vitepress-theme-demoblock/dist/client/components/Demo.vue';
 import DemoBlock from 'vitepress-theme-demoblock/dist/client/components/DemoBlock.vue';
 
 import { globals } from '../demo';
+
 export default {
   ...DefaultTheme,
   enhanceApp({ app }) {
-    for (const [key, component] of Object.entries(kitsIcon)) {
-      app.component(key, component);
-    }
+    // app.use(kitsUI);
     app.mixin({
       async mounted() {
         import('kits-ui').then((module) => {
@@ -27,6 +25,10 @@ export default {
         });
       },
     });
+
+    for (const [key, component] of Object.entries(kitsIcon)) {
+      app.component(key, component);
+    }
     // app.use(kitsUI);
     app.component('Demo', Demo);
     app.component('DemoBlock', DemoBlock);
