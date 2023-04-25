@@ -1,5 +1,5 @@
 <template>
-  <k-popover title="点我干嘛呢？" trigger="click">
+  <k-popover title="点我干嘛呢？" trigger="click" theme="light">
     <template #reference>
       <k-button type="insert">点我</k-button>
     </template>
