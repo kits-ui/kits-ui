@@ -1,12 +1,21 @@
 <template>
   <kSlot :vnode="defaultSlot"></kSlot>
+  <Teleport to="body">
+    <transition name="out-in">
+      <div ref="tooltip" class="k_tooltip">
+        <div ref="tooltipContent" class="tooltip-content">
+          {{ props.content }}
+        </div>
+        <span ref="triangle" class="tooltip-triangle" :class="currentPosition"></span>
+      </div>
+    </transition>
+  </Teleport>
 </template>
 
 <script setup lang="ts">
 import { onMounted, ref, useSlots, nextTick, onUnmounted } from 'vue';
 import { setStyle } from '../utils/index';
-import createSlot from './createSlots';
-
+import createSlot from '../hooks/createSlots';
 const props = defineProps({
   content: {
     type: String,
@@ -20,12 +29,11 @@ const props = defineProps({
 
 const slots = useSlots();
 const defaultSlot = slots.default && slots.default()[0];
+const tooltip = ref<any>();
 const tooltipContent = ref<any>();
-const currentTooltipHeight = ref<any>(0);
+const triangle = ref<any>();
 const dom = ref<any>();
-const domStyle = ref<any>({});
-const position = ref<string>();
-const outTarget = ref<any>();
+const currentPosition = ref<string>();
 
 // 自定义template 内容mounted事件
 const mountedCallFun = (args) => {
@@ -40,8 +48,6 @@ onMounted(async () => {
   window.addEventListener('mouseover', mouseoverFn);
   // 鼠标在目标元素与提示框中移动的操作
   window.addEventListener('mousemove', mousemoverFn);
-  // 鼠标移出提示框后的操作
-  window.addEventListener('mouseout', mouseoutFn);
   // 滚动事件时的操作
   window.addEventListener('scroll', scrollFn);
 });
@@ -49,7 +55,6 @@ onMounted(async () => {
 onUnmounted(() => {
   window.removeEventListener('mouseover', mouseoverFn);
   window.removeEventListener('mousemove', mousemoverFn);
-  window.removeEventListener('mouseout', mouseoutFn);
   window.removeEventListener('scroll', scrollFn);
 });
 
@@ -58,139 +63,123 @@ const mouseoverFn = (e) => {
     init();
   }
   if (tooltipContent.value) {
-    if (e.target === tooltipContent.value && outTarget.value === dom.value) {
-      tooltipContent.value.style.opacity = 1;
-    } else {
-      tooltipContent.value.style.transition = 'unset';
-      tooltipContent.value.style.opacity = 0;
-      tooltipContent.value.style.left = '-9999px';
-    }
+    tooltip.value.style.opacity = '0';
+    tooltip.value.style.visibility = 'hidden';
   }
 };
 
 const mousemoverFn = (e) => {
   if (tooltipContent.value) {
     if (e.target === dom.value || e.target === tooltipContent.value) {
-      tooltipContent.value.style.opacity = 1;
+      tooltip.value.style.opacity = '1';
+      tooltip.value.style.visibility = 'visible';
     }
-  }
-};
-
-const mouseoutFn = (e) => {
-  if (e.target === dom.value) {
-    outTarget.value = e.target;
-  }
-  if (tooltipContent.value && e.target === tooltipContent.value) {
-    document.body.removeChild(tooltipContent.value);
   }
 };
 
 const scrollFn = () => {
   if (tooltipContent.value) {
-    tooltipContent.value.style.opacity = 0;
+    tooltip.value.style.opacity = 0;
   }
 };
 
 const init = () => {
-  // dom.value = tooltipContent.value.previousElementSibling;
-  tooltipContent.value = document.createElement('div');
-  tooltipContent.value.className = 'tooltip-content';
-  tooltipContent.value.innerHTML = `${props.content}<span class="tooltip-triangle"></span>`;
-  // 删除所有多余节点
-  if (document.body.contains(document.querySelector('.tooltip-content'))) {
-    document.body.removeChild(document.querySelector('.tooltip-content'));
-  }
-  document.body.append(tooltipContent.value);
   dom.value.classList.add('k-tooltip');
-  currentTooltipHeight.value = tooltipContent.value.offsetHeight;
   nextTick(async () => {
     await setTooltipStyle();
-    console.log(currentTooltipHeight.value);
   });
 };
 
 const setTooltipStyle = () => {
-  position.value = props.position;
+  currentPosition.value = props.position;
   // 获取兄弟节点定位信息
-  const { top, left, right, height: dHeight, width: dWidth } = dom.value.getBoundingClientRect();
-  domStyle.value = dom.value.getBoundingClientRect();
-  const { offsetWidth: width } = tooltipContent.value;
-  console.log(window.innerWidth - left - dWidth, right, dWidth / 2, width / 2);
-  // 右边边界处理 在不满足tooltip宽度的情况下,先下边显示再不满足条件变为左边
-  if (position.value === 'right') {
-    if (
-      window.innerWidth - left - dWidth >= width / 3 &&
-      window.innerWidth - left - dWidth < width
-    ) {
-      position.value = 'bottom';
-    } else if (
-      window.innerWidth - left - dWidth >= 0 &&
-      window.innerWidth - left - dWidth < width / 3
-    ) {
-      position.value = `bottom`;
-    }
-  }
+  const { top, left, height, width } = dom.value.getBoundingClientRect();
+  const { offsetWidth: tWidth, offsetHeight: tHeight } = tooltipContent.value;
 
   // 上边边界处理
-  if (top < currentTooltipHeight.value) {
-    if (position.value === 'top') {
-      position.value = 'bottom';
+  if (top < tHeight + 10) {
+    if (currentPosition.value === 'top') {
+      currentPosition.value = 'bottom';
     }
   }
 
   // 下边边界处理
-  if (window.innerHeight - top - dHeight < currentTooltipHeight.value) {
-    if (position.value === 'bottom') {
-      position.value = 'top';
+  if (window.innerHeight - top - height < tHeight + 10) {
+    if (currentPosition.value === 'bottom') {
+      currentPosition.value = 'top';
     }
   }
 
-  if (position.value !== 'left' && window.innerWidth - left - dWidth < 0) {
-    position.value = 'left';
+  // 左边边界处理
+  if (left < (tWidth + 13) / 2) {
+    if (currentPosition.value === 'left') {
+      currentPosition.value = 'right';
+    }
+  }
+
+  // 右边边界处理
+  if (window.innerWidth - left - width < (tWidth + 4) / 2) {
+    if (currentPosition.value === 'right') {
+      currentPosition.value = 'left';
+    }
   }
 
   // 提示框的top left信息
+  let triangleTop: any = null;
+  let triangleLeft: any = null;
   let currentTop: any = null;
+  let currentBottom: any = 'unset';
   let currentLeft: any = null;
-  const currentPosition = position.value.split('-')[0];
-  // 对于12方位的判断
-  if (currentPosition === 'left' || currentPosition === 'right') {
-    currentLeft = currentPosition === 'left' ? `${left - width - 10}px` : `${left + dWidth + 10}px`;
-    if (position.value === `${currentPosition}-start`) {
-      currentTop = `${top}px`;
-    } else if (position.value === `${currentPosition}-end`) {
-      currentTop = `${top - (currentTooltipHeight.value - dHeight)}px`;
-    } else {
-      currentTop = `${top - (currentTooltipHeight.value / 2 - dHeight / 2)}px`;
-    }
-  } else if (currentPosition === 'top' || currentPosition === 'bottom') {
+  let currentRight: any = 'unset';
+
+  // 横向挤压判断
+  console.log(props.position);
+  if (currentPosition.value === 'top' || currentPosition.value === 'bottom') {
+    // 小三角定位
+    triangleLeft = `${left + width / 2 - 5}px`;
+    triangleTop = currentPosition.value === 'top' ? `${top - 10}px` : `${top + height + 4}px`;
+    // 提示框top/bottom
     currentTop =
-      currentPosition === 'top'
-        ? `${top - currentTooltipHeight.value - 10}px`
-        : `${top + dHeight + 10}px`;
-    if (position.value === `${currentPosition}-start`) {
-      currentLeft = `${left}px`;
-    } else if (position.value === `${currentPosition}-end`) {
-      currentLeft = `${left - (width - dWidth)}px`;
+      currentPosition.value === 'top' ? `${top - 10 - tHeight}px` : `${top + height + 10}px`;
+    if (window.innerWidth - left - width / 2 <= tWidth / 2) {
+      currentRight = '0';
+      currentLeft = `unset`;
+    } else if (window.innerWidth - left - width / 2 > tWidth / 2 && left + width / 2 < tWidth / 2) {
+      currentLeft = `0px`;
     } else {
-      currentLeft = `${left - (width / 2 - dWidth / 2)}px`;
+      currentLeft = `${left - (tWidth - width) / 2}px`;
     }
   }
+  // 纵向挤压判断
+  if (currentPosition.value === 'left' || currentPosition.value === 'right') {
+    // 小三角定位
+    triangleLeft = currentPosition.value === 'left' ? `${left - 13}px` : `${left + width + 4}px`;
+    triangleTop = `${top + height / 2 - 3}px`;
+    // 提示框top/bottom
+    currentLeft =
+      currentPosition.value === 'left' ? `${left - tWidth - 11}px` : `${left + width + 12}px`;
+    if (window.innerHeight - top - height / 2 <= tHeight / 2 - height / 2) {
+      currentBottom = '0';
+      currentTop = `unset`;
+    } else if (
+      window.innerHeight - top - height / 2 > tWidth / 2 - height / 2 &&
+      top + height / 2 < tWidth / 2 - height / 2
+    ) {
+      currentTop = `0px`;
+    } else {
+      currentTop = `${top + height / 2 - tHeight / 2}px`;
+    }
+  }
+
+  setStyle(triangle.value, {
+    top: triangleTop,
+    left: triangleLeft,
+  });
   setStyle(tooltipContent.value, {
     top: currentTop,
+    bottom: currentBottom,
     left: currentLeft,
+    right: currentRight,
   });
-  tooltipContent.value.className = `tooltip-content ${`tooltip-position-${position.value}`}`;
-  // 定位后获取最新高度重新赋值
-  currentTooltipHeight.value = tooltipContent.value.offsetHeight;
 };
-
-// watch(
-//   () => currentTooltipHeight.value,
-//   () => {
-//     console.log(55);
-//     setTooltipStyle();
-//   },
-// );
 </script>
-<style lang="scss" scoped></style>

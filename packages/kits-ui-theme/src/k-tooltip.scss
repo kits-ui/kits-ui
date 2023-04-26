@@ -4,119 +4,44 @@
     // opacity: 1;
   }
 }
-.tooltip-content {
-  opacity: 0;
-  position: fixed;
-  width: auto;
-  height: auto;
-  background: rgb(26, 26, 26);
-  color: #fff;
-  padding: 5px 8px;
-  box-sizing: border-box;
-  border-radius: 5px;
-  filter: drop-shadow(0px 0px 2px #747474);
-  transition: opacity 0.3s;
-  cursor: pointer;
-  user-select: none;
-  font-size: 12px;
-  z-index: 90;
-  white-space: nowrap;
-  &::before {
+.k_tooltip {
+  transition: all 0.3s;
+  .tooltip-content {
     position: fixed;
-    inset: 0;
-    margin: auto;
-    content: '';
-    width: 10px;
-    height: 10px;
-    border: 6px solid transparent;
-    z-index: 1;
+    width: fit-content;
+    height: fit-content;
+    background: rgb(26, 26, 26);
+    color: #fff;
+    padding: 5px 8px;
     box-sizing: border-box;
+    border-radius: 5px;
+    filter: drop-shadow(0px 0px 2px #747474);
+    cursor: pointer;
+    user-select: none;
+    font-size: 12px;
+    z-index: 9990;
+    white-space: nowrap;
   }
-  &:hover {
-    opacity: 1;
-  }
-  &.tooltip-position-left {
-    &::before {
-      right: -12px;
-      left: unset;
-      border-left-color: rgb(26, 26, 26);
+  .tooltip-triangle {
+    position: fixed;
+    display: inline-block;
+    width: 10px;
+    height: 6px;
+    background-color: #000;
+    clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+    z-index: 9990;
+    // transition: opacity 0.3s;
+    &.top {
+      transform: rotate(0);
     }
-  }
-  &.tooltip-position-top {
-    &::before {
-      bottom: -12px;
-      top: unset;
-      border-top-color: rgb(26, 26, 26);
+    &.bottom {
+      transform: rotate(180deg);
     }
-  }
-  &.tooltip-position-right {
-    &::before {
-      left: -12px;
-      right: unset;
-      border-right-color: rgb(26, 26, 26);
+    &.left {
+      transform: rotate(-90deg);
     }
-  }
-  &.tooltip-position-bottom {
-    &::before {
-      bottom: unset;
-      top: -12px;
-      border-bottom-color: rgb(26, 26, 26);
-    }
-  }
-  &.tooltip-position-left-start {
-    &::before {
-      right: -12px;
-      left: unset;
-      border-left-color: rgb(26, 26, 26);
-    }
-  }
-  &.tooltip-position-left-end {
-    &::before {
-      right: -12px;
-      left: unset;
-      border-left-color: rgb(26, 26, 26);
-    }
-  }
-  &.tooltip-position-top-start {
-    &::before {
-      bottom: -12px;
-      top: unset;
-      border-top-color: rgb(26, 26, 26);
-    }
-  }
-  &.tooltip-position-top-end {
-    &::before {
-      bottom: -12px;
-      top: unset;
-      border-top-color: rgb(26, 26, 26);
-    }
-  }
-  &.tooltip-position-right-start {
-    &::before {
-      left: -12px;
-      right: unset;
-      border-right-color: rgb(26, 26, 26);
-    }
-  }
-  &.tooltip-position-right-end {
-    &::before {
-      left: -12px;
-      right: unset;
-      border-right-color: rgb(26, 26, 26);
-    }
-  }
-  &.tooltip-position-bottom-start {
-    &::before {
-      bottom: unset;
-      top: -12px;
-      border-bottom-color: rgb(26, 26, 26);
-    }
-  }
-  &.tooltip-position-bottom-end {
-    &::before {
-      bottom: unset;
-      top: -12px;
-      border-bottom-color: rgb(26, 26, 26);
+    &.right {
+      transform: rotate(90deg);
     }
   }
 }
