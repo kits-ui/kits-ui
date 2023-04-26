@@ -26,6 +26,7 @@ const sidebar = {
         { text: 'AuthCode 验证码', link: '/components/authCode/' },
         { text: 'FilterBox 搜索面板', link: '/components/filterBox/' },
         { text: 'Image 图片', link: '/components/image/' },
+        { text: 'Calendar 日历', link: '/components/calendar/' },
       ],
     },
     {
