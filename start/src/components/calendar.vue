@@ -1,6 +1,6 @@
 <template>
   <div>
-    <k-calender v-model="value" :first-day="1" @on-change="onChange"></k-calender>
+    <k-calendar v-model="value" :first-day="1" @on-change="onChange"></k-calendar>
   </div>
 </template>
 
@@ -11,5 +11,3 @@ const onChange = (val: { date: Date; type: string }) => {
   console.log(val);
 };
 </script>
-
-<style scoped></style>

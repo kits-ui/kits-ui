@@ -4,56 +4,46 @@
 
 ## 基础用法
 
-使用`color`、`type`属性来定义 Button 的样式。
+使用`v-model`双向绑定数据，firstDay 表示以星期几为开头，`onChange`返回当前变化的日历数据。
 
 :::demo
 
 ```vue
 <template>
-  <div style="margin-bottom:20px;">
-    <k-button>我是span</k-button>
-    <k-button>default</k-button>
-    <k-button color="#22c55e">绿色按钮</k-button>
-    <k-button color="#6b7280">灰色按钮</k-button>
-    <k-button color="#eab308">黄色按钮</k-button>
-    <k-button color="#ef4444">红色按钮</k-button>
-  </div>
-  <div style="margin-bottom:20px;">
-    <k-button type="insert">insert</k-button>
-    <k-button color="#22c55e" type="insert" direction="left">左->右</k-button>
-    <k-button color="#6b7280" type="insert" direction="right">右->左</k-button>
-    <k-button color="#eab308" type="insert" direction="top">上->下</k-button>
-    <k-button color="#ef4444" type="insert" direction="bottom">下->上</k-button>
+  <div>
+    <k-calendar v-model="value" :first-day="0" @on-change="onChange" />
+    <k-calendar v-model="value2" :first-day="1" @on-change="onChange" />
   </div>
 </template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+const value = ref(new Date());
+const value2 = ref(new Date());
+const onChange = (val: { date: Date; type: string }) => {
+  console.log(val);
+};
+</script>
 ```
 
 :::
 
-## 禁用状态
+## 插槽自定义日历数据
 
-使用 `disabled` 属性来定义按钮是否被禁用。
-
-使用 `disabled` 属性来控制按钮是否为禁用。 该属性值为 Boolean 类型。
+具名插槽为`date-cell`,可以获取每个日期的数据
 
 :::demo
 
 ```vue
 <template>
-  <div style="margin-bottom:20px;">
-    <k-button disabled>default</k-button>
-    <k-button color="#22c55e" disabled>绿色按钮</k-button>
-    <k-button color="#6b7280" disabled>灰色按钮</k-button>
-    <k-button color="#eab308" disabled>黄色按钮</k-button>
-    <k-button color="#ef4444" disabled>红色按钮</k-button>
-  </div>
-  <div style="margin-bottom:20px;">
-    <k-button type="insert" disabled>insert</k-button>
-    <k-button color="#22c55e" type="insert" direction="left" disabled>左->右</k-button>
-    <k-button color="#6b7280" type="insert" direction="right" disabled>右->左</k-button>
-    <k-button color="#eab308" type="insert" direction="top" disabled>上->下</k-button>
-    <k-button color="#ef4444" type="insert" direction="bottom" disabled>下->上</k-button>
-  </div>
+  <k-calendar :first-day="0">
+    <template #date-cell="{ data }">
+      <p :class="data.isSelected ? 'is-selected' : ''">
+        {{ data.day.split('-').slice(1).join('-') }}
+        {{ data.isSelected ? '😁' : '' }}
+      </p>
+    </template>
+  </k-calendar>
 </template>
 ```
 
@@ -61,13 +51,17 @@
 
 ---
 
-# Button API
+# Calendar API
 
-## Button 属性
+## 属性
 
-| 属性名    | 说明                                | 类型      | 可选值                   | 默认值  |
-| --------- | ----------------------------------- | --------- | ------------------------ | ------- |
-| color     | 按钮背景色                          | `string`  | ------------------------ | ---     |
-| type      | 按钮类型(insert: 内部动效)          | `string`  | insert                   | default |
-| direction | 配合 insert 使用,控制动效的移动方向 | `string`  | top/ bottom/ left/ right | bottom  |
-| disabled  | 按钮是否为禁用状态                  | `boolean` | false/ true              | false   |
+| 属性名                | 说明                                                                                                                                                                                     | 类型     | 可选值 | 默认值      |
+| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ------ | ----------- |
+| model-value / v-model | 选中项绑定值                                                                                                                                                                             | `Date`   | ---    | 当前 Date   |
+| date-cell             | `type` 表示该日期的所属月份，可选值有 `prev-month`、`current-month` 和 `next-month`；`isSelected` 标明该日期是否被选中；`day` 是格式化的日期，格式为 `yyyy-MM-dd`；`date` 是单元格的日期 | `Object` | ---    | 单元格 Date |
+
+## Events
+
+| 方法     | 说明                                                                                                              | 参数     |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | -------- | --- | --- |
+| onChange | `type`表示动作类型，`selectDate`选中日期，`pre-month`、`next-month`分别为上个月和上个月，`date`为变化后返回的日期 | `Object` | --- | --- |
