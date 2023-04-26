@@ -1,6 +1,6 @@
 <template>
   <div>
-    <k-calender v-model="value" :first-day="1" @on-change="onChange"></k-calender>
+    <k-calendar v-model="value" :first-day="1" @on-change="onChange"></k-calendar>
   </div>
 </template>
 

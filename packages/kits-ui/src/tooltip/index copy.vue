@@ -5,8 +5,7 @@
 <script setup lang="ts">
 import { onMounted, ref, useSlots, nextTick, onUnmounted } from 'vue';
 import { setStyle } from '../utils/index';
-import createSlot from './createSlots';
-
+import createSlot from '../hooks/createSlots';
 const props = defineProps({
   content: {
     type: String,
