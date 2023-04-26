@@ -11,5 +11,3 @@ const onChange = (val: { date: Date; type: string }) => {
   console.log(val);
 };
 </script>
-
-<style scoped></style>
