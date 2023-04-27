@@ -40,7 +40,7 @@ import type { Dayjs } from 'dayjs';
 const WEEK_DAYS = ['日', '一', '二', '三', '四', '五', '六'];
 type CalendarDateType = 'prev-month' | 'next-month' | 'prev-year' | 'next-year' | 'today';
 type CalenderDateCellType = 'prev' | 'current' | 'next';
-interface CalenderDateCell {
+export interface CalenderDateCell {
   text: number;
   type: CalenderDateCellType;
 }
