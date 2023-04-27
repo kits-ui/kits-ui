@@ -2,7 +2,8 @@
   <kSlot :vnode="defaultSlot"></kSlot>
   <Teleport to="body">
     <transition name="out-in">
-      <div ref="tooltip" class="k_tooltip">
+      <!-- <div ref="tooltip" class="k_tooltip" :class="props.theme"> -->
+      <div ref="tooltip" class="k_tooltip" :class="props.theme">
         <div ref="tooltipContent" class="tooltip-content">
           {{ props.content }}
         </div>
@@ -24,6 +25,10 @@ const props = defineProps({
   position: {
     type: String,
     default: 'top',
+  },
+  theme: {
+    type: String,
+    default: 'dark',
   },
 });
 
@@ -85,6 +90,7 @@ const scrollFn = () => {
 
 const init = () => {
   dom.value.classList.add('k-tooltip');
+  // dom.value.classList.add(props.theme);
   nextTick(async () => {
     await setTooltipStyle();
   });
@@ -111,14 +117,14 @@ const setTooltipStyle = () => {
   }
 
   // 左边边界处理
-  if (left < (tWidth + 13) / 2) {
+  if (left < (tWidth + 10) / 2) {
     if (currentPosition.value === 'left') {
       currentPosition.value = 'right';
     }
   }
 
   // 右边边界处理
-  if (window.innerWidth - left - width < (tWidth + 4) / 2) {
+  if (window.innerWidth - left - width < (tWidth + 10) / 2) {
     if (currentPosition.value === 'right') {
       currentPosition.value = 'left';
     }
@@ -137,7 +143,7 @@ const setTooltipStyle = () => {
   if (currentPosition.value === 'top' || currentPosition.value === 'bottom') {
     // 小三角定位
     triangleLeft = `${left + width / 2 - 5}px`;
-    triangleTop = currentPosition.value === 'top' ? `${top - 10}px` : `${top + height + 4}px`;
+    triangleTop = currentPosition.value === 'top' ? `${top - 10}px` : `${top + height}px`;
     // 提示框top/bottom
     currentTop =
       currentPosition.value === 'top' ? `${top - 10 - tHeight}px` : `${top + height + 10}px`;
@@ -153,17 +159,17 @@ const setTooltipStyle = () => {
   // 纵向挤压判断
   if (currentPosition.value === 'left' || currentPosition.value === 'right') {
     // 小三角定位
-    triangleLeft = currentPosition.value === 'left' ? `${left - 13}px` : `${left + width + 4}px`;
-    triangleTop = `${top + height / 2 - 3}px`;
+    triangleLeft = currentPosition.value === 'left' ? `${left - 10}px` : `${left + width}px`;
+    triangleTop = `${top + height / 2 - 5}px`;
     // 提示框top/bottom
     currentLeft =
-      currentPosition.value === 'left' ? `${left - tWidth - 11}px` : `${left + width + 12}px`;
+      currentPosition.value === 'left' ? `${left - tWidth - 10}px` : `${left + width + 10}px`;
     if (window.innerHeight - top - height / 2 <= tHeight / 2 - height / 2) {
       currentBottom = '0';
       currentTop = `unset`;
     } else if (
-      window.innerHeight - top - height / 2 > tWidth / 2 - height / 2 &&
-      top + height / 2 < tWidth / 2 - height / 2
+      window.innerHeight - top - height / 2 > tHeight / 2 - height / 2 &&
+      top + height / 2 < tHeight / 2 - height / 2
     ) {
       currentTop = `0px`;
     } else {
