@@ -124,7 +124,6 @@ export default defineComponent({
         today: dayjs(),
       };
       const day = dateMap[type];
-      console.log('hello', day);
       if (!day.isSame(date.value, 'day')) {
         emit('onChange', {
           type,
@@ -148,7 +147,6 @@ export default defineComponent({
     // 点击单个日子更新当前的数据
     const handleDayPicker = ({ text, type }: CalenderDateCell) => {
       const day: Dayjs = formateDate(text, type);
-      console.log(day);
       emit('onChange', {
         type: 'selectDate',
         date: day.toDate(),
@@ -162,7 +160,6 @@ export default defineComponent({
     );
     // 当前日期的所属类
     const getCellClass = ({ text, type }: CalenderDateCell) => {
-      console.log(text);
       const classList: string[] = ['day-cell', type];
       if (type === 'current') {
         const cellDate = formateDate(text, type);
