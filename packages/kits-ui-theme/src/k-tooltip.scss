@@ -1,3 +1,4 @@
+$list: top bottom left right;
 .k-tooltip {
   cursor: pointer;
   &:hover +.tooltip-content {
@@ -10,38 +11,43 @@
     position: fixed;
     width: fit-content;
     height: fit-content;
-    background: rgb(26, 26, 26);
-    color: #fff;
     padding: 5px 8px;
     box-sizing: border-box;
     border-radius: 5px;
-    filter: drop-shadow(0px 0px 2px #747474);
     cursor: pointer;
     user-select: none;
     font-size: 12px;
     z-index: 9990;
     white-space: nowrap;
+    background: var(--k-tooltip-bg);
   }
   .tooltip-triangle {
     position: fixed;
     display: inline-block;
     width: 10px;
-    height: 6px;
-    background-color: #000;
-    clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+    height: 10px;
+    border: 5px solid transparent;
     z-index: 9990;
-    // transition: opacity 0.3s;
-    &.top {
-      transform: rotate(0);
+    background-color: inherit;
+    box-sizing: border-box;
+  }
+  @each $position in $list {
+    .tooltip-triangle.#{$position} {
+      border-#{$position}-color: var(--k-tooltip-bg);
     }
-    &.bottom {
-      transform: rotate(180deg);
+  }
+  &.light {
+    --k-tooltip-bg: #fff;
+    .tooltip-content {
+      color: #000;
+      filter: drop-shadow(0px 0px 4px #c0c0c0);
     }
-    &.left {
-      transform: rotate(-90deg);
-    }
-    &.right {
-      transform: rotate(90deg);
+  }
+  &.dark {
+    --k-tooltip-bg: #000;
+    .tooltip-content {
+      color: #fff;
+      filter: drop-shadow(0px 0px 2px #747474);
     }
   }
 }

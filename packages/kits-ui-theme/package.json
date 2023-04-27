@@ -1,6 +1,6 @@
 {
   "name": "@kits-ui/theme",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "dist/index.css",
   "module": "dist/index.css",

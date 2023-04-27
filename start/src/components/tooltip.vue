@@ -1,7 +1,7 @@
 <template>
   <div class="index1" style="width: 500px; overflow-x: scroll">
     <div style="width: 1500px; display: flex; justify-content: center">
-      <k-tooltip content="我是span-左边提示" position="left">
+      <k-tooltip content="我是span-左边提示" position="left" theme="light">
         <k-button type="insert" direction="left">我是span</k-button>
       </k-tooltip>
       <k-tooltip content="我是span-上边提示1" position="top">

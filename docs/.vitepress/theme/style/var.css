@@ -172,6 +172,10 @@ table thead, table tbody {
   width: 100%;
 } 
 
+.vp-doc .custom-block {
+  border: none;
+}
+
 table tr {
   width: 100%;
   display: flex;
@@ -204,4 +208,5 @@ table th:first-child, table td:first-child {
   flex: none;
   width: 130px;
 }
+
 

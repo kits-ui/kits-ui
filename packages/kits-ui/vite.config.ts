@@ -3,7 +3,7 @@ import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import dts from 'vite-plugin-dts';
 import { resolve } from 'path';
-import VitePluginStyleInject from 'vite-plugin-style-inject';
+// import VitePluginStyleInject from 'vite-plugin-style-inject';
 // import { readFileSync, writeFileSync } from 'fs';
 
 // import { presetUno, presetAttributify, presetIcons } from 'unocss';
@@ -73,7 +73,7 @@ export default defineConfig({
   plugins: [
     vue(),
     vueJsx({}), // 添加UnoCSS插件
-    VitePluginStyleInject(),
+    // VitePluginStyleInject(),
     dts({
       staticImport: true,
       //指定使用的tsconfig.json为我们整个项目根目录下掉,如果不配置,你也可以在components下新建tsconfig.json
