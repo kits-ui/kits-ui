@@ -59,6 +59,8 @@
       &:last-child{
         border-right: none;
       }
+    }
+    .day-cell{
       &:hover{
         background-color: var(--theme-interact-bg-color);
       }
