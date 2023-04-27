@@ -1,7 +1,7 @@
 .k-calendar{
   width: 100%;
   min-height: 500px;
-  border: 1px solid #f3f3f3;
+  border: 1px solid var(--border-color);
   color: var(--font-color);
   .k-calender-setting{
     width: 100%;
@@ -27,6 +27,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        cursor: pointer;
       }
       .current {
         width: 60px;
@@ -47,26 +48,27 @@
     height: 100px;
     display: flex;
     .k-calendar-header-item, .day-cell{
-      border-right: 1px solid #f3f3f3;
-      border-bottom: 1px solid #f3f3f3;
+      border-right: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
       width: calc(100% / 7);
       height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
+      cursor: pointer;
       &:last-child{
         border-right: none;
       }
       &:hover{
-        background-color: var(--theme-hover-color);
+        background-color: var(--theme-interact-bg-color);
       }
     }
     .prev, .next{
       color: #d0d0d0;
     }
     .selected{
-      color: #1d6afb;
-      background: #e3f2fe;
+      color: var(--theme-interact-color);
+      background: var(--theme-interact-bg-color);
     }
   }
 }

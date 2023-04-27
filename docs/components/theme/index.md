@@ -7,13 +7,15 @@
 ```css
 /* 默认主题变量 */
 :root {
-  --border-color: #ebeef5; /* 边框色 */
-  --theme-color: #3bd3be; /* 主题色 */
-  --theme-hover-color: #40d9c4; /* hover主题色 */
+  --border-color: #ebeef5; /* 默认边框色 */
+  --theme-color: #2bc0ac; /* 主题色: 可用作字体 边框 背景 鼠标交互效果色 */
+  --theme-interact-color: #40d9c4; /* hover or active字体主题色 */
+  --theme-interact-bg-color: #2fd3bd2a; /* hover or active背景主题色 */
   --font-color: #606266; /* 字体颜色 */
   --zebra-bg: #fafafa; /* 斑马纹背景色 */
   --border-sm-radius: 5px; /* 小型组件圆角: button message-- */
   --border-lg-radius: 15px; /* 大型组件圆角: dialog table-- */
+  --transition-duration: 0.3s; /* 过渡统一时间为0.3s 个别组件需要调整时间单独设置 */
 }
 ```
 

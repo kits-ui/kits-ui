@@ -2,7 +2,6 @@
   <kSlot :vnode="defaultSlot"></kSlot>
   <Teleport to="body">
     <transition name="out-in">
-      <!-- <div ref="tooltip" class="k_tooltip" :class="props.theme"> -->
       <div ref="tooltip" class="k_tooltip" :class="props.theme">
         <div ref="tooltipContent" class="tooltip-content">
           {{ props.content }}

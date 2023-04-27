@@ -19,6 +19,7 @@ $list: top bottom left right;
     font-size: 12px;
     z-index: 9990;
     white-space: nowrap;
+    background: var(--k-tooltip-bg);
   }
   .tooltip-triangle {
     position: fixed;
@@ -30,29 +31,23 @@ $list: top bottom left right;
     background-color: inherit;
     box-sizing: border-box;
   }
+  @each $position in $list {
+    .tooltip-triangle.#{$position} {
+      border-#{$position}-color: var(--k-tooltip-bg);
+    }
+  }
   &.light {
+    --k-tooltip-bg: #fff;
     .tooltip-content {
-      background: #fff;
       color: #000;
       filter: drop-shadow(0px 0px 4px #c0c0c0);
     }
-    @each $position in $list {
-      .tooltip-triangle.#{$position} {
-        border-#{$position}-color:#fff
-      }
-    }
   }
   &.dark {
+    --k-tooltip-bg: #000;
     .tooltip-content {
-      background: rgb(26, 26, 26);
       color: #fff;
       filter: drop-shadow(0px 0px 2px #747474);
     }
-    @each $position in $list {
-      .tooltip-triangle.#{$position} {
-        border-#{$position}-color:rgb(26, 26, 26)
-      }
-    }
   }
-  
 }
