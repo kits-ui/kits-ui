@@ -9,7 +9,7 @@ import VitePluginStyleInject from 'vite-plugin-style-inject';
 // import { presetUno, presetAttributify, presetIcons } from 'unocss';
 
 const rollupOptions: any = {
-  external: ['vue', 'vue-router'],
+  external: ['vue', 'vue-router', 'dayjs'],
   // output: {
   //   globals: {
   //     vue: 'Vue',
