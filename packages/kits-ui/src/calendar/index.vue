@@ -3,9 +3,9 @@
     <div class="k-calender-setting">
       <div class="k-calender-date">{{ currentDateString }}</div>
       <div class="k-calender-selector">
-        <div class="prev" @click="selectDate('prev-month')">&lt;</div>
+        <div class="prev" @click="selectDate('prev-month')"><arrowleft /></div>
         <div class="current">{{ currentMonth }}月</div>
-        <div class="next" @click="selectDate('next-month')">&gt;</div>
+        <div class="next" @click="selectDate('next-month')"><arrowright /></div>
       </div>
     </div>
     <table class="k-calendar-core">
