@@ -94,11 +94,11 @@ const init = () => {
   dom.value.classList.add('k-tooltip');
   // dom.value.classList.add(props.theme);
   nextTick(async () => {
-    await setTooltipStyle();
+    await settooltipStyle();
   });
 };
 
-const setTooltipStyle = () => {
+const settooltipStyle = () => {
   currentPosition.value = props.position;
   // 获取兄弟节点定位信息
   const { top, left, height, width } = dom.value.getBoundingClientRect();
