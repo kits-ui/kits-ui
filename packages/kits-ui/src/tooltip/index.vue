@@ -4,7 +4,7 @@
     <transition name="out-in">
       <div ref="tooltip" class="k_tooltip" :class="props.theme">
         <div ref="tooltipContent" class="tooltip-content">
-          {{ props.content }}
+          <slot name="content">{{ props.content }}</slot>
         </div>
         <span ref="triangle" class="tooltip-triangle" :class="currentPosition"></span>
       </div>
@@ -33,6 +33,7 @@ const props = defineProps({
 
 const slots = useSlots();
 const defaultSlot = slots.default && slots.default()[0];
+console.log({ defaultSlot: slots.default && slots.default() });
 const tooltip = ref<any>();
 const tooltipContent = ref<any>();
 const triangle = ref<any>();
@@ -41,7 +42,7 @@ const currentPosition = ref<string>();
 
 // 自定义template 内容mounted事件
 const mountedCallFun = (args) => {
-  // console.log('mounted', args);
+  console.log('mounted', args);
   dom.value = args;
 };
 
@@ -63,9 +64,11 @@ onUnmounted(() => {
 });
 
 const mouseoverFn = (e) => {
+  // console.log(e.target, dom.value, tooltipContent.value);
   if (e.target === dom.value) {
     init();
   }
+  init();
   if (tooltipContent.value) {
     tooltip.value.style.opacity = '0';
     tooltip.value.style.visibility = 'hidden';
