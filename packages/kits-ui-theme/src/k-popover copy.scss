@@ -1,0 +1,38 @@
+.k-popover {
+  position: relative;
+  .popover-reference {}
+}
+.k-popover-popup {
+  position: fixed;
+  top: 80px;
+  left: 0;
+  z-index: 99;
+
+  .popup-content {
+    width: auto;
+    display: inline-block;
+    background-color: #4c4c4c;
+    padding: 6px;
+    border-radius: 8px;
+    position: relative;
+    color: #fff;
+  }
+  .light {
+    background-color: #fff;
+    color: #333;
+  }
+  .popover__arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 6px;
+    color: #4a4a4a;
+    left: 50%;
+    bottom: 0;
+    border-top-color: currentColor;
+    border-bottom-width: 0;
+    transform: translate(-50%, 100%);
+  }
+}

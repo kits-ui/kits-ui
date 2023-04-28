@@ -1,38 +1,52 @@
+$list: top bottom left right;
 .k-popover {
-  position: relative;
-  .popover-reference {}
+  cursor: pointer;
+  &:hover +.popover-content {
+    // opacity: 1;
+  }
 }
-.k-popover-popup {
-  position: fixed;
-  top: 80px;
-  left: 0;
-  z-index: 99;
-
-  .popup-content {
-    width: auto;
+.k_popover {
+  transition: all 0.3s;
+  .popover-content {
+    position: fixed;
+    width: fit-content;
+    height: fit-content;
+    padding: 5px 8px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    cursor: pointer;
+    user-select: none;
+    font-size: 12px;
+    z-index: 9990;
+    background: var(--k-popover-bg);
+  }
+  .popover-triangle {
+    position: fixed;
     display: inline-block;
-    background-color: #4c4c4c;
-    padding: 6px;
-    border-radius: 8px;
-    position: relative;
-    color: #fff;
+    width: 10px;
+    height: 10px;
+    border: 5px solid transparent;
+    z-index: 9990;
+    background-color: inherit;
+    box-sizing: border-box;
   }
-  .light {
-    background-color: #fff;
-    color: #333;
+  @each $position in $list {
+    .popover-triangle.#{$position} {
+      border-#{$position}-color: var(--k-popover-bg);
+    }
   }
-  .popover__arrow {
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-color: transparent;
-    border-style: solid;
-    border-width: 6px;
-    color: #4a4a4a;
-    left: 50%;
-    bottom: 0;
-    border-top-color: currentColor;
-    border-bottom-width: 0;
-    transform: translate(-50%, 100%);
+  &.light {
+    --k-popover-bg: #fff;
+    .popover-content {
+      color: #000;
+      filter: drop-shadow(0px 0px 4px #c0c0c0);
+    }
+  }
+  &.dark {
+    --k-popover-bg: #000;
+    .popover-content {
+      color: #fff;
+      filter: drop-shadow(0px 0px 2px #747474);
+    }
   }
 }
