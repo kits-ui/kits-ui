@@ -17,7 +17,19 @@
 @import './src/k-watermark.scss';
 @import './src/k-loading.scss';
 @import './src/k-contextMenu.scss';
+@import './src/k-popver.scss';
 @import './src/k-tooltip.scss';
 @import './src/k-popover.scss';
 @import './src/k-emoji.scss';
 @import './src/k-skeleton.scss';
+
+
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}

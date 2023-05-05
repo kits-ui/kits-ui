@@ -42,7 +42,9 @@ const btnClass = () => {
   return classStr;
 };
 
-const handleClick = () => {
-  emits('click');
+const handleClick = (e) => {
+  console.log(e);
+  e.stopPropagation();
+  emits('click', e);
 };
 </script>
