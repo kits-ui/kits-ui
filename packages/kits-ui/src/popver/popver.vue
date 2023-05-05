@@ -130,7 +130,7 @@ const scrollFn = () => {
 
 const init = () => {
   console.log(dom.value);
-  dom.value.classList.add('k-tooltip');
+  // dom.value.classList.add('k-tooltip');
   nextTick(async () => {
     await settooltipStyle();
   });
