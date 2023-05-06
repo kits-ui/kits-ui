@@ -18,18 +18,36 @@
 @import './src/k-loading.scss';
 @import './src/k-contextMenu.scss';
 @import './src/k-popver.scss';
-@import './src/k-tooltip.scss';
-@import './src/k-popover.scss';
 @import './src/k-emoji.scss';
 @import './src/k-skeleton.scss';
+@import './src/k-tooltip.scss';
+@import './src/k-popover.scss';
 
 
 .v-enter-active,
 .v-leave-active {
-  transition: opacity 0.5s ease;
+  transition: opacity 0.3s ease;
 }
 
 .v-enter-from,
 .v-leave-to {
   opacity: 0;
+}
+
+.bounce-enter-active {
+  animation: bounce-in 0.5s;
+}
+.bounce-leave-active {
+  animation: bounce-in 0.5s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
+  }
 }

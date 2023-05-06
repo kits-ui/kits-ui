@@ -42,14 +42,19 @@
   }
   .k-calendar-core{
     width: 100%;
+    margin: 0;
   }
   .k-calendar-header, .day-row{
     width: 100%;
     height: 100px;
     display: flex;
+    &:nth-child(2n) {
+      background-color: transparent;
+    }
     .k-calendar-header-item, .day-cell{
       border-right: 1px solid var(--border-color);
       border-bottom: 1px solid var(--border-color);
+      background-color: transparent;
       width: calc(100% / 7);
       height: 100%;
       display: flex;

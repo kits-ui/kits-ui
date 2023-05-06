@@ -1,5 +1,11 @@
 <template>
-  <popver :position="props.position" :theme="theme" name="tooltip" trigger="hover">
+  <popver
+    :position="props.position"
+    :theme="theme"
+    name="tooltip"
+    trigger="hover"
+    :arrow="props.arrow"
+  >
     <component :is="defaultSlot"></component>
     <template #content>
       {{ props.content }}
@@ -26,6 +32,10 @@ const props = defineProps({
   theme: {
     type: String,
     default: 'dark',
+  },
+  arrow: {
+    type: Boolean,
+    default: true,
   },
 });
 </script>
