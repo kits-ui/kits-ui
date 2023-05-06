@@ -7,15 +7,18 @@ $list: top bottom left right;
 }
 .k_popover {
   transition: all 0.3s;
+  .popover-title {
+    font-size: 16px;
+  }
   .popover-content {
     position: fixed;
     width: fit-content;
+    min-width: 150px;
     height: fit-content;
     padding: 5px 8px;
     box-sizing: border-box;
     border-radius: 5px;
     cursor: pointer;
-    user-select: none;
     font-size: 12px;
     z-index: 9990;
     background: var(--k-popover-bg);

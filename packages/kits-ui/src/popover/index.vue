@@ -1,5 +1,13 @@
 <template>
-  <popver :position="props.position" :theme="props.theme" name="popover" :trigger="props.trigger">
+  <popver
+    :position="props.position"
+    :theme="props.theme"
+    name="popover"
+    :trigger="props.trigger"
+    :arrow="props.arrow"
+    :width="props.width"
+    :title="props.title"
+  >
     <component :is="referenceSlot"></component>
     <template #content>
       <slot>
@@ -32,6 +40,18 @@ const props = defineProps({
   name: {
     type: String,
     default: 'popver',
+  },
+  arrow: {
+    type: Boolean,
+    default: true,
+  },
+  width: {
+    type: Number,
+    default: 150,
+  },
+  title: {
+    type: String,
+    default: '',
   },
 });
 const slots = useSlots();

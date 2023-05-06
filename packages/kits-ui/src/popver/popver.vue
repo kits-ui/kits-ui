@@ -1,18 +1,31 @@
 <template>
   <component
     :is="defaultSlot"
+    :id="`k-${props.name}-${idNum}`"
     :class="`k-${props.name}`"
     @click="(e) => props.trigger === 'click' && clickFn(e)"
-    @mouseenter="(e) => props.trigger === 'hover' && mouseoverFn(e)"
-    @mouseout="(e) => props.trigger === 'hover' && mouseoutFn(e)"
+    @mouseenter="(e) => props.trigger === 'hover' && mouseenterFn(e)"
+    @mouseout="(e) => props.trigger === 'hover' && mouseoutFn()"
   ></component>
   <Teleport to="body">
     <transition :duration="300">
-      <div v-if="isShow" ref="popver" class="k_popver" :class="props.theme">
-        <div ref="popverContent" class="popver-content">
+      <div v-if="isShow" ref="popver" :class="[`k_${props.name}`, props.theme]">
+        <div
+          ref="popverContent"
+          :id="`${props.name}-${idNum}`"
+          :class="`${props.name}-content`"
+          :style="{ width: props.name === 'tooltip' ? 'fit-content' : `${props.width}px` }"
+        >
+          <div v-if="props.name !== 'tooltip'" name="title" :class="`${props.name}-title`">
+            {{ props.title }}
+          </div>
           <slot name="content">{{ props.content }}</slot>
         </div>
-        <span ref="triangle" class="popver-triangle" :class="currentPosition"></span>
+        <span
+          v-if="props.arrow"
+          ref="triangle"
+          :class="[`${props.name}-triangle`, currentPosition]"
+        ></span>
       </div>
     </transition>
   </Teleport>
@@ -20,7 +33,7 @@
 
 <script setup lang="ts">
 import { onMounted, ref, useSlots, nextTick, onUnmounted } from 'vue';
-import { setStyle } from '../utils/index';
+import { setStyle, setIdNum } from '../utils/index';
 const props = defineProps({
   content: {
     type: String,
@@ -42,6 +55,18 @@ const props = defineProps({
     type: String,
     default: 'click',
   },
+  arrow: {
+    type: Boolean,
+    default: true,
+  },
+  width: {
+    type: Number,
+    default: 150,
+  },
+  title: {
+    type: String,
+    default: '',
+  },
 });
 
 const slots = useSlots();
@@ -52,90 +77,146 @@ const triangle = ref<any>();
 const dom = ref<any>();
 const currentPosition = ref<string>();
 const isShow = ref<boolean>(false);
+const idNum = ref<number>(0);
 
 onMounted(() => {
+  idNum.value = setIdNum();
   // 鼠标移入目标元素的操作
-  // window.addEventListener('mouseenter', mouseoverFn);
+  window.addEventListener('mouseover', mouseoverFn);
   // 鼠标在目标元素与提示框中移动的操作
-  // window.addEventListener('mousemove', mousemoverFn);
-  // window.addEventListener('mouseleave', mouseleaveFn, true);
+  window.addEventListener('mousemove', mousemoverFn);
+  // 点击事件
+  window.addEventListener('mousedown', mousedownFn);
   // 滚动事件时的操作
   window.addEventListener('scroll', scrollFn);
 });
 
 onUnmounted(() => {
-  // window.removeEventListener('mouseenter', mouseoverFn);
-  // window.removeEventListener('mousemove', mousemoverFn);
-  // window.removeEventListener('mouseleave', mouseleaveFn);
+  window.removeEventListener('mouseover', mouseoverFn);
+  window.removeEventListener('mousemove', mousemoverFn);
+  window.addEventListener('click', mousedownFn);
   window.removeEventListener('scroll', scrollFn);
 });
 
+/**
+ * 全局鼠标移入事件
+ * @param e 事件对象
+ */
 const mouseoverFn = (e) => {
-  dom.value = e.target;
-  nextTick(async () => {
-    isShow.value = true;
-    await init();
-    if (dom.value) {
-      // popver.value.style.opacity = '1';
-      // popver.value.style.visibility = 'visible';
-    }
-  });
-};
-
-const clickFn = (e) => {
-  dom.value = e.target;
-  nextTick(async () => {
-    isShow.value = true;
-    await init();
-  });
-};
-// const mousemoverFn = (e) => {
-//   if (tooltipContent.value) {
-//     if (e.target === dom.value || e.target === tooltipContent.value) {
-//       tooltip.value.style.opacity = '1';
-//       tooltip.value.style.visibility = 'visible';
-//     }
-//   }
-// };
-
-// const mouseleaveFn = (e) => {
-//   console.log(e.target);
-//   if (tooltipContent.value) {
-//     if (e.target === tooltipContent.value) {
-//       tooltip.value.style.opacity = '0';
-//       tooltip.value.style.visibility = 'hidden';
-//     }
-//   }
-// };
-
-const mouseoutFn = (e) => {
-  console.log(e.target);
+  if (props.trigger !== 'hover') {
+    return;
+  }
+  if (e.target === dom.value) {
+    init();
+  }
   if (popverContent.value) {
-    if (e.target === popverContent.value) {
+    if (popverContent.value.contains(e.target)) {
+      popver.value.style.opacity = '1';
+      popver.value.style.visibility = 'visible';
+    } else {
       popver.value.style.opacity = '0';
       popver.value.style.visibility = 'hidden';
     }
   }
 };
 
-const scrollFn = () => {
-  if (dom.value) {
-    if (props.name !== 'tooltip') {
-      init();
-    } else {
-      isShow.value = false;
+/**
+ * 全局鼠标移动事件
+ * @param e 事件对象
+ */
+const mousemoverFn = (e) => {
+  if (props.trigger !== 'hover') {
+    return;
+  }
+  if (popverContent.value) {
+    if (e.target === dom.value || popverContent.value.contains(e.target)) {
+      popver.value.style.opacity = '1';
+      popver.value.style.visibility = 'visible';
     }
   }
 };
 
+/**
+ * 全局鼠标点击事件
+ * @param e 事件对象
+ */
+const mousedownFn = (e) => {
+  console.log(e.target, dom.value);
+  if (props.trigger === 'hover') {
+    return;
+  }
+  if (popverContent.value) {
+    if (e.target !== dom.value) {
+      isShow.value = false;
+      popver.value.style.opacity = '0';
+      popver.value.style.visibility = 'hidden';
+    }
+    // if (popverContent.value.contains(e.target)) {
+    //   popver.value.style.opacity = '1';
+    //   popver.value.style.visibility = 'visible';
+    // } else {
+    //   popver.value.style.opacity = '0';
+    //   popver.value.style.visibility = 'hidden';
+    // }
+  }
+};
+
+/**
+ * 目标dom鼠标移入事件
+ * @param e 事件对象
+ */
+const mouseenterFn = (e) => {
+  dom.value = e.target;
+  nextTick(async () => {
+    isShow.value = true;
+    await init();
+  });
+};
+
+/**
+ * 目标元素点击事件
+ * @param e 事件对象
+ */
+const clickFn = (e) => {
+  if (props.trigger === 'hover') {
+    return;
+  }
+  dom.value = e.target;
+  nextTick(async () => {
+    isShow.value = true;
+    await init();
+  });
+};
+
+/**
+ * 目标元素鼠标移出事件
+ */
+const mouseoutFn = () => {
+  popver.value.style.opacity = '0';
+  popver.value.style.visibility = 'hidden';
+};
+
+/**
+ * 全局滚动监听
+ */
+const scrollFn = () => {
+  if (dom.value) {
+    init();
+  }
+};
+
+/**
+ * 初始化
+ */
 const init = () => {
-  console.log(dom.value);
-  // dom.value.classList.add('k-tooltip');
   nextTick(async () => {
     await settooltipStyle();
   });
 };
 
+/**
+ * 方位判断
+ */
 const settooltipStyle = () => {
   currentPosition.value = props.position;
   // 获取兄弟节点定位信息
@@ -182,8 +263,10 @@ const settooltipStyle = () => {
   console.log(props.position);
   if (currentPosition.value === 'top' || currentPosition.value === 'bottom') {
     // 小三角定位
-    triangleLeft = `${left + width / 2 - 5}px`;
-    triangleTop = currentPosition.value === 'top' ? `${top - 10}px` : `${top + height}px`;
+    if (props.arrow) {
+      triangleLeft = `${left + width / 2 - 5}px`;
+      triangleTop = currentPosition.value === 'top' ? `${top - 10}px` : `${top + height}px`;
+    }
     // 提示框top/bottom
     currentTop =
       currentPosition.value === 'top' ? `${top - 10 - tHeight}px` : `${top + height + 10}px`;
@@ -199,8 +282,10 @@ const settooltipStyle = () => {
   // 纵向挤压判断
   if (currentPosition.value === 'left' || currentPosition.value === 'right') {
     // 小三角定位
-    triangleLeft = currentPosition.value === 'left' ? `${left - 10}px` : `${left + width}px`;
-    triangleTop = `${top + height / 2 - 5}px`;
+    if (props.arrow) {
+      triangleLeft = currentPosition.value === 'left' ? `${left - 10}px` : `${left + width}px`;
+      triangleTop = `${top + height / 2 - 5}px`;
+    }
     // 提示框top/bottom
     currentLeft =
       currentPosition.value === 'left' ? `${left - tWidth - 10}px` : `${left + width + 10}px`;
@@ -217,10 +302,11 @@ const settooltipStyle = () => {
     }
   }
 
-  setStyle(triangle.value, {
-    top: triangleTop,
-    left: triangleLeft,
-  });
+  props.arrow &&
+    setStyle(triangle.value, {
+      top: triangleTop,
+      left: triangleLeft,
+    });
   setStyle(popverContent.value, {
     top: currentTop,
     bottom: currentBottom,

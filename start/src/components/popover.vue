@@ -1,11 +1,11 @@
 <template>
-  <k-popover position="top" theme="light">
+  <k-popover position="top" theme="light" :width="100">
     <k-calendar v-model="value" :first-day="1" @on-change="onChange"></k-calendar>
     <template #reference>
       <k-button type="insert">点我</k-button>
     </template>
   </k-popover>
-  <k-popover position="bottom" theme="light">
+  <k-popover position="bottom" theme="light" trigger="hover" title="666">
     <ul>
       <li>1</li>
       <li>2</li>
