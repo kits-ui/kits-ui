@@ -11,12 +11,18 @@
 ```vue
 <template>
   <div style="margin-bottom:20px;">
-    <k-button>我是span</k-button>
     <k-button>default</k-button>
     <k-button color="#22c55e">绿色按钮</k-button>
     <k-button color="#6b7280">灰色按钮</k-button>
     <k-button color="#eab308">黄色按钮</k-button>
     <k-button color="#ef4444">红色按钮</k-button>
+  </div>
+  <div style="margin-bottom:20px;">
+    <k-button type="line">default</k-button>
+    <k-button color="#22c55e" type="line">绿色按钮</k-button>
+    <k-button color="#6b7280" type="line">灰色按钮</k-button>
+    <k-button color="#eab308" type="line">黄色按钮</k-button>
+    <k-button color="#ef4444" type="line">红色按钮</k-button>
   </div>
   <div style="margin-bottom:20px;">
     <k-button type="insert">insert</k-button>
@@ -67,7 +73,7 @@
 
 | 属性名    | 说明                                | 类型      | 可选值                   | 默认值  |
 | --------- | ----------------------------------- | --------- | ------------------------ | ------- |
-| color     | 按钮背景色                          | `string`  | ------------------------ | ---     |
+| color     | 按钮背景色(支持渐变)                | `string`  | -----------------        | ---     |
 | type      | 按钮类型(insert: 内部动效)          | `string`  | insert                   | default |
 | direction | 配合 insert 使用,控制动效的移动方向 | `string`  | top/ bottom/ left/ right | bottom  |
 | disabled  | 按钮是否为禁用状态                  | `boolean` | false/ true              | false   |
