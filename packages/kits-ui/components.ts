@@ -9,6 +9,7 @@ import Loading from './src/loading';
 import ContextMenu from './src/contextMenu/components/Vue3Menus.vue';
 import Tooltip from './src/tooltip/index.vue';
 import Popover from './src/popover/index.vue';
+import Popconfirm from './src/popconfirm/index.vue';
 import Emoji from './src/emoji/index.vue';
 import Skeleton from './src/skeleton/index.vue';
 export default {
@@ -23,6 +24,7 @@ export default {
   ContextMenu,
   Tooltip,
   Popover,
+  Popconfirm,
   Emoji,
   Skeleton,
 };

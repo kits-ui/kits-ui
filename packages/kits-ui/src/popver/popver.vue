@@ -11,8 +11,8 @@
     <transition :duration="300">
       <div v-if="isShow" ref="popver" :class="[`k_${props.name}`, props.theme]">
         <div
-          ref="popverContent"
           :id="`${props.name}-${idNum}`"
+          ref="popverContent"
           :class="`${props.name}-content`"
           :style="{ width: props.name === 'tooltip' ? 'fit-content' : `${props.width}px` }"
         >
@@ -32,7 +32,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, useSlots, nextTick, onUnmounted } from 'vue';
+import { onMounted, ref, useSlots, nextTick, onUnmounted, watch } from 'vue';
 import { setStyle, setIdNum } from '../utils/index';
 const props = defineProps({
   content: {
@@ -67,6 +67,10 @@ const props = defineProps({
     type: String,
     default: '',
   },
+  visible: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const slots = useSlots();
@@ -78,6 +82,18 @@ const dom = ref<any>();
 const currentPosition = ref<string>();
 const isShow = ref<boolean>(false);
 const idNum = ref<number>(0);
+
+watch(
+  () => props.visible,
+  (newVal) => {
+    console.log(newVal);
+    if (!newVal) {
+      popver.value.style.opacity = '0';
+      popver.value.style.visibility = 'hidden';
+      // isShow.value = false;
+    }
+  },
+);
 
 onMounted(() => {
   idNum.value = setIdNum();
@@ -141,15 +157,16 @@ const mousemoverFn = (e) => {
  * @param e 事件对象
  */
 const mousedownFn = (e) => {
-  console.log(e.target, dom.value);
   if (props.trigger === 'hover') {
     return;
   }
   if (popverContent.value) {
-    if (e.target !== dom.value) {
-      isShow.value = false;
-      popver.value.style.opacity = '0';
-      popver.value.style.visibility = 'hidden';
+    if (!props.visible) {
+      if (e.target !== dom.value && !popverContent.value.contains(e.target)) {
+        popver.value.style.opacity = '0';
+        popver.value.style.visibility = 'hidden';
+        isShow.value = false;
+      }
     }
     // if (popverContent.value.contains(e.target)) {
     //   popver.value.style.opacity = '1';
@@ -185,6 +202,10 @@ const clickFn = (e) => {
   nextTick(async () => {
     isShow.value = true;
     await init();
+    if (popverContent.value) {
+      popver.value.style.opacity = '1';
+      popver.value.style.visibility = 'visible';
+    }
   });
 };
 
