@@ -74,6 +74,6 @@
 | 属性名    | 说明                                | 类型      | 可选值                   | 默认值  |
 | --------- | ----------------------------------- | --------- | ------------------------ | ------- |
 | color     | 按钮背景色(支持渐变)                | `string`  | -----------------        | ---     |
-| type      | 按钮类型(insert: 内部动效)          | `string`  | insert                   | default |
+| type      | 按钮类型(insert: 内部动效)          | `string`  | insert/line              | default |
 | direction | 配合 insert 使用,控制动效的移动方向 | `string`  | top/ bottom/ left/ right | bottom  |
 | disabled  | 按钮是否为禁用状态                  | `boolean` | false/ true              | false   |
