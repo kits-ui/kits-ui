@@ -86,9 +86,6 @@
   width: 100% !important;
 }
 
-table thead, table tbody {
-  width: 100%;
-}
 @media (min-width: 1440px) {
   .VPContent.has-sidebar {
     padding-right: calc((100vw - var(--vp-layout-max-width)) / 5)  !important;
@@ -166,17 +163,21 @@ table thead, table tbody {
   margin-top: 15px;
 }
 
-.vp-doc table, table thead, table tbody {
+/* .vp-doc table, table thead, table tbody {
   display: flex;
   flex-direction: column;
   width: 100%;
-} 
+}  */
 
 .vp-doc .custom-block {
   border: none;
 }
 
-table tr {
+/* table thead, table tbody {
+  width: 100%;
+} */
+
+/* table tr {
   width: 100%;
   display: flex;
 }
@@ -189,13 +190,14 @@ table td code {
   background-color: #2fd3bd2a !important;
 }
 
-/* table th:nth-child(3), table td:nth-child(3) {
+table th:nth-child(3), table td:nth-child(3) {
   flex: none;
   width: 70px;
-} */
+}
 
-table th:nth-child(2), table td:nth-child(2) {
-  min-width: 300px;
+table th:nth-child(4), table td:nth-child(4) {
+  flex: none;
+  width: 180px;
 }
 
 table th:last-child, table td:last-child {
@@ -206,6 +208,6 @@ table th:last-child, table td:last-child {
 table th:first-child, table td:first-child {
   flex: none;
   width: 130px;
-}
+} */
 
 
