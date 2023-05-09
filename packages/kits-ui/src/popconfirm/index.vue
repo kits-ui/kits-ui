@@ -14,8 +14,12 @@
         <component :is="defaultSlot"></component>
       </slot>
       <div class="popconfirm-footer">
-        <k-button type="line" class="k-popconfirm-cancel" @click="(e) => cancel()"> 取消 </k-button>
-        <k-button class="k-popconfirm-confirm" @click="(e) => confirm()">确定</k-button>
+        <k-button type="line" class="k-popconfirm-cancel" size="small" @click="(e) => cancel(e)">{{
+          props.cancelText
+        }}</k-button>
+        <k-button class="k-popconfirm-confirm" size="small" @click="(e) => confirm(e)">{{
+          props.confirmText
+        }}</k-button>
       </div>
     </template>
   </popver>
@@ -45,18 +49,29 @@ const props = defineProps({
     type: String,
     default: '',
   },
+  cancelText: {
+    type: String,
+    default: '取消',
+  },
+  confirmText: {
+    type: String,
+    default: '确定',
+  },
 });
 const slots = useSlots();
 const referenceSlot = slots.reference && slots.reference()[0];
 const defaultSlot = slots.default && slots.default()[0];
 const visible = ref<boolean>(false);
+const emits = defineEmits(['cancel', 'confirm']);
 
-const cancel = () => {
+const cancel = (e) => {
   visible.value = false;
+  emits('cancel', e);
 };
 
-const confirm = () => {
-  console.log(1);
+const confirm = (e) => {
+  visible.value = false;
+  emits('confirm', e);
 };
 
 const show = () => {

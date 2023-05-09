@@ -38,8 +38,6 @@
 
 ## 禁用状态
 
-使用 `disabled` 属性来定义按钮是否被禁用。
-
 使用 `disabled` 属性来控制按钮是否为禁用。 该属性值为 Boolean 类型。
 
 :::demo
@@ -65,6 +63,30 @@
 
 :::
 
+## 设置尺寸
+
+使用 `size` 属性来定义按钮的具体尺寸。
+
+:::demo
+
+```vue
+<template>
+  <div style="margin-bottom:20px;">
+    <k-button disabled size="large">large</k-button>
+    <k-button disabled size="default">default</k-button>
+    <k-button disabled size="small">small</k-button>
+    <k-button type="insert" direction="left" size="large">large</k-button>
+    <k-button type="insert" direction="left" size="default">default</k-button>
+    <k-button type="insert" direction="left" size="small">small</k-button>
+    <k-button type="line" size="large">large</k-button>
+    <k-button type="line" size="default">default</k-button>
+    <k-button type="line" size="small">small</k-button>
+  </div>
+</template>
+```
+
+:::
+
 ---
 
 # Button API
@@ -77,3 +99,4 @@
 | type      | 按钮类型(insert: 内部动效)          | `string`  | insert/line              | default |
 | direction | 配合 insert 使用,控制动效的移动方向 | `string`  | top/ bottom/ left/ right | bottom  |
 | disabled  | 按钮是否为禁用状态                  | `boolean` | false/ true              | false   |
+| size      | 设置按钮尺寸                        | `string`  | large/default/small      | default |

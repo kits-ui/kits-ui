@@ -1,5 +1,7 @@
 # Tooltip 文字提示
 
+常用于展示鼠标 hover 时的提示信息。
+
 ## 基础用法
 
 使用`position` 属性来定义 tooltip 显示的方向。

@@ -103,6 +103,7 @@
     background: transparent;
     border: 1px solid var(--k-button-color);
     color: var(--k-button-color);
+    padding: 4px 13px;
     &::after {
       position: absolute;
       content: '';
@@ -111,6 +112,7 @@
       background: var(--k-button-color);
       opacity: 0;
       visibility: hidden;
+      border-radius: 5px;
     }
     &:hover::after {
       visibility: visible;
@@ -132,6 +134,21 @@
 
     &:hover::after {
       content: unset;
+    }
+  }
+
+  &.small {
+    font-size: 12px;
+    padding: 0px 8px;
+    &.line {
+      padding: 0px 7px;
+    }
+  }
+  &.large {
+    font-size: 16px;
+    padding: 8px 17px;
+    &.line {
+      padding: 7px 16px;
     }
   }
 }
