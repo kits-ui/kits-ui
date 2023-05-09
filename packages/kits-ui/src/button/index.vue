@@ -30,6 +30,10 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  size: {
+    type: String,
+    default: 'default',
+  },
 });
 
 const emits = defineEmits(['click']);
@@ -61,6 +65,9 @@ const btnClass = () => {
   }
   if (typeof props.disabled === 'boolean' && props.disabled) {
     classStr += ' is-disabled';
+  }
+  if (props.size !== 'default') {
+    classStr += ` ${props.size}`;
   }
   return classStr;
 };

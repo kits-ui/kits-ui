@@ -1,10 +1,8 @@
 # Popover 气泡框
 
-气泡框
+常用于展示鼠标 hover 或者 click 时的提示信息与 tooltip 类似,并具有一部分相同属性。
 
 ## 基础用法
-
-基础的函数用法
 
 :::demo
 
@@ -90,9 +88,9 @@ const selectEmoticon = (data) => {
 | title   | 气泡框的 title             | `string`  | ---------------- | -----  |
 | visible | 特殊情况下控制气泡框的关闭 | `boolean` | ---------------- | false  |
 
-## Popover 属性
+## Popover 插槽
 
-| 名称      | 说明                        | 参数 |
-| --------- | --------------------------- | ---- |
-| default   | 自定义菜单内容              | -    |
-| reference | 触发 Popover 显示的元素内容 | -    |
+| 名称      | 说明                        |
+| --------- | --------------------------- |
+| default   | 自定义内容                  |
+| reference | 触发 Popover 显示的元素内容 |

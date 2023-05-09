@@ -22,7 +22,8 @@ $list: top bottom left right;
 
     padding: 8px;
     .popconfirm-title {
-      font-size: 16px;
+      display: flex;
+      font-size: 14px;
     }
 
     .popconfirm-footer {
