@@ -4,6 +4,7 @@ import AuthCode from './src/authCode/index.vue';
 import Notification from './src/notification/index.vue';
 import Image from './src/image/index.vue';
 import Calendar from './src/calendar/index.vue';
+import Split from './src/split/index.vue';
 import Watermark from './src/watermark/index.vue';
 import Loading from './src/loading';
 import ContextMenu from './src/contextMenu/components/Vue3Menus.vue';
@@ -19,6 +20,7 @@ export default {
   Notification,
   Image,
   Calendar,
+  Split,
   Watermark,
   Loading,
   ContextMenu,

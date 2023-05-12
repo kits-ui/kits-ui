@@ -6,13 +6,14 @@
 
 1. fork 主仓库 kits-ui
 2. 使用 http 或 ssh clone 个人仓库
-3. 在 clone 后的个人仓库中 通过 git remote add 主仓库名 主仓库 ssh 添加一条主仓库链接 例如：` git remote add kits-ui git@github.com:kits-ui/kits-ui.git`
+3. 在 clone 后的个人仓库中 通过 git remote add 主仓库名 主仓库 ssh 添加一条主仓库链接
+   - 例如：`git remote add kits-ui git@github.com:kits-ui/kits-ui.git`
 4. 拉取 **kits-ui** 仓库代码 pull kits-ui, 拉取后切换 **kits-ui** 仓库的 dev 分支进行开发
 5. 在后续开发中,拉取主仓库 **kits-ui** 的 dev 分支 代码到本地，保证代码为最新， 推送代码则是到个人仓库 即：
 
-   - `pull kits-ui dev`
+   - `git pull kits-ui dev`
 
-   - ` push origin dev`
+   - `git push origin dev`
 
 6. 在每次 push 代码前, 拉取一次主仓库代码,保证提交上去不会有冲突
 7. 提交 pr -> 发起 个人仓库到主仓库的 pr origin 的 dev 分支 推送到 kits-ui 的 dev 分支
