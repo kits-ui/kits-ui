@@ -1,4 +1,5 @@
 import { demoBlockPlugin } from 'vitepress-theme-demoblock';
+import { kTablePlugin } from './plugins/table';
 
 const sidebar = {
   '/guide/': [
@@ -64,7 +65,7 @@ const config: any = {
         text: '版本',
         items: [
           {
-            text: '0.0.1',
+            text: '0.0.3',
           },
         ],
       },
@@ -80,6 +81,7 @@ const config: any = {
     },
     config: (md) => {
       // 添加DemoBlock插槽
+      md.use(kTablePlugin);
       md.use(demoBlockPlugin);
     },
   },
