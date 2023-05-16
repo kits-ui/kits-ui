@@ -26,7 +26,7 @@
     >
       2
       <slot>
-        <img src="https://xiaolongosscdn.liam0418.com/navigation/images/GitHub.ico" />
+        <img src="https://cdn.xiaolong0418.com/navigation/images/GitHub.ico" />
       </slot>
     </div>
   </div>
