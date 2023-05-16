@@ -11,9 +11,7 @@
   <div style="margin-bottom:20px;">
     <k-skeleton :is-animated="true" width="100%"></k-skeleton>
     <k-skeleton type="img" width="80px" height="80px" :is-animated="true">
-      <img
-        src="https://xiaolongosscdn.liam0418.com/myblog/images/37c3388f9af3eec6492b6831591fd63c.jpg"
-      />
+      <img src="https://cdn.xiaolong0418.com/myblog/images/37c3388f9af3eec6492b6831591fd63c.jpg" />
     </k-skeleton>
 
     <k-skeleton height="30px" width="30px" :is-animated="true" radius="100%"></k-skeleton>
