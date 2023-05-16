@@ -20,7 +20,7 @@
 .split-wrapper {
   width: 600px;
   height: 400px;
-  border: 1px solid red;
+  border: 1px solid #2bc0ac;
 }
 </style>
 ```
@@ -50,7 +50,7 @@ const handleMoveEnd = () => {
 .split-wrapper {
   width: 600px;
   height: 400px;
-  border: 1px solid red;
+  border: 1px solid #2bc0ac;
 }
 </style>
 ```
@@ -77,7 +77,7 @@ const handleMoveEnd = () => {
 .split-wrapper {
   width: 600px;
   height: 400px;
-  border: 1px solid red;
+  border: 1px solid #2bc0ac;
 }
 </style>
 ```

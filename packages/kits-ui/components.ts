@@ -13,6 +13,7 @@ import Popover from './src/popover/index.vue';
 import Popconfirm from './src/popconfirm/index.vue';
 import Emoji from './src/emoji/index.vue';
 import Skeleton from './src/skeleton/index.vue';
+import Icon from './src/icon/index.vue';
 export default {
   Button,
   FilterBox,
@@ -29,4 +30,5 @@ export default {
   Popconfirm,
   Emoji,
   Skeleton,
+  Icon,
 };
