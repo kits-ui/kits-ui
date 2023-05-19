@@ -4,9 +4,6 @@
       <k-tooltip content="我是span-左边提示" position="left" theme="light">
         <k-button type="insert" direction="left">我是span</k-button>
       </k-tooltip>
-      <k-tooltip content="我是span-上边提示1" position="top">
-        <k-button>我是span1</k-button>
-      </k-tooltip>
       <k-tooltip
         content="我是span-右边提示22我是span-下边提示萨芬大师傅赶得上范德萨我是span-的萨芬大师傅赶得上范德萨"
         position="right"
@@ -19,7 +16,7 @@
       >
         <k-button>我是span3</k-button>
       </k-tooltip>
-      <k-tooltip content="我是span-上面提示44">
+      <k-tooltip content="我是span-上面提示44" :arrow="false">
         <k-button>我是span4</k-button>
       </k-tooltip>
       <k-tooltip content="我是span-上面提示55">

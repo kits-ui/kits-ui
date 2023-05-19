@@ -576,11 +576,11 @@ const glyphs = [
 <style lang="scss" scoped>
 .iconList {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 20%);
+  grid-template-columns: repeat(auto-fill, 16.6%);
+  max-width: 814px;
   // grid-template-rows: repeat(16, 120px);
   // grid-row-gap: 1px;
   // grid-column-gap: 1px;
-  max-width: 714px;
   // border: 1px solid var(--block-border-color);
   // background-color: var(--block-border-color);
   .iconItem {
@@ -600,7 +600,7 @@ const glyphs = [
       background-color: #2fd3bd2a;
     }
   }
-  svg[id*=icon] {
+  svg[id*='icon'] {
     width: 1.5em;
     height: 1.5em;
     vertical-align: -0.15em;

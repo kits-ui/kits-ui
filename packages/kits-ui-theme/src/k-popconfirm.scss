@@ -1,16 +1,13 @@
 $list: top bottom left right;
-.k-popover {
+.k-popconfirm {
   cursor: pointer;
-  &:hover +.popover-content {
+  &:hover +.popconfirm-content {
     // opacity: 1;
   }
 }
-.k_popover {
+.k_popconfirm {
   transition: all 0.3s;
-  .popover-title {
-    font-size: 16px;
-  }
-  .popover-content {
+  .popconfirm-content {
     position: fixed;
     width: fit-content;
     min-width: 150px;
@@ -21,9 +18,28 @@ $list: top bottom left right;
     cursor: pointer;
     font-size: 12px;
     z-index: 9990;
-    background: var(--k-popover-bg);
+    background: var(--k-popconfirm-bg);
+
+    padding: 8px;
+    .popconfirm-title {
+      display: flex;
+      font-size: 14px;
+    }
+
+    .popconfirm-footer {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 10px;
+      .k-popconfirm-cancel {
+        // color: #000;
+      }
+    
+      .k-popconfirm-confirm {}
+    }
+
   }
-  .popover-triangle {
+  .popconfirm-triangle {
     position: fixed;
     display: inline-block;
     width: 10px;
@@ -34,20 +50,20 @@ $list: top bottom left right;
     box-sizing: border-box;
   }
   @each $position in $list {
-    .popover-triangle.#{$position} {
-      border-#{$position}-color: var(--k-popover-bg);
+    .popconfirm-triangle.#{$position} {
+      border-#{$position}-color: var(--k-popconfirm-bg);
     }
   }
   &.light {
-    --k-popover-bg: #fff;
-    .popover-content {
+    --k-popconfirm-bg: #fff;
+    .popconfirm-content {
       color: #000;
       filter: drop-shadow(0px 0px 4px #c0c0c0);
     }
   }
   &.dark {
     --k-popover-bg: #000;
-    .popover-content {
+    .popconfirm-content {
       color: #fff;
       filter: drop-shadow(0px 0px 2px #747474);
     }

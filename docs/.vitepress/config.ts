@@ -1,4 +1,5 @@
 import { demoBlockPlugin } from 'vitepress-theme-demoblock';
+import { kTablePlugin } from './plugins/table';
 
 const sidebar = {
   '/guide/': [
@@ -18,6 +19,7 @@ const sidebar = {
         { text: 'Icon 图标', link: '/components/icon/' },
         { text: 'Loading 加载', link: '/components/loading/' },
         { text: 'Skeleton 骨架屏', link: '/components/skeleton/' },
+        { text: 'Split 分割面板', link: '/components/split/' },
       ],
     },
     {
@@ -32,14 +34,15 @@ const sidebar = {
     {
       text: '反馈组件',
       items: [
+        { text: 'Popconfirm 气泡确认框', link: '/components/popconfirm/' },
         { text: 'Popover 气泡框', link: '/components/popover/' },
         { text: 'Tooltip 文字提示', link: '/components/tooltip/' },
+        { text: 'Notification 桌面通知', link: '/components/notification/' },
       ],
     },
     {
       text: '其他组件',
       items: [
-        { text: 'Notification 桌面通知', link: '/components/notification/' },
         { text: 'Watermark 水印', link: '/components/watermark/' },
         { text: 'contextMenu 右键菜单', link: '/components/contextMenu/' },
         { text: 'emoji 表情', link: '/components/emoji/' },
@@ -62,7 +65,7 @@ const config: any = {
         text: '版本',
         items: [
           {
-            text: '0.0.1',
+            text: '0.0.3',
           },
         ],
       },
@@ -78,6 +81,7 @@ const config: any = {
     },
     config: (md) => {
       // 添加DemoBlock插槽
+      md.use(kTablePlugin);
       md.use(demoBlockPlugin);
     },
   },

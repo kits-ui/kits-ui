@@ -7,3 +7,14 @@
     background-color: #2fd3bd7c;
     cursor: default;
 }
+
+.k-popover-group {
+    width: 60%;
+    display: flex;
+    justify-content: flex-start;
+    
+}
+
+.k-popover-group .k-popover {
+    margin-right: 20px;
+}

@@ -11,12 +11,18 @@
 ```vue
 <template>
   <div style="margin-bottom:20px;">
-    <k-button>我是span</k-button>
     <k-button>default</k-button>
     <k-button color="#22c55e">绿色按钮</k-button>
     <k-button color="#6b7280">灰色按钮</k-button>
     <k-button color="#eab308">黄色按钮</k-button>
     <k-button color="#ef4444">红色按钮</k-button>
+  </div>
+  <div style="margin-bottom:20px;">
+    <k-button type="line">default</k-button>
+    <k-button color="#22c55e" type="line">绿色按钮</k-button>
+    <k-button color="#6b7280" type="line">灰色按钮</k-button>
+    <k-button color="#eab308" type="line">黄色按钮</k-button>
+    <k-button color="#ef4444" type="line">红色按钮</k-button>
   </div>
   <div style="margin-bottom:20px;">
     <k-button type="insert">insert</k-button>
@@ -31,8 +37,6 @@
 :::
 
 ## 禁用状态
-
-使用 `disabled` 属性来定义按钮是否被禁用。
 
 使用 `disabled` 属性来控制按钮是否为禁用。 该属性值为 Boolean 类型。
 
@@ -59,6 +63,30 @@
 
 :::
 
+## 设置尺寸
+
+使用 `size` 属性来定义按钮的具体尺寸。
+
+:::demo
+
+```vue
+<template>
+  <div style="margin-bottom:20px;">
+    <k-button disabled size="large">large</k-button>
+    <k-button disabled size="default">default</k-button>
+    <k-button disabled size="small">small</k-button>
+    <k-button type="insert" direction="left" size="large">large</k-button>
+    <k-button type="insert" direction="left" size="default">default</k-button>
+    <k-button type="insert" direction="left" size="small">small</k-button>
+    <k-button type="line" size="large">large</k-button>
+    <k-button type="line" size="default">default</k-button>
+    <k-button type="line" size="small">small</k-button>
+  </div>
+</template>
+```
+
+:::
+
 ---
 
 # Button API
@@ -67,7 +95,8 @@
 
 | 属性名    | 说明                                | 类型      | 可选值                   | 默认值  |
 | --------- | ----------------------------------- | --------- | ------------------------ | ------- |
-| color     | 按钮背景色                          | `string`  | ------------------------ | ---     |
-| type      | 按钮类型(insert: 内部动效)          | `string`  | insert                   | default |
+| color     | 按钮背景色(支持渐变)                | `string`  | -----------------        | ---     |
+| type      | 按钮类型(insert: 内部动效)          | `string`  | insert/line              | default |
 | direction | 配合 insert 使用,控制动效的移动方向 | `string`  | top/ bottom/ left/ right | bottom  |
 | disabled  | 按钮是否为禁用状态                  | `boolean` | false/ true              | false   |
+| size      | 设置按钮尺寸                        | `string`  | large/default/small      | default |

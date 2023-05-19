@@ -1,5 +1,7 @@
 # Tooltip 文字提示
 
+常用于展示鼠标 hover 时的提示信息。
+
 ## 基础用法
 
 使用`position` 属性来定义 tooltip 显示的方向。
@@ -8,7 +10,7 @@
 
 ```vue
 <template>
-  <div style="margin-bottom:20px;">
+  <div>
     <div style="display: inline-block;margin: 0 10px">
       <k-tooltip content="我是左边提示" position="left">
         <k-button>left</k-button>
@@ -27,6 +29,30 @@
     <div style="display: inline-block;margin: 0 10px">
       <k-tooltip content="我是下边提示" position="bottom">
         <k-button>bottom</k-button>
+      </k-tooltip>
+    </div>
+  </div>
+</template>
+```
+
+:::
+
+## 箭头
+
+使用 **arrow**属性来控制是否需要显示箭头
+:::demo
+
+```vue
+<template>
+  <div>
+    <div style="display: inline-block;margin: 0 10px">
+      <k-tooltip content="有箭头">
+        <k-button>有箭头</k-button>
+      </k-tooltip>
+    </div>
+    <div style="display: inline-block;margin: 0 10px">
+      <k-tooltip content="没有箭头" :arrow="false">
+        <k-button>没有箭头</k-button>
       </k-tooltip>
     </div>
   </div>
@@ -88,8 +114,9 @@ Tooltip 组件内置了两个主题：light 和 dark。自定义主题通过添�
 
 ## Tooltip 属性
 
-| 属性名   | 说明             | 类型     | 可选值                | 默认值 |
-| -------- | ---------------- | -------- | --------------------- | ------ |
-| content  | 文字内容         | `string` | -----------------     | ---    |
-| position | 提示框显示发方向 | `string` | top/right/bottom/left | top    |
-| theme    | 提示框的主题     | `string` | -----------------     | dark   |
+| 属性名   | 说明             | 类型      | 可选值                | 默认值 |
+| -------- | ---------------- | --------- | --------------------- | ------ |
+| content  | 文字内容         | `string`  | -----------------     | ---    |
+| position | 提示框显示发方向 | `string`  | top/right/bottom/left | top    |
+| theme    | 提示框的主题     | `string`  | -----------------     | dark   |
+| arrow    | 是否显示箭头     | `boolean` | -----------------     | true   |
