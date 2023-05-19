@@ -14,6 +14,8 @@ import Popconfirm from './src/popconfirm/index.vue';
 import Emoji from './src/emoji/index.vue';
 import Skeleton from './src/skeleton/index.vue';
 import Icon from './src/icon/index.vue';
+import Message from './src/message/message';
+
 export default {
   Button,
   FilterBox,
@@ -31,4 +33,5 @@ export default {
   Emoji,
   Skeleton,
   Icon,
+  Message,
 };
