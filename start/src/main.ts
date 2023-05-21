@@ -15,7 +15,7 @@ for (const [key, component] of Object.entries(kitsIcon)) {
 // app.config.globalProperties.contextmenu = (event, menus) => {
 //   menusEvent(event, menus);
 // };
-
+// app.config.globalProperties.$message = kitsIcon.message;
 app.use(Router);
 // 注册组件
 app.use(kitsUI);

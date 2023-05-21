@@ -16,5 +16,7 @@ export default {
     Object.keys(directives).forEach((key) => {
       app.directive(key, directives[key]);
     });
+    app.config.globalProperties.$message = components['message'];
   },
+  ...components,
 };

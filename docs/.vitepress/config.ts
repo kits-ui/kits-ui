@@ -37,6 +37,7 @@ const sidebar = {
         { text: 'Popconfirm 气泡确认框', link: '/components/popconfirm/' },
         { text: 'Popover 气泡框', link: '/components/popover/' },
         { text: 'Tooltip 文字提示', link: '/components/tooltip/' },
+        { text: 'Message 消息提示', link: '/components/message/' },
         { text: 'Notification 桌面通知', link: '/components/notification/' },
       ],
     },
