@@ -1,0 +1,87 @@
+.k-message-wrapper {
+  position: fixed;
+  top: 10px;
+  z-index: 999;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.slide-fade-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateX(20px);
+  opacity: 0;
+}
+
+$info-color: #6b7280;
+$success-color: #22c55e;
+$warning-color: #eab308;
+$error-color: #ef4444;
+
+.k-message {
+  display: block;
+  padding: 10px 12px;
+  margin-top: 16px;
+  min-width: 300px;
+  background-color: #fff;
+  border-radius: 6px;
+  transition: all 0.3s;
+  transition: opacity 0.3s, transform 0.4s, top 0.4s;
+  box-shadow: 2px 1px 5px 2px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+
+  &-contents {
+    padding-right: 16px;
+    // display: flex;
+    // align-items: center;
+  }
+  &-content{
+    vertical-align: baseline;
+  }
+  &-icon{
+    margin-right: 4px;
+  }
+  &-close-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+
+    i {
+      font-size: 12px;
+    }
+  }
+
+  &-success {
+    .icon-success {
+      color: $success-color;
+    }
+  }
+
+  &-error {
+    .icon-error {
+      color: $error-color;
+    }
+  }
+
+  &-info {
+    .icon-info {
+      color: $info-color;
+    }
+  }
+
+  &-warning {
+    .icon-warning {
+      color: $warning-color;
+    }
+  }
+}
