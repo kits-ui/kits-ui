@@ -8,10 +8,10 @@
 
 ```vue
 <template>
-  <k-button type="success" color="#22c55e" @click="clickMe">success</k-button>
-  <k-button type="warning" color="#6b7280" @click="clickMe2">warning</k-button>
-  <k-button type="info" color="#eab308" @click="clickMe3">info</k-button>
-  <k-button type="error" color="#ef4444" @click="clickMe4">error</k-button>
+  <k-button color="#22c55e" @click="clickMe">success</k-button>
+  <k-button color="#6b7280" @click="clickMe3">info</k-button>
+  <k-button color="#eab308" @click="clickMe2">warning</k-button>
+  <k-button color="#ef4444" @click="clickMe4">error</k-button>
 </template>
 <script setup lang="ts">
 import { ref } from 'vue';

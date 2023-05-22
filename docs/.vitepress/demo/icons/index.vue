@@ -570,6 +570,34 @@ const glyphs = [
     unicode: 'e64b',
     unicode_decimal: 58955,
   },
+  {
+    icon_id: '27188390',
+    name: 'success',
+    font_class: 'success',
+    unicode: 'e64b',
+    unicode_decimal: 58955,
+  },
+  {
+    icon_id: '27188391',
+    name: 'error',
+    font_class: 'error',
+    unicode: 'e64b',
+    unicode_decimal: 58955,
+  },
+  {
+    icon_id: '27188392',
+    name: 'warning',
+    font_class: 'warning',
+    unicode: 'e64b',
+    unicode_decimal: 58955,
+  },
+  {
+    icon_id: '27188393',
+    name: 'info',
+    font_class: 'info',
+    unicode: 'e64b',
+    unicode_decimal: 58955,
+  },
 ];
 </script>
 
