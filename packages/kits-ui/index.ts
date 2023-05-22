@@ -1,22 +1,27 @@
 import { App } from 'vue';
-import components from './components';
+import * as components from './components';
 import directives from './src/directives';
-const prefix = 'K';
-// 导出单独组件
-// export { Button };
+import kitsIcon from '@kits-ui/icons';
 
+// 导出单独组件
+export * from './components';
+console.log(components);
 // 编写一个插件，实现一个install方法
 // app.component(组件名称, 组件实例);
 export default {
   install(app: App): void {
+    for (const [key, component] of Object.entries(kitsIcon)) {
+      app.component(key, component);
+    }
+
     for (const [key, component] of Object.entries(components)) {
-      app.component(`${prefix}${key}`, component);
+      app.component(key, component);
     }
     // 指令注册
     Object.keys(directives).forEach((key) => {
       app.directive(key, directives[key]);
     });
-    app.config.globalProperties.$message = components['message'];
+    // app.config.globalProperties.$message = components['message'];
   },
-  ...components,
+  // ...components,
 };

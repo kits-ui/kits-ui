@@ -78,3 +78,7 @@ export { default as skin } from './src/skin.vue';
 export { default as sweep } from './src/sweep.vue';
 export { default as shut } from './src/shut.vue';
 export { default as voice } from './src/voice.vue';
+export { default as success } from './src/success.vue';
+export { default as warning } from './src/warning.vue';
+export { default as error } from './src/error.vue';
+export { default as info } from './src/info.vue';

@@ -26,11 +26,6 @@
 import { PropType } from 'vue';
 import type { MessageOption, MessageType } from './message';
 import Message from './message';
-import info from '../../../kits-ui-icons/src/info.vue';
-import success from '../../../kits-ui-icons/src/success.vue';
-import warning from '../../../kits-ui-icons/src/warning.vue';
-import error from '../../../kits-ui-icons/src/error.vue';
-import close from '../../../kits-ui-icons/src/close.vue';
 defineProps({
   messageQueue: {
     type: Array as PropType<MessageOption[]>,

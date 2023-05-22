@@ -13,8 +13,9 @@
     "docs:serve": "vitepress serve docs",
     "start": "vite start",
     "build": "pnpm -r build --filter packages",
+    "build:ui": "pnpm -C packages/kits-ui build",
     "build:theme": "pnpm -C packages/kits-ui-theme build",
-    "build:icon": "pnpm -C packages/kits-ui-icon build",
+    "build:icon": "pnpm -C packages/kits-ui-icons build",
     "check:ts": "vue-tsc --noEmit",
     "check:eslint": "eslint \"**/*.{ts,tsx,vue}\"",
     "check:ci": "npm run check:ts && npm run check:eslint",
@@ -68,7 +69,6 @@
     "vue-tsc": "^1.0.24"
   },
   "dependencies": {
-    "dayjs": "^1.11.7",
     "sass": "^1.58.0",
     "scss": "^0.2.4",
     "vite-plugin-style-inject": "^0.0.1",

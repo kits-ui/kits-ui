@@ -1,37 +1,23 @@
-import Button from './src/button/index.vue';
-import FilterBox from './src/filterBox/index.vue';
-import AuthCode from './src/authCode/index.vue';
-import Notification from './src/notification/index.vue';
-import Image from './src/image/index.vue';
-import Calendar from './src/calendar/index.vue';
-import Split from './src/split/index.vue';
-import Watermark from './src/watermark/index.vue';
-import Loading from './src/loading';
-import ContextMenu from './src/contextMenu/components/Vue3Menus.vue';
-import Tooltip from './src/tooltip/index.vue';
-import Popover from './src/popover/index.vue';
-import Popconfirm from './src/popconfirm/index.vue';
-import Emoji from './src/emoji/index.vue';
-import Skeleton from './src/skeleton/index.vue';
-import Icon from './src/icon/index.vue';
-import { Message } from './src/message/index';
+export { default as kButton } from './src/button/index.vue';
+export { default as kkButton } from './src/button/index.vue';
+export { default as kFilterBox } from './src/filterBox/index.vue';
+export { default as kAuthCode } from './src/authCode/index.vue';
+export { default as kNotification } from './src/notification/index.vue';
+export { default as kImage } from './src/image/index.vue';
+export { default as kCalendar } from './src/calendar/index.vue';
+export { default as kSplit } from './src/split/index.vue';
+export { default as kWatermark } from './src/watermark/index.vue';
+export { default as kLoading } from './src/loading';
+export { default as kContextMenu } from './src/contextMenu/components/Vue3Menus.vue';
+export { default as kTooltip } from './src/tooltip/index.vue';
+export { default as kPopover } from './src/popover/index.vue';
+export { default as kPopconfirm } from './src/popconfirm/index.vue';
+export { default as kEmoji } from './src/emoji/index.vue';
+export { default as kSkeleton } from './src/skeleton/index.vue';
+export { default as kIcon } from './src/icon/index.vue';
 
-export default {
-  Button,
-  FilterBox,
-  AuthCode,
-  Notification,
-  Image,
-  Calendar,
-  Split,
-  Watermark,
-  Loading,
-  ContextMenu,
-  Tooltip,
-  Popover,
-  Popconfirm,
-  Emoji,
-  Skeleton,
-  Icon,
-  Message,
-};
+// import { Message } from './src/message/index';
+
+// export default {
+//   Message,
+// };
