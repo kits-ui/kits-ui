@@ -32,7 +32,7 @@
           <div class="clear"></div>
         </div>
       </div>
-      <div height="40px" class="no-padding footer">
+      <!-- <div height="40px" class="no-padding footer">
         <div class="toolbar-items">
           <div v-show="emojiItem.length > 13" class="toolbar-item prev-page" @click="turnPage(1)">
             <i class="el-icon-caret-left" />
@@ -43,8 +43,7 @@
             class="toolbar-item"
             @click="triggerItem(item)"
           >
-            <!-- <img :src="item.categoryIcon" /> -->
-            {{ item.categoryIcon }}
+            <img :src="item.categoryIcon" />
             <p class="title">{{ item.categoryName }}</p>
           </div>
           <div
@@ -55,23 +54,38 @@
             <i class="el-icon-caret-right" />
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { emojiList as emoji, textReplaceEmoji } from './emojis';
+import { emojiList } from './emojis';
 import { emoticon } from './emoticon';
+import { toRef } from 'vue';
 
 export default {
   name: 'MeEditorEmoticon',
   components: {},
-  setup() {
+  props: {
+    // 表情包数据
+    diyEmoji: {
+      type: Object,
+      default: () => ({}),
+    },
+  },
+  setup(props: any) {
+    let emoji: any = emojiList;
     const emojiItem = emoticon;
-    console.log(emojiItem);
+    const diyEmoji = toRef(props, 'diyEmoji');
+    // console.log('emojiItem', diyEmoji.value);
+
+    if (Object.entries(diyEmoji.value).length > 0) {
+      emoji.emojis = diyEmoji.value;
+    }
     return {
       emojiItem,
+      emoji,
     };
   },
   computed: {
@@ -86,8 +100,6 @@ export default {
   },
   data() {
     return {
-      emoji,
-
       // 系统表情包套弹出窗
       systemEmojiBox: false,
 
@@ -122,7 +134,9 @@ export default {
       this.callback({
         type: 1,
         value: emoji,
-        textReplaceEmoji,
+        textReplaceEmoji: (val) => {
+          return this.textReplaceEmoji(val);
+        },
       });
     },
 
@@ -136,6 +150,21 @@ export default {
 
     callback(data) {
       this.$emit('selected', data);
+    },
+    /**
+     * 替换表情文字
+     *
+     * @param {String} content 需要替换的字符串
+     */
+    textReplaceEmoji(content) {
+      const emojisKeys = Object.keys(this.emoji.emojis);
+      const regEmoji = emojisKeys
+        .map((value) => '|\\' + value)
+        .join('')
+        .replace('|', '');
+      return content.replace(new RegExp(`(${regEmoji})`, 'gi'), ($0, $1) => {
+        return this.emoji.emojis[$1];
+      });
     },
   },
 };
