@@ -8,7 +8,7 @@
   "type": "module",
   "license": "MIT",
   "dependencies": {
-    "@kits-ui/icons": "workspace:*",
+    "@kits-ui/icons": "^0.0.2",
     "@kits-ui/theme": "workspace:*",
     "kits-ui": "workspace:*"
   }

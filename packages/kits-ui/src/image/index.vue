@@ -34,6 +34,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
+import { shut, arrowleft, arrowright, narrow, enlarge, undo, redo } from '../icon/index';
 
 const isShowPre = ref<Boolean>(false);
 const currentShow = ref<string>('');

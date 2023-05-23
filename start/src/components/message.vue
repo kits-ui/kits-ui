@@ -6,19 +6,19 @@
 </template>
 
 <script setup lang="ts">
-import KitsUI from '../../../packages/kits-ui/index';
+import { kMessage } from '../../../packages/kits-ui/index';
 // import { getCurrentInstance } from 'vue';
 const clickMe = () => {
-  KitsUI.Message.success('success');
+  kMessage.success('success');
 };
 const clickMe2 = () => {
-  KitsUI.Message.warning('warning');
+  kMessage.warning('warning');
 };
 const clickMe3 = () => {
-  KitsUI.Message.info('info');
+  kMessage.info('info');
 };
 const clickMe4 = () => {
-  KitsUI.Message.error('error', { closeVisible: true });
+  kMessage.error('error', { closeVisible: true });
 };
 </script>
 <style scoped></style>

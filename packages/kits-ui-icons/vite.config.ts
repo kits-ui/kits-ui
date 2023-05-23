@@ -22,7 +22,7 @@ export default (): UserConfigExport => {
       lib: {
         entry: './index.ts',
         formats: ['es'],
-        fileName: () => 'index.js',
+        fileName: () => 'index.icon.js',
       },
       rollupOptions: {
         external: ['vue'],

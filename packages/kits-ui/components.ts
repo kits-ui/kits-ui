@@ -16,7 +16,7 @@ export { default as kEmoji } from './src/emoji/index.vue';
 export { default as kSkeleton } from './src/skeleton/index.vue';
 export { default as kIcon } from './src/icon/index.vue';
 
-// import { Message } from './src/message/index';
+export { kMessage } from './src/message/index';
 
 // export default {
 //   Message,
