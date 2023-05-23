@@ -94,23 +94,7 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, './index.ts') /** 打包入口 */,
       name: 'kits-ui',
-      // fileName: (format) => `index.${format}.js`,
-      // // 导出模块格式
-      // formats: ['es', 'umd', 'iife'],
     },
     rollupOptions,
   },
 });
-
-// // 静态文件移动
-// const writePublicFile = (): void => {
-//   const files = [{ input: './packages/useless-ui/package.json', outDir: 'dist/package.json' }];
-//   files.forEach((item: any): void => {
-//     const readData: any = readFileSync(item.input);
-//     const writeData: any = JSON.parse(readData);
-//     writeData.name = 'useless-ui-test';
-//     writeFileSync(item.outDir, JSON.stringify(writeData, null, 2), 'utf8');
-//   });
-// };
-
-// move();

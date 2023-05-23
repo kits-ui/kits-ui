@@ -6,17 +6,17 @@
         class="k-message-close-icon"
         @click="closeHandle(message)"
       >
-        <k-icon :class="getIconName(message.type)">
+        <span :class="getIconName(message.type)">
           <close />
-        </k-icon>
+        </span>
       </div>
       <div class="k-message-contents">
-        <k-icon class="k-message-icon" :class="getIconName(message.type)">
+        <span class="k-message-icon" :class="getIconName(message.type)">
           <info v-if="message.type === 'info'" />
           <success v-else-if="message.type === 'success'" />
           <warning v-else-if="message.type === 'warning'" />
           <error v-else-if="message.type === 'error'" />
-        </k-icon>
+        </span>
         <span class="k-message-content" v-html="message.content"></span>
       </div>
     </div>
@@ -26,6 +26,7 @@
 import { PropType } from 'vue';
 import type { MessageOption, MessageType } from './message';
 import Message from './message';
+import { info, success, warning, error, close } from '../icon/index';
 defineProps({
   messageQueue: {
     type: Array as PropType<MessageOption[]>,

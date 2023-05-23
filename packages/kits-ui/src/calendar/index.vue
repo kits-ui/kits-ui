@@ -34,6 +34,7 @@
 
 <script lang="ts">
 import { defineComponent, computed, ref } from 'vue';
+import { arrowleft, arrowright } from '../icon/index';
 import dayjs from 'dayjs';
 import type { Dayjs } from 'dayjs';
 
@@ -46,6 +47,10 @@ export interface CalenderDateCell {
 }
 
 export default defineComponent({
+  components: {
+    arrowleft,
+    arrowright,
+  },
   props: {
     modelValue: {
       type: Date,

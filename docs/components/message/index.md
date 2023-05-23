@@ -15,19 +15,20 @@
 </template>
 <script setup lang="ts">
 import { ref } from 'vue';
-// import kitsUi from 'kits-ui';
-// const clickMe = () => {
-//   KitsUI.Message.value.success('success');
-// };
-// const clickMe2 = () => {
-//    KitsUI.Message.value.warning('warning');
-// };
-// const clickMe3 = () => {
-//    KitsUI.Message.value.info('info');
-// };
-// const clickMe4 = () => {
-//    KitsUI.Message.value.error('error');
-// };
+import KitsUI from 'kits-ui';
+
+const clickMe = () => {
+  KitsUI.kMessage.value.success('success');
+};
+const clickMe2 = () => {
+  KitsUI.kMessage.value.warning('warning');
+};
+const clickMe3 = () => {
+  KitsUI.kMessage.value.info('info');
+};
+const clickMe4 = () => {
+  KitsUI.kMessage.value.error('error');
+};
 </script>
 <style scoped></style>
 ```
