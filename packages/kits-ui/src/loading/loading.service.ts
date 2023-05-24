@@ -1,36 +1,32 @@
-import { createApp, ref } from 'vue';
+import { h, ref, render } from 'vue';
 import Loading from './Loading';
 import type { LoadingOptions } from './loading.types';
 
-const closeSet = new Set<() => void>();
-
-function closeAllLoading() {
-  closeSet.forEach((close) => close());
-  closeSet.clear();
-}
+const defaultContainer = document.createElement('div');
 
 /**
  * 调用函数开启loading
+ *
+ * @param props Loading组件的props
+ * @param container 使用默认容器是单例模式；添加container后不会被后面的loading覆盖
  */
-export function showLoading(props: Partial<LoadingOptions & { target?: string }> = {}) {
-  closeAllLoading();
+export function showLoading(props: Partial<LoadingOptions> = {}, container = defaultContainer) {
+  const { modelValue = true } = props;
+  // 可以通过外面传入的modelValue控制显隐
+  const loading = ref(modelValue);
 
-  const loading = ref(props.modelValue ?? true);
-
-  const app = createApp(Loading, {
+  const app = h(Loading, {
     ...props,
     modelValue: loading,
-    onLeave() {
-      setTimeout(() => app.unmount());
-    },
+    'onUpdate:modelValue': (v: boolean) => (loading.value = v),
   });
-  app.mount(document.createElement('div'));
+  render(app, container);
 
   const close = () => {
     loading.value = false;
-    closeSet.delete(close);
+    // 移除
+    // render(null, container);
   };
-  closeSet.add(close);
 
   return { close };
 }

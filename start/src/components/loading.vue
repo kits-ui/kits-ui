@@ -47,6 +47,8 @@ const showFnLoading = () =>
     text: '函数调用的loading,点击任意地方关闭loading',
     closeOnClick: true,
     customClass: 'red',
+    background: 'rgba(255,255,255,0.9)',
+    color: 'black',
   });
 
 const countdown = ref(3);
