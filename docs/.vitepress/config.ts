@@ -47,6 +47,7 @@ const sidebar = {
         { text: 'Watermark 水印', link: '/components/watermark/' },
         { text: 'contextMenu 右键菜单', link: '/components/contextMenu/' },
         { text: 'emoji 表情', link: '/components/emoji/' },
+        { text: '瀑布流', link: '/components/waterfall/' },
       ],
     },
     {

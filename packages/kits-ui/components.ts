@@ -15,9 +15,10 @@ export { default as kPopconfirm } from './src/popconfirm/index.vue';
 export { default as kEmoji } from './src/emoji/index.vue';
 export { default as kSkeleton } from './src/skeleton/index.vue';
 export { default as kIcon } from './src/icon/index.vue';
+export { default as kWaterfall } from './src/waterfall/index.vue';
 
 export { kMessage } from './src/message/index';
 
 // export default {
-//   Message,
+//   kMessage,
 // };

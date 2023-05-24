@@ -8,6 +8,6 @@
   "type": "module",
   "license": "MIT",
   "dependencies": {
-    "vue-router": "4"
+    "vue-router": "^4.2.1"
   }
 }

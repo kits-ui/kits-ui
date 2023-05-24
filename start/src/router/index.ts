@@ -11,6 +11,7 @@ const arr = Object.keys(moduleFiles).map((item: any) => {
   };
   return obj;
 });
+
 const routes: Array<RouteRecordRaw> = [
   {
     name: 'home',
