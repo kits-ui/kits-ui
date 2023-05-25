@@ -3,10 +3,6 @@ import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import dts from 'vite-plugin-dts';
 import { resolve } from 'path';
-// import VitePluginStyleInject from 'vite-plugin-style-inject';
-// import { readFileSync, writeFileSync } from 'fs';
-
-// import { presetUno, presetAttributify, presetIcons } from 'unocss';
 
 const rollupOptions: any = {
   external: ['vue', 'vue-router', 'dayjs'],

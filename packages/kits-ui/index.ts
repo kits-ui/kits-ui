@@ -4,7 +4,6 @@ import directives from './src/directives';
 
 // 导出单独组件
 export * from './components';
-console.log(components);
 // 编写一个插件，实现一个install方法
 // app.component(组件名称, 组件实例);
 export default {
