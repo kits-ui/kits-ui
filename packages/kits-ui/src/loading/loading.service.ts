@@ -2,7 +2,7 @@ import { h, ref, render } from 'vue';
 import Loading from './Loading';
 import type { LoadingOptions } from './loading.types';
 
-const defaultContainer = document.createElement('div');
+const defaultContainer = globalThis.document?.createElement('div');
 
 /**
  * 调用函数开启loading
