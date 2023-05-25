@@ -7,7 +7,7 @@ export { default as kImage } from './src/image/index.vue';
 export { default as kCalendar } from './src/calendar/index.vue';
 export { default as kSplit } from './src/split/index.vue';
 export { default as kWatermark } from './src/watermark/index.vue';
-// export { default as Loading } from './src/loading';
+export { default as kLoading } from './src/loading';
 export { default as kContextMenu } from './src/contextMenu/components/Vue3Menus.vue';
 export { default as kTooltip } from './src/tooltip/index.vue';
 export { default as kPopover } from './src/popover/index.vue';
