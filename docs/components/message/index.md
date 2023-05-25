@@ -15,19 +15,20 @@
 </template>
 <script setup lang="ts">
 import { ref } from 'vue';
-import KitsUI from 'kits-ui';
+// import KitsUI from 'kits-ui';
+import { kMessage } from 'kits-ui';
 
 const clickMe = () => {
-  KitsUI.kMessage.value.success('success');
+  kMessage.success('success');
 };
 const clickMe2 = () => {
-  KitsUI.kMessage.value.warning('warning');
+  kMessage.warning('warning');
 };
 const clickMe3 = () => {
-  KitsUI.kMessage.value.info('info');
+  kMessage.info('info');
 };
 const clickMe4 = () => {
-  KitsUI.kMessage.value.error('error');
+  kMessage.error('error');
 };
 </script>
 <style scoped></style>
@@ -36,14 +37,6 @@ const clickMe4 = () => {
 :::
 
 ---
-
-:::demo
-
-```vue
-
-```
-
-:::
 
 # Message API
 
