@@ -239,6 +239,9 @@ const init = () => {
  * 方位判断
  */
 const settooltipStyle = () => {
+  if (!popverContent.value) {
+    return;
+  }
   currentPosition.value = props.position;
   // 获取兄弟节点定位信息
   const { top, left, height, width } = dom.value.getBoundingClientRect();

@@ -4,9 +4,10 @@
   transition: all 0.3s ease;
   cursor: pointer;
   margin: 4px;
-  padding: 5px 14px;
+  padding: 7px 13px;
   border: none;
   color: white;
+  line-height: normal;
 
   &::after {
     transition: all 0.3s ease;
@@ -103,7 +104,7 @@
     background: transparent;
     border: 1px solid var(--k-button-color);
     color: var(--k-button-color);
-    padding: 4px 13px;
+    padding: 6px 12px;
     &::after {
       position: absolute;
       content: '';
@@ -139,9 +140,9 @@
 
   &.small {
     font-size: 12px;
-    padding: 0px 8px;
+    padding: 4px 8px;
     &.line {
-      padding: 0px 7px;
+      padding: 3px 7px;
     }
   }
   &.large {
