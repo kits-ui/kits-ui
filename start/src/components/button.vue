@@ -16,6 +16,17 @@
     </k-button>
     <k-button type="primary" color="red"> 666 </k-button>
   </div>
+  <div style="margin-bottom: 20px">
+    <k-button disabled size="large">large</k-button>
+    <k-button disabled size="default">default</k-button>
+    <k-button disabled size="small">small</k-button>
+    <k-button type="insert" direction="left" size="large">large</k-button>
+    <k-button type="insert" direction="left" size="default">default</k-button>
+    <k-button type="insert" direction="left" size="small">small</k-button>
+    <k-button type="line" size="large">large</k-button>
+    <k-button type="line" size="default">default</k-button>
+    <k-button type="line" size="small">small</k-button>
+  </div>
 </template>
 
 <script setup lang="ts"></script>

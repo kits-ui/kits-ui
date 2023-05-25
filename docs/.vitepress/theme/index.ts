@@ -4,7 +4,7 @@ import './style/components.css';
 // 组件包与css引入
 import kitsUI from 'kits-ui';
 import '@kits-ui/theme';
-// import * as kitsIcon from '@kits-ui/icons';
+import * as kitsIcon from '@kits-ui/icons';
 
 // 主题样式
 import 'vitepress-theme-demoblock/dist/theme/styles/index.css';
@@ -27,9 +27,9 @@ export default {
     //   },
     // });
 
-    // for (const [key, component] of Object.entries(kitsIcon)) {
-    //   app.component(key, component);
-    // }
+    for (const [key, component] of Object.entries(kitsIcon)) {
+      app.component(key, component);
+    }
     app.component('Demo', Demo);
     app.component('DemoBlock', DemoBlock);
     globals.forEach(([name, Comp]) => {

@@ -31,7 +31,14 @@ const diyEmoji = ref({
   '[发呆]': "<img src='https://res.wx.qq.com/mpres/htmledition/images/icon/emotion/3.gif'>",
 });
 const myTextarea = ref(null);
+
+// 表情包回调
 const selectEmoticon = (data) => {
+  setValue(data);
+};
+
+// 对组件返回表情信息进行处理
+const setValue = (data) => {
   if (data.type == 1) {
     // editorText.value = data.value;
     let value = editorText.value;
