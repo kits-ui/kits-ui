@@ -7,7 +7,6 @@
 }
 
 @import './var.scss';
-@import './src/k-authcode.scss';
 @import './src/k-botton.scss';
 @import './src/k-filterBox.scss';
 @import './src/k-icon.scss';
@@ -25,6 +24,7 @@
 @import './src/k-popover.scss';
 @import './src/k-popconfirm.scss';
 @import './src/k-message.scss';
+@import './src/k-comment.scss';
 
 .v-enter-active,
 .v-leave-active {

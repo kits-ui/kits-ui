@@ -1,48 +1,48 @@
 @media (prefers-color-scheme: light) {
   :root {
-    --border-color: #ebeef5;
-    --theme-color: #2bc0ac;
-    --theme-interact-color: #40d9c4;
-    --theme-interact-bg-color: #2fd3bd2a; /* hover or active背景主题色 */
-    --font-color: #606266;
-    --zebra-bg: #fafafa;
-    --border-sm-radius: 5px;        /* 小型组件圆角: button message-- */
-    --border-lg-radius: 15px;       /* 大型组件圆角: dialog table-- */
+    --k-border-color: #ebeef5;
+    --k-theme-color: #2bc0ac;
+    --k-theme-interact-color: #40d9c4;
+    --k-theme-interact-bg-color: #2fd3bd2a; /* hover or active背景主题色 */
+    --k-font-color: #606266;
+    --k-zebra-bg: #fafafa;
+    --k-border-sm-radius: 5px;        /* 小型组件圆角: button message-- */
+    --k-border-lg-radius: 15px;       /* 大型组件圆角: dialog table-- */
   }
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --border-color: #7c7c7c;
-    --theme-color: #2bc0ac;
-    --theme-interact-color: #40d9c4;
-    --theme-interact-bg-color: #2fd3bd2a; /* hover or active背景主题色 */
-    --font-color: #606266;
-    --zebra-bg: #535353;
-    --border-sm-radius: 5px;        /* 小型组件圆角 */
-    --border-lg-radius: 15px;       /* 大型组件圆角 */
+    --k-border-color: #7c7c7c;
+    --k-theme-color: #2bc0ac;
+    --k-theme-interact-color: #40d9c4;
+    --k-theme-interact-bg-color: #2fd3bd2a; /* hover or active背景主题色 */
+    --k-font-color: #606266;
+    --k-zebra-bg: #535353;
+    --k-border-sm-radius: 5px;        /* 小型组件圆角 */
+    --k-border-lg-radius: 15px;       /* 大型组件圆角 */
   }
 }
 
 /* 主动变更 */
 .light {
-  --border-color: #ebeef5;
-  --theme-color: #2bc0ac;
-  --theme-interact-color: #40d9c4;
-  --theme-interact-bg-color: #2fd3bd2a; /* hover or active背景主题色 */
-  --font-color: #606266;
-  --zebra-bg: #fafafa;
-  --border-sm-radius: 5px;        /* 小型组件圆角 */
-  --border-lg-radius: 15px;       /* 大型组件圆角 */
+  --k-border-color: #ebeef5;
+  --k-theme-color: #2bc0ac;
+  --k-theme-interact-color: #40d9c4;
+  --k-theme-interact-bg-color: #2fd3bd2a; /* hover or active背景主题色 */
+  --k-font-color: #606266;
+  --k-zebra-bg: #fafafa;
+  --k-border-sm-radius: 5px;        /* 小型组件圆角 */
+  --k-border-lg-radius: 15px;       /* 大型组件圆角 */
 }
 
 .dark {
-  --border-color: #797979;
-  --theme-color: #2bc0ac;
-  --theme-interact-color: #40d9c4;
-  --theme-interact-bg-color: #2fd3bd2a; /* hover or active背景主题色 */
-  --font-color: #fff;
-  --zebra-bg: #535353;
-  --border-sm-radius: 5px;        /* 小型组件圆角 */
-  --border-lg-radius: 15px;       /* 大型组件圆角 */
+  --k-border-color: #797979;
+  --k-theme-color: #2bc0ac;
+  --k-theme-interact-color: #40d9c4;
+  --k-theme-interact-bg-color: #2fd3bd2a; /* hover or active背景主题色 */
+  --k-font-color: #fff;
+  --k-zebra-bg: #535353;
+  --k-border-sm-radius: 5px;        /* 小型组件圆角 */
+  --k-border-lg-radius: 15px;       /* 大型组件圆角 */
 }
