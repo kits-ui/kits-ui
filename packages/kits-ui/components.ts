@@ -1,7 +1,6 @@
 export { default as kButton } from './src/button/index.vue';
 export { default as kkButton } from './src/button/index.vue';
 export { default as kFilterBox } from './src/filterBox/index.vue';
-export { default as kAuthCode } from './src/authCode/index.vue';
 export { default as kNotification } from './src/notification/index.vue';
 export { default as kImage } from './src/image/index.vue';
 export { default as kCalendar } from './src/calendar/index.vue';
@@ -16,5 +15,6 @@ export { default as kEmoji } from './src/emoji/index.vue';
 export { default as kSkeleton } from './src/skeleton/index.vue';
 export { default as kIcon } from './src/icon/index.vue';
 export { default as kWaterfall } from './src/waterfall/index.vue';
+export { default as kComment } from './src/comment/index.vue';
 
 export { kMessage } from './src/message/index';
