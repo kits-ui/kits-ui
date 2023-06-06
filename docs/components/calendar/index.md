@@ -10,11 +10,11 @@
 <template>
   <div style="background: #fff">
     <p>以星期日开头</p>
-    <k-calendar v-model="value" :first-day="0" @on-change="onChange" />
+    <k-calendar v-model="value" :first-day="0" :options="options" @on-change="onChange" />
     <br />
     <br />
     <p>以星期一开头</p>
-    <k-calendar v-model="value2" :first-day="1" @on-change="onChange" />
+    <k-calendar v-model="value2" :first-day="1" :options="options" @on-change="onChange" />
   </div>
 </template>
 
@@ -22,6 +22,12 @@
 import { ref } from 'vue';
 const value = ref(new Date());
 const value2 = ref(new Date());
+
+const options = {
+  width: '100%',
+  height: '680px',
+};
+
 const onChange = (val: { date: Date; type: string }) => {
   console.log(val);
 };
@@ -38,7 +44,7 @@ const onChange = (val: { date: Date; type: string }) => {
 
 ```vue
 <template>
-  <k-calendar :first-day="0">
+  <k-calendar :first-day="0" :options="options">
     <template #date-cell="{ data }">
       <p :class="data.isSelected ? 'is-selected' : ''">
         {{ data.day.split('-').slice(1).join('-') }}
@@ -47,6 +53,11 @@ const onChange = (val: { date: Date; type: string }) => {
     </template>
   </k-calendar>
 </template>
+<script setup lang="ts">
+const options = {
+  height: '680px',
+};
+</script>
 ```
 
 :::
@@ -61,6 +72,14 @@ const onChange = (val: { date: Date; type: string }) => {
 | -------- | -------------------------------------------------------- | -------- | ------------- | --------- |
 | v-model  | 选中项绑定值                                             | `Date`   | ---           | 当前 Date |
 | firstDay | 以星期几开头，0~6 分别表示星期日、一、二、三、四、五、六 | `number` | 0,1,2,3,4,5,6 | 0         |
+| options  | 配置项(详细请看 options 属性)                            | `object` | -----------   | --------- |
+
+## options 属性
+
+| 属性名 | 说明       | 类型     | 可选值 | 默认值 |
+| ------ | ---------- | -------- | ------ | ------ |
+| width  | 日历的宽度 | `string` | ---    | 100%   |
+| height | 日历的高度 | `string` | ---    | 100%   |
 
 ### 具名插槽
 
