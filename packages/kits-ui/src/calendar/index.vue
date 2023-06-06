@@ -1,5 +1,5 @@
 <template>
-  <div class="k-calendar">
+  <div class="k-calendar" :style="{ width: props.options.width, height: props.options.height }">
     <div class="k-calender-setting">
       <div class="k-calender-date">{{ currentDateString }}</div>
       <div class="k-calender-selector">
@@ -59,6 +59,15 @@ export default defineComponent({
     firstDay: {
       type: Number,
       default: 0,
+    },
+    options: {
+      type: Object,
+      default: () => {
+        return {
+          width: '100%',
+          height: '100%',
+        };
+      },
     },
   },
   emits: ['update:modelValue', 'onChange'],
@@ -149,6 +158,7 @@ export default defineComponent({
           return date.value.date(text);
       }
     };
+
     // 点击单个日子更新当前的数据
     const handleDayPicker = ({ text, type }: CalenderDateCell) => {
       const day: Dayjs = formateDate(text, type);
@@ -192,6 +202,7 @@ export default defineComponent({
       currentMonth,
       getCellClass,
       getSlotData,
+      props,
     };
   },
 });
