@@ -28,6 +28,7 @@ const sidebar = {
         { text: 'FilterBox 搜索面板', link: '/components/filterBox/' },
         { text: 'Image 图片', link: '/components/image/' },
         { text: 'Calendar 日历', link: '/components/calendar/' },
+        { text: 'Input 输入框', link: '/components/input/' },
       ],
     },
     {

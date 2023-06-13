@@ -16,5 +16,6 @@ export { default as kSkeleton } from './src/skeleton/index.vue';
 export { default as kIcon } from './src/icon/index.vue';
 export { default as kWaterfall } from './src/waterfall/index.vue';
 export { default as kComment } from './src/comment/index.vue';
+export { default as kInput } from './src/input/index.vue';
 
 export { kMessage } from './src/message/index';

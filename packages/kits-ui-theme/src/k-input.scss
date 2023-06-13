@@ -1,0 +1,21 @@
+.k-input {
+  min-width: 200px;
+  width: 100%;
+  height: 32px;
+  .input_inner {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    border-radius: var(--k-border-sm-radius);
+    background-color: transparent;
+    padding: 0 6px;
+    border: 1px solid var(--k-border-color);
+    transition: all 0.3s;
+    font-size: inherit;
+    &:focus, &:focus-visible, &:hover {
+      border: 1px solid var(--k-theme-color);
+      // box-shadow: 0 0 1px 1px var(--k-theme-color);
+      outline: unset;
+    }
+  }
+}
