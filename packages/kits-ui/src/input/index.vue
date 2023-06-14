@@ -13,7 +13,7 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(['update:value']);
+const emit = defineEmits(['update:modelValue']);
 const modelValue = ref(props.modelValue);
 
 // watch(modelValue, (newValue) => {
@@ -21,6 +21,6 @@ const modelValue = ref(props.modelValue);
 // });
 
 const onInput = () => {
-  emit('update:value', modelValue);
+  emit('update:modelValue', modelValue);
 };
 </script>
