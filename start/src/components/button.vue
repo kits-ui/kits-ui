@@ -11,10 +11,10 @@
     <k-button color="#22c55e" type="insert" direction="left">
       <edit />
     </k-button>
-    <k-button type="primary">
+    <k-button>
       <edit />
     </k-button>
-    <k-button type="primary" color="red"> 666 </k-button>
+    <k-button color="blue"> 666 </k-button>
   </div>
   <div style="margin-bottom: 20px">
     <k-button disabled size="large">large</k-button>

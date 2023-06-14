@@ -1,0 +1,34 @@
+.k-dialog {
+  width: 500px;
+  height: fit-content;
+  padding: 15px;
+  border: none;
+  border-radius: 5px;
+  outline: unset;
+  &:focus-visible {
+    border: none;
+    outline: unset;
+  }
+  .k-dialog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // border-bottom: 1px solid var(--k-border-color);
+    width: 100%;
+    .k-dialog-closeBtn {
+      cursor: pointer;
+      transition: all 0.3s;
+      &:hover {
+        color: var(--k-theme-interact-color);
+      }
+    }
+  }
+  .k-dialog-body {
+    width: 100%;
+    text-align: left;
+  }
+  .k-dialog-footer {
+    width: 100%;
+    text-align: right;
+  }
+}

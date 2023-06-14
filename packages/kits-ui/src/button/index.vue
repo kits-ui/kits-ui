@@ -11,7 +11,7 @@
   </button>
 </template>
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 import { setStyle, setIdNum } from '../utils/index';
 const props = defineProps({
   color: {
@@ -51,8 +51,22 @@ const init = () => {
     setStyle(kButton.value, {
       background: props.color,
     });
+  } else {
+    console.log(54123123, 'line');
+    setStyle(kButton.value, {
+      background: 'unset',
+    });
   }
 };
+
+watch(
+  () => props.type,
+  (newVal, oldVal) => {
+    if (newVal !== oldVal) {
+      init();
+    }
+  },
+);
 
 const btnClass = () => {
   let classStr = 'default';
@@ -73,7 +87,6 @@ const btnClass = () => {
 };
 
 const handleClick = (e) => {
-  console.log(e);
   e.stopPropagation();
   emits('click', e);
 };

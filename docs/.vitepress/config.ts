@@ -34,6 +34,7 @@ const sidebar = {
     {
       text: '反馈组件',
       items: [
+        { text: 'Dialog 模态框', link: '/components/dialog/' },
         { text: 'Popconfirm 气泡确认框', link: '/components/popconfirm/' },
         { text: 'Popover 气泡框', link: '/components/popover/' },
         { text: 'Tooltip 文字提示', link: '/components/tooltip/' },
