@@ -1,6 +1,7 @@
 <template>
   <div>
     <k-button>我是按钮66666666</k-button>
+    <k-button color="#cf3232">我是按钮66666666</k-button>
     <k-button
       color="linear-gradient(315deg, #f0ecfc 0%, #c797eb 74%)"
       type="insert"
