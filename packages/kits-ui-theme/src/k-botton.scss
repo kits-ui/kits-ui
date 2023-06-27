@@ -39,9 +39,9 @@
   &.default:active,&.line:active {
     filter: brightness(0.9) contrast(1.5);
     &::before {
-      animation: btn-k 0.5s;
-      width: calc(100% + 4px);
-      height: calc(100% + 4px);
+      animation: btn-k 0.3s ease-out;
+      width: 100%;
+      height: 100%;
     }
   }
 
@@ -186,11 +186,11 @@
   @keyframes btn-k {
     0% {
       opacity: 1;
-      box-shadow: 0 0 0.5px 0 var(--k-button-color);
+      box-shadow: 0 0 0px 0 var(--k-button-color);
     }
     100% {
       opacity: 0;
-      box-shadow: 0 0 0.5px 4.5px var(--k-button-color);
+      box-shadow: 0 0 0.8px 4.5px var(--k-button-color);
     }
   }
 }
