@@ -62,7 +62,7 @@ const dialogVisible = ref<boolean>(false);
 <style scoped></style>
 ```
 
-## :::
+:::
 
 # Dialog API
 

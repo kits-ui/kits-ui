@@ -39,9 +39,9 @@
   &.default:active,&.line:active {
     filter: brightness(0.9) contrast(1.5);
     &::before {
-      animation: btn-k 0.2s ease-out;
-      width: calc(100% + 4px);
-      height: calc(100% + 4px);
+      animation: btn-k 0.3s ease-out;
+      width: 100%;
+      height: 100%;
     }
   }
 
