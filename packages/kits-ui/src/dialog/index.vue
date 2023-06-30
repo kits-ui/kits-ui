@@ -1,24 +1,26 @@
 <template>
-  <dialog ref="kDialog" class="k-dialog">
-    <div v-if="props.modelValue">
-      <div class="k-dialog-header">
-        <slot name="header">
-          <span>{{ props.title }}</span>
-          <span class="k-dialog-closeBtn" @click="close">
-            <close1 />
-          </span>
-        </slot>
+  <Teleport to="body">
+    <dialog ref="kDialog" class="k-dialog">
+      <div v-if="props.modelValue">
+        <div class="k-dialog-header">
+          <slot name="header">
+            <span>{{ props.title }}</span>
+            <span class="k-dialog-closeBtn" @click="close">
+              <close1 />
+            </span>
+          </slot>
+        </div>
+        <div class="k-dialog-body">
+          <slot></slot>
+        </div>
+        <div class="k-dialog-footer">
+          <slot name="footer">
+            <!-- <k-button @click="close">关闭</k-button> -->
+          </slot>
+        </div>
       </div>
-      <div class="k-dialog-body">
-        <slot></slot>
-      </div>
-      <div class="k-dialog-footer">
-        <slot name="footer">
-          <!-- <k-button @click="close">关闭</k-button> -->
-        </slot>
-      </div>
-    </div>
-  </dialog>
+    </dialog>
+  </Teleport>
 </template>
 
 <script setup lang="ts">
