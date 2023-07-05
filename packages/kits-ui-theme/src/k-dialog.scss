@@ -1,10 +1,16 @@
-.k-dialog {
+dialog.k-dialog {
+  position: fixed;
   width: 500px;
-  height: fit-content;
+  min-height: 50px;
+  max-height: 100vh;
   padding: 15px;
   border: none;
   border-radius: 5px;
   outline: unset;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-40%);
+  transition: opacity 0.2s, visibility 0.2s, transform 0.3s;
   &:focus-visible {
     border: none;
     outline: unset;
@@ -30,5 +36,17 @@
   .k-dialog-footer {
     width: 100%;
     text-align: right;
+  }
+  &:not([open]) {
+    display: block;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-40%);
+  }
+  &:model {
+    // display: block;
+    // opacity: 0;
+    // visibility: hidden;
+    // transform: translateY(-40%);
   }
 }
