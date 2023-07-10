@@ -1,16 +1,38 @@
-dialog.k-dialog {
+.k-dialog {
   position: fixed;
-  width: 500px;
-  min-height: 50px;
-  max-height: 100vh;
-  padding: 15px;
-  border: none;
-  border-radius: 5px;
-  outline: unset;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
   visibility: hidden;
-  opacity: 0;
-  transform: translateY(-40%);
-  transition: opacity 0.2s, visibility 0.2s, transform 0.3s;
+  z-index: 3000;
+  transition: all 0.5s;
+  .k-dialog-mask {
+    width: inherit;
+    height: inherit;
+    background: #9b9b9b42;
+    overflow-y: scroll;
+    padding-bottom: 120px;
+    box-sizing: border-box;
+    transition: opacity 0.8s;
+    opacity: 0;
+  }
+  .k-dialog-content {
+    position: relative;
+    top: 50px;
+    margin: auto;
+    width: 500px;
+    overflow: hidden;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    outline: unset;
+    transition: opacity 0.6s, transform 0.3s;
+    background: #fff;
+    z-index: 3001;
+    transform: translateY(-15%);
+    opacity: 0;
+  }
   &:focus-visible {
     border: none;
     outline: unset;
@@ -37,16 +59,14 @@ dialog.k-dialog {
     width: 100%;
     text-align: right;
   }
-  &:not([open]) {
-    display: block;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-40%);
-  }
-  &:model {
-    // display: block;
-    // opacity: 0;
-    // visibility: hidden;
-    // transform: translateY(-40%);
+  &.open {
+    visibility: visible;
+    .k-dialog-mask {
+      opacity: 1;
+    }
+    .k-dialog-content {
+      transform: translateY(0);
+      opacity: 1;
+    }
   }
 }

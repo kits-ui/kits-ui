@@ -19,5 +19,6 @@ export { default as kComment } from './src/comment/index.vue';
 export { default as kInput } from './src/input/index.vue';
 export { default as kDialog } from './src/dialog/index.vue';
 export { default as kDrawer } from './src/drawer/index.vue';
+export { default as kTree } from './src/tree/index.vue';
 
 export { kMessage } from './src/message/index';

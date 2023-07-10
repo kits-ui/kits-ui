@@ -1,9 +1,9 @@
 <template>
   <Teleport to="body">
     <Transition name="bounce">
-      <dialog ref="kDialog" class="k-dialog">
-        <div class="content" style="height: props.height">
-          <div>
+      <div ref="kDialog" class="k-dialog">
+        <div class="k-dialog-mask">
+          <div ref="kDialogContent" class="k-dialog-content">
             <div class="k-dialog-header">
               <slot name="header">
                 <span>{{ props.title }}</span>
@@ -22,7 +22,7 @@
             </div>
           </div>
         </div>
-      </dialog>
+      </div>
     </Transition>
   </Teleport>
 </template>
@@ -30,7 +30,7 @@
 <script setup lang="ts">
 import { onMounted, ref, watch } from 'vue';
 import { close1 } from '../icon/index';
-import { setStyle } from '../utils/index';
+import { setBodyPaddingRight } from '../hooks/bodyPadding';
 
 const props = defineProps({
   modelValue: {
@@ -45,47 +45,45 @@ const props = defineProps({
     type: String,
     default: '50px',
   },
+  maskClosable: {
+    type: Boolean,
+    default: true,
+  },
 });
 
 const emit = defineEmits(['update:modelValue']);
 
 const kDialog = ref<HTMLDialogElement>();
+const kDialogContent = ref<HTMLDialogElement>();
 
 onMounted(() => {
-  // kDialog.value.addEventListener('transitionend', function (e) {
-  //   kDialog.value.close();
-  // });
+  kDialog.value.addEventListener('click', (e: any) => {
+    console.log(e.target);
+    if (
+      (e.target !== kDialogContent.value || !kDialogContent.value.contains(e.target)) &&
+      props.maskClosable
+    ) {
+      close();
+    }
+  });
 });
 
 watch(
   () => props.modelValue,
   async (newValue) => {
+    setBodyPaddingRight(newValue);
     if (newValue) {
-      kDialog.value.showModal();
-      setStyle(kDialog.value, {
-        visibility: 'visible',
-        transform: 'translateY(0%)',
-        opacity: '1',
-      });
+      kDialog.value.classList.add('open');
     } else {
-      kDialog.value.style.transform = 'translateY(-40%)';
-      kDialog.value.style.opacity = '0';
-      kDialog.value.style.visibility = 'hidden';
-      // domClose();
-      setTimeout(() => {
-        kDialog.value.close();
-      }, 200);
+      kDialogContent.value.classList.remove('open');
+      close();
     }
   },
 );
 
 const close = () => {
-  const res = kDialog.value.getBoundingClientRect();
-  console.log(res);
+  kDialog.value.classList.remove('open');
   emit('update:modelValue', false);
-  setTimeout(() => {
-    kDialog.value.close();
-  }, 200);
 };
 </script>
 

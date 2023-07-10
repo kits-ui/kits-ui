@@ -24,25 +24,25 @@
         top: 0;
         left: 0;
         height: 100vh;
-        transform: translateX(-150%);
+        transform: translateX(-150%) translateY(0);
       }
       &.right {
         top: 0;
         right: 0;
         height: 100vh;
-        transform: translateX(150%);
+        transform: translateX(150%) translateY(0);
       }
       &.top {
         top: 0;
         left: 0;
         width: 100vw;
-        transform: translateY(-150%);
+        transform: translateY(-150%) translateX(0);
       }
       &.bottom {
         bottom: 0;
         left: 0;
         width: 100vw;
-        transform: translateY(150%);
+        transform: translateY(150%) translateX(0);
       }
     }
 }
