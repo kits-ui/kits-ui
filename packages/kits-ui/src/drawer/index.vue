@@ -1,7 +1,7 @@
 <template>
   <Teleport to="body">
     <div class="k-drawer">
-      <div class="k-drawer-mask" v-if="props.modelValue"></div>
+      <div v-if="props.modelValue" class="k-drawer-mask"></div>
       <div ref="kDrawerContent" class="k-drawer-content" :class="props.direction">
         <slot>
           <!-- <component :is="defaultSlot"></component> -->
@@ -13,6 +13,7 @@
 
 <script setup lang="ts">
 import { watch, ref, onMounted, nextTick } from 'vue';
+import { setBodyPaddingRight } from '../hooks/bodyPadding';
 
 const props: any = defineProps({
   modelValue: {
@@ -27,7 +28,6 @@ const props: any = defineProps({
 const emit: any = defineEmits(['update:modelValue']);
 const kDrawerContent = ref<any>();
 const maskDom = ref<any>();
-// const slots = useSlots();
 
 // const defaultSlot = slots.default && slots.default()[0];
 
@@ -38,20 +38,13 @@ onMounted(() => {
 watch(
   () => props.modelValue,
   (newVal: boolean) => {
+    setBodyPaddingRight(newVal);
     if (newVal) {
-      document.body.style.paddingRight = `${window.innerWidth - document.body.offsetWidth}px`;
-      document.body.style.overflow = 'hidden';
       nextTick(() => {
-        console.log(
-          document.getElementsByClassName('k-drawer-mask')[0],
-          'document.getElementsByClassName',
-        );
         maskDom.value = document.getElementsByClassName('k-drawer-mask')[0];
       });
       showDrawer();
     } else {
-      document.body.style.overflow = 'auto';
-      document.body.style.paddingRight = '0px';
       closeDrawer();
     }
   },
@@ -62,9 +55,7 @@ const clickHandler = (e: any) => {
     return;
   }
   if (e.target === kDrawerContent.value || kDrawerContent.value.contains(e.target)) {
-    // closePopup()
-    // emit('selected', e.target.dataset.value)
-    // emit('update:modelValue', false)
+    // 点击内部触发
   } else if (e.target === maskDom.value) {
     closeDrawer();
     emit('update:modelValue', false);
@@ -76,9 +67,9 @@ const clickHandler = (e: any) => {
 const showDrawer = () => {
   kDrawerContent.value.style.visibility = 'visible';
   if (props.direction === 'top' || props.direction === 'bottom') {
-    kDrawerContent.value.style.transform = 'translateY(0)';
+    kDrawerContent.value.style.transform = 'translateY(0) translateX(0)';
   } else {
-    kDrawerContent.value.style.transform = 'translateX(0)';
+    kDrawerContent.value.style.transform = 'translateX(0) translateY(0)';
   }
 };
 
@@ -86,11 +77,11 @@ const closeDrawer = () => {
   if (props.direction === 'top' || props.direction === 'bottom') {
     kDrawerContent.value.style.transform = `translateY(${
       props.direction === 'top' ? '-150' : '150'
-    }%)`;
+    }%) translateX(0)`;
   } else {
     kDrawerContent.value.style.transform = `translateX(${
       props.direction === 'left' ? '-150' : '150'
-    }%)`;
+    }%) translateY(0)`;
   }
   kDrawerContent.value.style.visibility = 'hidden';
 };

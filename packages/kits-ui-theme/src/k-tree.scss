@@ -1,0 +1,25 @@
+.k-tree {
+  display: block;
+  text-align: left;
+  width: 100%;
+  details {
+    width: inherit;
+    height: fit-content;
+    transition: height 0.5s;
+    animation: height 5s;
+    &[open] {
+      transition: height 0.5s;
+    }
+    summary {
+      height: fit-content;
+      transition: height 0.5s;
+      span {
+        display: inline-block;
+        height: 20px !important;
+      }
+    }
+  }
+  details > summary:first-of-type {
+    list-style: unset;
+  }
+}
