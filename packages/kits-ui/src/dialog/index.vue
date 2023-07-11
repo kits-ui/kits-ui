@@ -60,7 +60,8 @@ onMounted(() => {
   kDialog.value.addEventListener('click', (e: any) => {
     console.log(e.target);
     if (
-      (e.target !== kDialogContent.value || !kDialogContent.value.contains(e.target)) &&
+      e.target !== kDialogContent.value &&
+      !kDialogContent.value.contains(e.target) &&
       props.maskClosable
     ) {
       close();
