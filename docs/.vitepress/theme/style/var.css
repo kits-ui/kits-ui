@@ -87,12 +87,18 @@
 }
 
 @media (min-width: 1440px) {
+  .Layout .VPNav {
+    position: sticky;
+  }
   .VPContent.has-sidebar {
     padding-right: calc((100vw - var(--vp-layout-max-width)) / 5)  !important;
   }
 }
 
 @media (min-width: 960px) {
+  .Layout .VPNav {
+    position: sticky;
+  }
   .VPSidebar {
     height: calc(100% - 70px);
     margin-top: 70px;
@@ -192,3 +198,6 @@
   border-bottom: 1px solid #eee;
 }
 
+body {
+  overflow: overlay;
+}
