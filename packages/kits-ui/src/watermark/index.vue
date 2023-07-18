@@ -1,5 +1,6 @@
 <template>
   <div ref="kWatermark" class="k-watermark">
+    <slot></slot>
     <div ref="watermarkText" class="watermarkText"></div>
   </div>
 </template>
@@ -20,7 +21,7 @@ const props = defineProps({
   },
   height: {
     type: String,
-    default: '100vh',
+    default: 'auto',
   },
   options: {
     type: Object,

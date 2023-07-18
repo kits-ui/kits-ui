@@ -1,7 +1,16 @@
 <template>
   <div id="watermark">
-    <k-watermark width="50vw" height="30vh" :options="options" />
-    <div>61545643134</div>
+    <k-watermark width="50vw" height="30vh" :options="options">
+      <div class="content">
+        <div>我是内容我是内容我是内容</div>
+        <div>我是内容我是内容我是内容</div>
+        <div>我是内容我是内容我是内容</div>
+        <div>我是内容我是内容我是内容</div>
+        <div>我是内容我是内容我是内容</div>
+        <div>我是内容我是内容我是内容</div>
+        <div>我是内容我是内容我是内容</div>
+      </div>
+    </k-watermark>
   </div>
   <div id="watermark1">
     <k-watermark width="50vw" height="30vh" :options="options1" name="mmm" />
@@ -35,5 +44,11 @@ const options1 = {
   position: relative;
   width: 50vw;
   height: 80vh;
+}
+.content {
+  width: 100%;
+  height: 100%;
+  color: red;
+  font-weight: 600;
 }
 </style>
