@@ -1,0 +1,54 @@
+.k-carousel {
+  position: relative;
+  justify-content: space-around;
+  // 轮播个数
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  .k-carousel-list {
+    // transition: all var(--k-carousel-speed);
+    .k-carousel-item {
+      border: 1px solid #6cd7c8;
+      box-sizing: border-box;
+    }
+    &.top,  &.bottom {
+      height: 100%;
+      .k-carousel-item {
+        float: left;
+      }
+    }
+    &.left,&.right {
+      width: 100%;
+    }
+  }
+
+  .k-carousel-indicators {
+    position: absolute;
+    width: 100%;
+    height: 24px;
+    text-align: center;
+    z-index: 1;
+    span {
+      display: inline-block;
+      width: 30px;
+      height: 4px;
+      line-height: 4px;
+      background-color: #e8edf2;
+      transition: all 0.5s;
+      margin: 0 5px;
+      cursor: pointer;
+      &:hover {
+        background-color: #fff;
+      }
+      &.actived {
+        background-color: #6cd7c8;
+      }
+    }
+    &.bottom {
+      bottom: 15px;
+    }
+    &.top {
+      top: 15px;
+    }
+  }
+}
