@@ -38,7 +38,7 @@ const props = defineProps({
   },
   duration: {
     type: Number,
-    default: 1500,
+    default: 2500,
   },
 });
 const slots = useSlots();
@@ -48,43 +48,36 @@ const kCarouselItem = ref<any>();
 const kCarousel = ref<any>();
 const kCarouselClientRect = reactive<any>({});
 const kCarouselItemList = ref<any>();
-const currentIndex = ref<number>(-1);
+const currentIndex = ref<number>(0);
 const direction = ref<string>('');
 const timer = ref<any>();
+let left: any = 0;
 
 onMounted(async () => {
   const { height, width } = kCarousel.value.getBoundingClientRect();
   kCarouselClientRect.width = width;
   kCarouselClientRect.height = height;
   await init();
-  await setTimeoutFn();
+  kCarouseAnimate();
+  // await setTimeoutFn();
 
-  window.addEventListener('mouseover', (e: any) => {
-    if (e.target.classList[0] === 'k-carousel-indicators-item') {
-      const activedSpanList: any = document.getElementsByClassName('k-carousel-indicators-item');
-      Array.from(activedSpanList).forEach((element: any) => {
-        element.classList.remove('actived');
-      });
-      e.target.classList.add('actived');
-      currentIndex.value = Number(e.target.dataset.key);
-      clearTimeout(timer.value);
-      kCarouseAnimate();
-    }
-  });
-  window.addEventListener('mouseout', (e: any) => {
-    if (e.target.className === 'k-carousel-indicators-item actived') {
-      setTimeoutFn();
-    }
-  });
-
-  document.addEventListener('visibilitychange', (e) => {
-    console.log(e, 666);
-    if (document.hidden) {
-      clearTimeout(timer.value);
-    } else {
-      setTimeoutFn();
-    }
-  });
+  // window.addEventListener('mouseover', (e: any) => {
+  //   if (e.target.classList[0] === 'k-carousel-indicators-item') {
+  //     const activedSpanList: any = document.getElementsByClassName('k-carousel-indicators-item');
+  //     Array.from(activedSpanList).forEach((element: any) => {
+  //       element.classList.remove('actived');
+  //     });
+  //     e.target.classList.add('actived');
+  //     currentIndex.value = Number(e.target.dataset.key);
+  //     clearTimeout(timer.value);
+  //     kCarouseAnimate();
+  //   }
+  // });
+  // window.addEventListener('mouseout', (e: any) => {
+  //   if (e.target.className === 'k-carousel-indicators-item actived') {
+  //     setTimeoutFn();
+  //   }
+  // });
 });
 
 /**
@@ -123,31 +116,27 @@ const init = () => {
 };
 
 const kCarouseAnimate = () => {
+  if (left <= -(kCarouselItemList.value.length - 1) * kCarouselClientRect.width) {
+    left = 0;
+  }
   currentIndex.value += 1;
-  setStyle(kCarouselList.value, { transition: `left ${props.duration / 1000}s` });
-  setStyle(kCarouselList.value, {
-    left: `calc(-${kCarouselClientRect.width}px * ${currentIndex.value})`,
-  });
-  console.log(currentIndex.value);
-  if (currentIndex.value > 5) {
-    currentIndex.value = 0;
-    setStyle(kCarouselList.value, { transition: `none` });
-    setStyle(kCarouselList.value, {
-      left: `0px`,
-    });
-  }
-};
 
-const setTimeoutFn = () => {
-  kCarouseAnimate();
-  let n = props.duration;
-  if (currentIndex.value === 6 || currentIndex.value === 0) {
-    n = props.duration / 4;
-  }
+  setStyle(kCarouselList.value, {
+    left: `${left}px`,
+  });
+  let n: number = left % kCarouselClientRect.width === 0 ? props.duration : 10;
+  left -= 10;
   timer.value = setTimeout(() => {
-    setTimeoutFn();
+    kCarouseAnimate();
   }, n);
 };
+
+// const setTimeoutFn = () => {
+//   kCarouseAnimate();
+//   timer.value = setTimeout(() => {
+//     setTimeoutFn();
+//   }, props.duration);
+// };
 </script>
 
 <style scoped></style>
