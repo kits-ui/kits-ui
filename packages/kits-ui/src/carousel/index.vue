@@ -40,6 +40,10 @@ const props = defineProps({
     type: Number,
     default: 1500,
   },
+  interval: {
+    type: Number,
+    default: 1500,
+  },
 });
 const slots = useSlots();
 const defaultSlot: any = slots.default && slots.default()[0];
@@ -139,12 +143,19 @@ const kCarouseAnimate = () => {
 };
 
 const setTimeoutFn = () => {
-  kCarouseAnimate();
-  let n = props.duration;
-  if (currentIndex.value === 6 || currentIndex.value === 0) {
-    n = props.duration / 4;
+  let n = props.interval;
+  if (currentIndex.value === 5) {
+    document.getElementsByClassName('k-carousel-indicators-item')[0].classList.add('actived');
+    // n = 0;
   }
-  timer.value = setTimeout(() => {
+  if (currentIndex.value === 5 || currentIndex.value === 6) {
+    n = props.interval / 2;
+  }
+  if (currentIndex.value === -1) {
+    n = 0;
+  }
+  timer.value = setTimeout(async () => {
+    await kCarouseAnimate();
     setTimeoutFn();
   }, n);
 };
