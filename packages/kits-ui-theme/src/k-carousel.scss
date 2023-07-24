@@ -39,9 +39,11 @@
       margin: 0 5px;
       cursor: pointer;
       &:hover {
-        background-color: #fff;
+        width: 50px;
+        background-color: #6cd7c8;
       }
       &.actived {
+        width: 50px;
         background-color: #6cd7c8;
       }
     }
