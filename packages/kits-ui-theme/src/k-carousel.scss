@@ -5,53 +5,149 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
+
   .k-carousel-list {
     position: relative;
+
     // transition: all var(--k-carousel-speed);
     .k-carousel-item {
       border: 1px solid #6cd7c8;
       box-sizing: border-box;
     }
-    &.top,  &.bottom {
+
+    &.horizontal {
       height: 100%;
+
       .k-carousel-item {
         float: left;
       }
     }
-    &.left,&.right {
+
+    &.vertical {
       width: 100%;
     }
   }
 
-  .k-carousel-indicators {
+  .prev,
+  .next {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
-    width: 100%;
-    height: 24px;
-    text-align: center;
+    top: 0;
+    bottom: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    background-color: rgba(127, 255, 212, 0.466);
+    margin: auto;
+    cursor: pointer;
+    font-size: 30px;
+    font-weight: 700;
+    color: #fff;
+    transition: all 0.5s;
+    &:hover {
+      background-color: rgba(118, 245, 202, 0.726);
+    }
+  }
+
+  .prev {
+    left: 15px;
+  }
+
+  .next {
+    right: 15px;
+  }
+
+  .k-carousel-indicators.horizontal {
+    position: absolute;
     z-index: 1;
+    width: 100%;
+    height: 30px;
+    text-align: center;
+    bottom: 10px;
+
     span {
       display: inline-block;
-      width: 30px;
-      height: 4px;
-      line-height: 4px;
-      background-color: #e8edf2;
-      transition: all 0.5s;
-      margin: 0 5px;
+      width: 20px;
+      height: 100%;
+      line-height: 1;
+      margin: 0 1%;
       cursor: pointer;
+      transition: all 0.5s;
+
+      &::after {
+        display: inline-block;
+        width: 100%;
+        height: 4px;
+        border-radius: 2px;
+        background-color: #e8edf2;
+        transition: all 0.5s;
+        content: '';
+      }
+
       &:hover {
-        width: 50px;
-        background-color: #6cd7c8;
+        width: 25px;
+        &::after {
+          background-color: #6cd7c8;
+          content: '';
+        }
       }
+
       &.actived {
-        width: 50px;
-        background-color: #6cd7c8;
+        width: 25px;
+        &::after {
+          background-color: #6cd7c8;
+          content: '';
+        }
       }
     }
-    &.bottom {
-      bottom: 15px;
-    }
-    &.top {
-      top: 15px;
+  }
+
+  .k-carousel-indicators.vertical {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: absolute;
+    z-index: 1;
+    width: 30px;
+    height: 100%;
+    top: 0;
+    right: 10px;
+
+    span {
+      display: inline-block;
+      width: 100%;
+      height: 20px;
+      margin: 3px 0;
+      cursor: pointer;
+      transition: all 0.5s;
+
+      &::after {
+        display: inline-block;
+        width: 4px;
+        height: 100%;
+        border-radius: 2px;
+        background-color: #e8edf2;
+        transition: all 0.5s;
+        content: '';
+      }
+
+      &:hover {
+        height: 25px;
+        &::after {
+          background-color: #6cd7c8;
+          content: '';
+        }
+      }
+
+      &.actived {
+        height: 25px;
+        &::after {
+          background-color: #6cd7c8;
+          content: '';
+        }
+      }
     }
   }
 }
