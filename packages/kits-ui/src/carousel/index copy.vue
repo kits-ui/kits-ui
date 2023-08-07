@@ -19,14 +19,16 @@
       <span
         v-for="(item, i) in defaultSlot?.children"
         :key="i"
-        :class="currentIndex - 1 === i ? 'actived' : ''"
+        class="k-carousel-indicators-item"
+        :data-key="i - 1"
+        :class="currentIndex === i ? 'actived' : ''"
       ></span>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, useSlots, ref } from 'vue';
+import { onMounted, useSlots, ref, reactive } from 'vue';
 import { setStyle } from '../utils/index';
 
 const props = defineProps({
@@ -38,77 +40,124 @@ const props = defineProps({
     type: Number,
     default: 1500,
   },
+  interval: {
+    type: Number,
+    default: 1500,
+  },
 });
 const slots = useSlots();
 const defaultSlot: any = slots.default && slots.default()[0];
 const kCarouselList = ref<any>();
 const kCarouselItem = ref<any>();
 const kCarousel = ref<any>();
+const kCarouselClientRect = reactive<any>({});
 const kCarouselItemList = ref<any>();
-const currentIndex = ref<number>(0);
+const currentIndex = ref<number>(-1);
 const direction = ref<string>('');
+const timer = ref<any>();
 
 onMounted(async () => {
+  const { height, width } = kCarousel.value.getBoundingClientRect();
+  kCarouselClientRect.width = width;
+  kCarouselClientRect.height = height;
   await init();
-  await kCarouseAnimate();
+  await setTimeoutFn();
+
+  window.addEventListener('mouseover', (e: any) => {
+    if (e.target.classList[0] === 'k-carousel-indicators-item') {
+      const activedSpanList: any = document.getElementsByClassName('k-carousel-indicators-item');
+      Array.from(activedSpanList).forEach((element: any) => {
+        element.classList.remove('actived');
+      });
+      e.target.classList.add('actived');
+      currentIndex.value = Number(e.target.dataset.key);
+      clearTimeout(timer.value);
+      kCarouseAnimate();
+    }
+  });
+  window.addEventListener('mouseout', (e: any) => {
+    if (e.target.className === 'k-carousel-indicators-item actived') {
+      setTimeoutFn();
+    }
+  });
+
+  document.addEventListener('visibilitychange', (e) => {
+    console.log(e, 666);
+    if (document.hidden) {
+      clearTimeout(timer.value);
+    } else {
+      setTimeoutFn();
+    }
+  });
 });
 
 /**
  * 初始化样式
  */
 const init = () => {
-  const { height, width } = kCarousel.value.getBoundingClientRect();
   // 使用ref的形式无法统一处理补位,因此使用dom操作
   kCarouselItemList.value = document.getElementsByClassName('k-carousel-item');
   // 遍历item设置宽高
   Array.from(kCarouselItemList.value).map((item: any) => {
     setStyle(item, {
-      width: `${width}px`,
-      height: `${height}px`,
+      width: `${kCarouselClientRect.width}px`,
+      height: `${kCarouselClientRect.height}px`,
     });
   });
   // 根据direction来设置list的宽高
   if (props.direction === 'top' || props.direction === 'bottom') {
     direction.value = 'horizontal';
-    setStyle(kCarouselList.value, { width: `${width * defaultSlot?.children.length + width}px` });
+    setStyle(kCarouselList.value, {
+      width: `${
+        kCarouselClientRect.width * defaultSlot?.children.length + kCarouselClientRect.width
+      }px`,
+    });
     // 设置每小块的宽度
-    kCarousel.value.style.setProperty('--k-carousel-item-w', width);
+    kCarousel.value.style.setProperty('--k-carousel-item-w', kCarouselClientRect.width);
   } else {
     direction.value = 'vertical';
     setStyle(kCarouselList.value, {
-      height: `${height * defaultSlot?.children.length + height}px`,
+      height: `${
+        kCarouselClientRect.height * defaultSlot?.children.length + kCarouselClientRect.height
+      }px`,
     });
     // 设置每小块的高度
-    kCarousel.value.style.setProperty('--k-carousel-item-h', height);
+    kCarousel.value.style.setProperty('--k-carousel-item-h', kCarouselClientRect.height);
   }
 };
 
-const kCarouseAnimate = async () => {
-  // if (currentIndex.value === 2) {
-  // }
-  console.log(direction.value);
+const kCarouseAnimate = () => {
   currentIndex.value += 1;
-  if (currentIndex.value === kCarouselItemList.value.length) {
-    setTimeout(() => {
-      setStyle(kCarouselList.value, { transition: `none` });
-      setStyle(kCarouselList.value, {
-        transform: direction.value === 'horizontal' ? `translateX(0)` : `translateY(0)`,
-      });
-      currentIndex.value = 0;
-      kCarouseAnimate();
-    }, props.duration);
-  } else {
-    setTimeout(() => {
-      setStyle(kCarouselList.value, { transition: `transform ${props.duration / 1000}s` });
-      setStyle(kCarouselList.value, {
-        transform:
-          direction.value === 'horizontal'
-            ? `translateX(-${(100 / kCarouselItemList.value.length) * currentIndex.value}%)`
-            : `translateY(-${(100 / kCarouselItemList.value.length) * currentIndex.value}%)`,
-      });
-      kCarouseAnimate();
-    }, props.duration);
+  setStyle(kCarouselList.value, { transition: `left ${props.duration / 1000}s` });
+  setStyle(kCarouselList.value, {
+    left: `calc(-${kCarouselClientRect.width}px * ${currentIndex.value})`,
+  });
+  console.log(currentIndex.value);
+  if (currentIndex.value > 5) {
+    currentIndex.value = 0;
+    setStyle(kCarouselList.value, { transition: `none` });
+    setStyle(kCarouselList.value, {
+      left: `0px`,
+    });
   }
+};
+
+const setTimeoutFn = () => {
+  let n = props.interval;
+  if (currentIndex.value === 5) {
+    document.getElementsByClassName('k-carousel-indicators-item')[0].classList.add('actived');
+    // n = 0;
+  }
+  if (currentIndex.value === 5 || currentIndex.value === 6) {
+    n = props.interval / 2;
+  }
+  if (currentIndex.value === -1) {
+    n = 0;
+  }
+  timer.value = setTimeout(async () => {
+    await kCarouseAnimate();
+    setTimeoutFn();
+  }, n);
 };
 </script>
 

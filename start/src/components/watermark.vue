@@ -1,14 +1,16 @@
 <template>
   <div id="watermark">
-    <k-watermark width="50vw" height="30vh" :options="options">
+    <k-watermark width="50vw" height="300px" :options="options">
       <div class="content">
-        <div>我是内容我是内容我是内容</div>
-        <div>我是内容我是内容我是内容</div>
-        <div>我是内容我是内容我是内容</div>
-        <div>我是内容我是内容我是内容</div>
-        <div>我是内容我是内容我是内容</div>
-        <div>我是内容我是内容我是内容</div>
-        <div>我是内容我是内容我是内容</div>
+        <div style="background-color: #fff; width: 300px; margin: auto">
+          <div>我是内容我是内容我是内容</div>
+          <div>我是内容我是内容我是内容</div>
+          <div>我是内容我是内容我是内容</div>
+          <div>我是内容我是内容我是内容</div>
+          <div>我是内容我是内容我是内容</div>
+          <div>我是内容我是内容我是内容</div>
+          <div>我是内容我是内容我是内容</div>
+        </div>
       </div>
     </k-watermark>
   </div>
@@ -45,10 +47,10 @@ const options1 = {
   width: 50vw;
   height: 80vh;
 }
-.content {
-  width: 100%;
-  height: 100%;
-  color: red;
-  font-weight: 600;
-}
+// .content {
+//   width: 100%;
+//   height: 100%;
+//   color: red;
+//   font-weight: 600;
+// }
 </style>
