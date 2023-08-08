@@ -51,8 +51,8 @@
 }
 
 .my-menus-item-available:hover {
-  background: #ecf5ff;
-  color: #409eff;
+  background: var(--k-theme-interact-bg-color);
+  color: var(--k-theme-color);
 }
 
 .my-menus-item-disabled {
@@ -104,8 +104,8 @@
 }
 
 .menus-item-available:hover {
-  background: #ecf5ff;
-  color: #409eff;
+  background: var(--k-theme-interact-bg-color);
+  color: var(--k-theme-color);
 }
 
 .menus-item-disabled {
@@ -114,8 +114,8 @@
 }
 
 .menus-item-active {
-  background: #ecf5ff;
-  color: #409eff;
+  background: var(--k-theme-interact-bg-color);
+  color: var(--k-theme-color);
 }
 
 .menus-item-tip {

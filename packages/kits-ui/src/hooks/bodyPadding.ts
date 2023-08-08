@@ -22,7 +22,9 @@ export const setBodyPaddingRight = (value: boolean) => {
     // }px`;
     document.body.style.overflow = 'hidden';
   } else {
-    document.body.style.overflow = oldType.overflow;
-    document.body.style.paddingRight = oldType.paddingRight;
+    setTimeout(() => {
+      document.body.style.overflow = oldType.overflow;
+      document.body.style.paddingRight = oldType.paddingRight;
+    }, 300);
   }
 };
