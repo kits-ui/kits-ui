@@ -18,24 +18,23 @@
         <component :is="defaultSlot?.children[0]"></component>
       </div>
     </div>
-    <div
-      v-if="props.direction === 'horizontal' && props.arrow === 'display'"
-      class="prev"
+    <arrowleft
+      v-if="props.direction === 'horizontal' && props.arrow"
+      ref="leftArrow"
+      class="kCarouselPrev"
       @click="prev"
-    >
-      <arrowleft></arrowleft>
-    </div>
-    <div
-      v-if="props.direction === 'horizontal' && props.arrow === 'display'"
-      class="next"
+    ></arrowleft>
+    <arrowright
+      v-if="props.direction === 'horizontal' && props.arrow"
+      ref="rightArrow"
+      class="kCarouselNext"
       @click="next"
-    >
-      <arrowright></arrowright>
-    </div>
-    <div class="k-carousel-indicators" :class="props.direction">
+    ></arrowright>
+    <div v-if="indicators" class="k-carousel-indicators" :class="props.direction">
       <span
         v-for="(item, i) in defaultSlot?.children"
         :key="i"
+        :data-key="i + 1"
         class="k-carousel-indicators-item"
         :class="currentIndex === i + 1 ? 'actived' : ''"
       ></span>
@@ -44,37 +43,51 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, useSlots, ref, reactive, PropType } from 'vue';
+import { onMounted, onUnmounted, useSlots, ref, reactive, PropType } from 'vue';
 import { setStyle } from '../utils/index';
 import { arrowleft, arrowright } from '../icon/index';
 
 const props = defineProps({
+  defaultValue: {
+    type: Number,
+    default: 1,
+  },
   // 箭头是否显示
   arrow: {
-    type: String,
-    default: 'none',
+    type: Boolean,
+    default: true,
   },
   // 轮播的方向
   direction: {
     type: String,
     default: 'horizontal',
   },
+  // 动画时间,不对外开放
   duration: {
     type: Number,
     default: 1000,
   },
+  // 轮播间隔
   interval: {
     type: Number as PropType<number>,
     validator: (value: number) => {
-      return value >= 1000 && value <= 5000; // 自定义验证规则，设置最小值为1000，最大值为5000
+      return value >= 1200 && value <= 15000; // 自定义验证规则，设置最小值为1200，最大值为15000
     },
-    default: 1200,
+    default: 2000,
   },
+  // 是否自动轮播
   autoplay: {
     type: Boolean,
-    default: false,
+    default: true,
+  },
+  // 是否显示指示器
+  indicators: {
+    type: Boolean,
+    default: true,
   },
 });
+
+const emit = defineEmits(['change', 'prev', 'next']);
 const slots = useSlots();
 const defaultSlot: any = slots.default && slots.default()[0];
 
@@ -94,61 +107,149 @@ const currentIndex = ref<number>(1);
 const currentType = ref<string>('');
 // 自动轮播定时器
 const timer = ref<any>();
+// 左右按钮
+const leftArrow = ref<any>();
+const rightArrow = ref<any>();
 
 onMounted(async () => {
+  currentIndex.value = props.defaultValue;
+
   const { height, width } = kCarousel.value.getBoundingClientRect();
   kCarouselClientRect.width = width;
   kCarouselClientRect.height = height;
   await init();
   await setTimeoutFn();
   // 监听过渡结束
-  kCarouselList.value.addEventListener('transitionend', () => {
-    // 触发下一页按钮 并判断是否是补第一页(最后一页)
-    if (currentType.value === 'next' && currentIndex.value >= kCarouselItemList.value.length - 1) {
-      setStyle(kCarouselList.value, {
-        transition: `none`,
-        [currentDirection.value]: `-${
-          currentDirection.value === 'left' ? kCarouselClientRect.width : kCarouselClientRect.height
-        }px`,
-      });
-      currentIndex.value = 1;
-      console.log(currentIndex.value);
-    }
-    // 触发上一页按钮 并判断是否是补最后一页(第一页)
-    if (currentType.value === 'prev' && currentIndex.value < 1) {
-      setStyle(kCarouselList.value, {
-        transition: `none`,
-        [currentDirection.value]: `-${
-          (currentDirection.value === 'left'
-            ? kCarouselClientRect.width
-            : kCarouselClientRect.height) *
-          (kCarouselItemList.value.length - 2)
-        }px`,
-      });
-      // 假设当前数组内容为  5 1 2 3 4 5 1 那么 -2 是将当前页从1定位到5,需要走一个补5 一个补1
-      currentIndex.value = kCarouselItemList.value.length - 2;
-    }
-  });
+  kCarouselList.value.addEventListener('transitionend', transitionendFn);
   // 监测离开页面暂停自动轮播
-  document.addEventListener('visibilitychange', (e) => {
-    console.log(e, 666);
-    if (document.hidden) {
-      clearTimeout(timer.value);
-    } else {
-      setTimeoutFn();
-    }
-  });
+  window.addEventListener('visibilitychange', visibilitychangeFn);
+
+  window.addEventListener('mouseover', mouseoverFn);
+
+  window.addEventListener('click', clickFn);
+
+  window.addEventListener('mouseout', mouseoutFn);
 });
 
-const init = () => {
-  // 使用ref的形式无法统一处理补位,因此使用dom操作
-  kCarouselItemList.value = document.getElementsByClassName('k-carousel-item');
-  // 遍历item设置宽高
-  Array.from(kCarouselItemList.value).map((item: any) => {
-    setStyle(item, {
-      width: `${kCarouselClientRect.width}px`,
-      height: `${kCarouselClientRect.height}px`,
+onUnmounted(() => {
+  kCarouselList.value?.addEventListener('transitionend', transitionendFn);
+  window.addEventListener('visibilitychange', visibilitychangeFn);
+  window.addEventListener('mouseover', mouseoverFn);
+  window.addEventListener('click', clickFn);
+  window.addEventListener('mouseout', mouseoutFn);
+});
+
+/**
+ * 监听过渡结束回调
+ */
+const transitionendFn = () => {
+  // 触发下一页按钮 并判断是否是补第一页(最后一页)
+  if (currentType.value === 'next' && currentIndex.value >= kCarouselItemList.value.length - 1) {
+    setStyle(kCarouselList.value, {
+      transition: `none`,
+      [currentDirection.value]: `-${
+        currentDirection.value === 'left' ? kCarouselClientRect.width : kCarouselClientRect.height
+      }px`,
     });
+    currentIndex.value = 1;
+  }
+  // 触发上一页按钮 并判断是否是补最后一页(第一页)
+  if (currentType.value === 'prev' && currentIndex.value < 1) {
+    setStyle(kCarouselList.value, {
+      transition: `none`,
+      [currentDirection.value]: `-${
+        (currentDirection.value === 'left'
+          ? kCarouselClientRect.width
+          : kCarouselClientRect.height) *
+        (kCarouselItemList.value.length - 2)
+      }px`,
+    });
+    // 假设当前数组内容为  5 1 2 3 4 5 1 那么 -2 是将当前页从1定位到5,需要走一个补5 一个补1
+    currentIndex.value = kCarouselItemList.value.length - 2;
+  }
+};
+
+/**
+ * 监听离开页面回调
+ */
+const visibilitychangeFn = (e: any) => {
+  console.log(e, 666);
+  if (document.hidden) {
+    clearTimeout(timer.value);
+  } else {
+    setTimeoutFn();
+  }
+};
+
+/**
+ * 监听鼠标移入回调
+ */
+const mouseoverFn = (e: any) => {
+  // 判断指示器悬浮
+  if (e.target.classList[0] === 'k-carousel-indicators-item') {
+    const activedSpanList: any = document.getElementsByClassName('k-carousel-indicators-item');
+    Array.from(activedSpanList).forEach((element: any) => {
+      element.classList.remove('actived');
+    });
+    e.target.classList.add('actived');
+    currentIndex.value = Number(e.target.dataset.key);
+    clearTimeout(timer.value);
+    timer.value = null;
+    switchPage();
+  }
+  // 判断是否鼠标悬浮左右箭头
+  if (
+    e.target === leftArrow.value?.$el ||
+    e.target === leftArrow.value?.$el.contains(e.target) ||
+    e.target === rightArrow.value?.$el ||
+    e.target === rightArrow.value?.$el.contains(e.target)
+  ) {
+    clearTimeout(timer.value);
+    timer.value = null;
+  }
+};
+
+/**
+ * 监听点击回调
+ */
+const clickFn = (e: any) => {
+  if (
+    e.target === leftArrow.value?.$el ||
+    e.target === leftArrow.value?.$el.contains(e.target) ||
+    e.target === rightArrow.value?.$el ||
+    e.target === rightArrow.value?.$el.contains(e.target)
+  ) {
+    clearTimeout(timer.value);
+    timer.value = null;
+  }
+};
+
+/**
+ * 监听鼠标移出回调
+ */
+const mouseoutFn = (e: any) => {
+  if (
+    e.target.className === 'k-carousel-indicators-item actived' ||
+    e.target === leftArrow.value?.$el ||
+    e.target === rightArrow.value?.$el
+  ) {
+    setTimeoutFn();
+  }
+};
+
+/**
+ * 初始化
+ */
+const init = () => {
+  // 获取所有item
+  kCarouselItemList.value = Array.from(kCarouselList.value.children).map((item: any) => {
+    if (item.className === 'k-carousel-item') {
+      setStyle(item, {
+        width: `${kCarouselClientRect.width}px`,
+        height: `${kCarouselClientRect.height}px`,
+      });
+      return item;
+    }
   });
   // 根据direction来设置list的宽高
   if (props.direction === 'horizontal') {
@@ -170,6 +271,8 @@ const init = () => {
     });
     // 设置每小块的高度
   }
+  // 初始定位
+  switchPage();
   // kCarousel.value.style.setProperty('--k-carousel-item-h', kCarouselClientRect.height);
 };
 
@@ -189,7 +292,11 @@ const throttled = (fn: any, delay: number) => {
  */
 const prev = throttled(() => {
   currentType.value = 'prev';
+  currentIndex.value -= 1;
   switchPage();
+  if (!timer.value) {
+    emit('prev');
+  }
 }, 1050);
 
 /**
@@ -197,24 +304,34 @@ const prev = throttled(() => {
  */
 const next = throttled(() => {
   currentType.value = 'next';
+  currentIndex.value += 1;
   switchPage();
+  if (!timer.value) {
+    emit('next');
+  }
 }, 1050);
 
 /**
  * 切换回调
  */
 const switchPage = () => {
-  if (currentType.value === 'next') {
-    currentIndex.value += 1;
+  kCarouselList.value &&
+    setStyle(kCarouselList.value, {
+      transition: `${currentDirection.value} ${props.duration / 1000}s`,
+      [currentDirection.value]: `calc(-${
+        currentDirection.value === 'left' ? kCarouselClientRect.width : kCarouselClientRect.height
+      }px * ${currentIndex.value})`,
+    });
+
+  let value: any = null;
+  if (currentIndex.value === 6) {
+    value = 1;
+  } else if (currentIndex.value === 0) {
+    value = defaultSlot?.children.length;
   } else {
-    currentIndex.value -= 1;
+    value = currentIndex.value;
   }
-  setStyle(kCarouselList.value, {
-    transition: `${currentDirection.value} ${props.duration / 1000}s`,
-    [currentDirection.value]: `calc(-${
-      currentDirection.value === 'left' ? kCarouselClientRect.width : kCarouselClientRect.height
-    }px * ${currentIndex.value})`,
-  });
+  emit('change', value);
 };
 
 const setTimeoutFn = () => {

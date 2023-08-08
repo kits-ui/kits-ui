@@ -15,8 +15,8 @@
       margin: auto;
       z-index: 2000;
       background: #fff;
-      visibility: hidden;
-      transition: transform 0.3s, visibility 0.5s;
+      // visibility: hidden;
+      // transition: transform 0.3s, visibility 0.5s;
       padding: 20px;
       overflow: auto;
       box-sizing: border-box;
@@ -24,25 +24,92 @@
         top: 0;
         left: 0;
         height: 100vh;
-        transform: translateX(-150%) translateY(0);
+        transform: translateX(0) translateY(0);
       }
       &.right {
         top: 0;
         right: 0;
         height: 100vh;
-        transform: translateX(150%) translateY(0);
+        transform: translateX(0) translateY(0);
       }
       &.top {
         top: 0;
         left: 0;
         width: 100vw;
-        transform: translateY(-150%) translateX(0);
+        transform: translateY(0) translateX(0);
       }
       &.bottom {
         bottom: 0;
         left: 0;
         width: 100vw;
-        transform: translateY(150%) translateX(0);
+        transform: translateY(0) translateX(0);
       }
     }
+
+  .kDrawer-enter-active,
+  .kDrawer-leave-active {
+    transition: visibility 0.3s ease, transform 0.5s ease, opacity 0.3s ease;
+  }
+
+  .kDrawer-enter-to, .kDrawer-leave-from{
+    &.k-drawer-mask {
+      opacity: 1;
+    }
+    &.left {
+      top: 0;
+      left: 0;
+      height: 100vh;
+      transform: translateX(0) translateY(0);
+    }
+    &.right {
+      top: 0;
+      right: 0;
+      height: 100vh;
+      transform: translateX(0) translateY(0);
+    }
+    &.top {
+      top: 0;
+      left: 0;
+      width: 100vw;
+      transform: translateY(0) translateX(0);
+    }
+    &.bottom {
+      bottom: 0;
+      left: 0;
+      width: 100vw;
+      transform: translateY(0) translateX(0);
+    }
+  }
+
+  .kDrawer-enter-from,
+  .kDrawer-leave-to {
+    &.k-drawer-mask {
+      opacity: 0;
+    }
+    &.left {
+      top: 0;
+      left: 0;
+      height: 100vh;
+      transform: translateX(-150%) translateY(0);
+    }
+    &.right {
+      top: 0;
+      right: 0;
+      height: 100vh;
+      transform: translateX(150%) translateY(0);
+    }
+    &.top {
+      top: 0;
+      left: 0;
+      width: 100vw;
+      transform: translateY(-150%) translateX(0);
+    }
+    &.bottom {
+      bottom: 0;
+      left: 0;
+      width: 100vw;
+      transform: translateY(150%) translateX(0);
+    }
+    visibility: hidden;
+  }
 }

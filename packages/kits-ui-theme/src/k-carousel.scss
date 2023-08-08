@@ -8,10 +8,7 @@
 
   .k-carousel-list {
     position: relative;
-
-    // transition: all var(--k-carousel-speed);
     .k-carousel-item {
-      border: 1px solid #6cd7c8;
       box-sizing: border-box;
     }
 
@@ -28,17 +25,17 @@
     }
   }
 
-  .prev,
-  .next {
+  .kCarouselPrev,
+  .kCarouselNext {
     display: flex;
     justify-content: center;
     align-items: center;
     position: absolute;
     top: 0;
     bottom: 0;
-    width: 50px;
-    height: 50px;
-    border-radius: 25px;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
     background-color: rgba(127, 255, 212, 0.466);
     margin: auto;
     cursor: pointer;
@@ -51,12 +48,27 @@
     }
   }
 
-  .prev {
-    left: 15px;
+  .kCarouselPrev {
+    left: -45px;
+    opacity: 0;
+    transition: left 0.5s, opacity 0.2s;
   }
 
-  .next {
-    right: 15px;
+  .kCarouselNext {
+    right: -45px;
+    opacity: 0;
+    transition: right 0.5s, opacity 0.2s;
+  }
+
+  &:hover {
+    .kCarouselPrev {
+      left: 15px;
+      opacity: 1;
+    }
+    .kCarouselNext {
+      right: 15px;
+      opacity: 1;
+    }
   }
 
   .k-carousel-indicators.horizontal {
@@ -72,7 +84,7 @@
       width: 20px;
       height: 100%;
       line-height: 1;
-      margin: 0 1%;
+      margin: 0 5px;
       cursor: pointer;
       transition: all 0.5s;
 
@@ -81,7 +93,7 @@
         width: 100%;
         height: 4px;
         border-radius: 2px;
-        background-color: #e8edf2;
+        background-color: #fff;
         transition: all 0.5s;
         content: '';
       }
@@ -128,7 +140,7 @@
         width: 4px;
         height: 100%;
         border-radius: 2px;
-        background-color: #e8edf2;
+        background-color: #fff;
         transition: all 0.5s;
         content: '';
       }

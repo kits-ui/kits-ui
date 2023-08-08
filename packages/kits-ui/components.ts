@@ -15,7 +15,6 @@ export { default as kEmoji } from './src/emoji/index.vue';
 export { default as kSkeleton } from './src/skeleton/index.vue';
 export { default as kIcon } from './src/icon/index.vue';
 export { default as kWaterfall } from './src/waterfall/index.vue';
-export { default as kComment } from './src/comment/index.vue';
 export { default as kInput } from './src/input/index.vue';
 export { default as kDialog } from './src/dialog/index.vue';
 export { default as kDrawer } from './src/drawer/index.vue';

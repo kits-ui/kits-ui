@@ -27,6 +27,7 @@ const sidebar = {
       items: [
         { text: 'FilterBox 搜索面板', link: '/components/filterBox/' },
         { text: 'Image 图片', link: '/components/image/' },
+        { text: 'Carousel 走马灯', link: '/components/carousel/' },
         { text: 'Calendar 日历', link: '/components/calendar/' },
         { text: 'Input 输入框', link: '/components/input/' },
       ],
@@ -35,6 +36,7 @@ const sidebar = {
       text: '反馈组件',
       items: [
         { text: 'Dialog 模态框', link: '/components/dialog/' },
+        { text: 'Drawer 抽屉', link: '/components/drawer/' },
         { text: 'Popconfirm 气泡确认框', link: '/components/popconfirm/' },
         { text: 'Popover 气泡框', link: '/components/popover/' },
         { text: 'Tooltip 文字提示', link: '/components/tooltip/' },

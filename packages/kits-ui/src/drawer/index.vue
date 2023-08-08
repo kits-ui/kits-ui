@@ -1,12 +1,19 @@
 <template>
   <Teleport to="body">
     <div class="k-drawer">
-      <div v-if="props.modelValue" class="k-drawer-mask"></div>
-      <div ref="kDrawerContent" class="k-drawer-content" :class="props.direction">
-        <slot>
-          <!-- <component :is="defaultSlot"></component> -->
-        </slot>
-      </div>
+      <TransitionGroup name="kDrawer">
+        <div v-if="props.modelValue" class="k-drawer-mask"></div>
+        <div
+          v-if="props.modelValue"
+          ref="kDrawerContent"
+          class="k-drawer-content"
+          :class="props.direction"
+        >
+          <slot>
+            <!-- <component :is="defaultSlot"></component> -->
+          </slot>
+        </div>
+      </TransitionGroup>
     </div>
   </Teleport>
 </template>
@@ -28,8 +35,6 @@ const props: any = defineProps({
 const emit: any = defineEmits(['update:modelValue']);
 const kDrawerContent = ref<any>();
 const maskDom = ref<any>();
-
-// const defaultSlot = slots.default && slots.default()[0];
 
 onMounted(() => {
   window.addEventListener('click', clickHandler);
@@ -65,24 +70,25 @@ const clickHandler = (e: any) => {
 };
 
 const showDrawer = () => {
-  kDrawerContent.value.style.visibility = 'visible';
-  if (props.direction === 'top' || props.direction === 'bottom') {
-    kDrawerContent.value.style.transform = 'translateY(0) translateX(0)';
-  } else {
-    kDrawerContent.value.style.transform = 'translateX(0) translateY(0)';
-  }
+  // kDrawerContent.value.style.visibility = 'visible';
+  // kDrawerContent.value.style.transition = 'transform 0.3s, visibility 0.5s';
+  // if (props.direction === 'top' || props.direction === 'bottom') {
+  //   kDrawerContent.value.style.transform = 'translateY(0) translateX(0)';
+  // } else {
+  //   kDrawerContent.value.style.transform = 'translateX(0) translateY(0)';
+  // }
 };
 
 const closeDrawer = () => {
-  if (props.direction === 'top' || props.direction === 'bottom') {
-    kDrawerContent.value.style.transform = `translateY(${
-      props.direction === 'top' ? '-150' : '150'
-    }%) translateX(0)`;
-  } else {
-    kDrawerContent.value.style.transform = `translateX(${
-      props.direction === 'left' ? '-150' : '150'
-    }%) translateY(0)`;
-  }
-  kDrawerContent.value.style.visibility = 'hidden';
+  // if (props.direction === 'top' || props.direction === 'bottom') {
+  //   kDrawerContent.value.style.transform = `translateY(${
+  //     props.direction === 'top' ? '-150' : '150'
+  //   }%) translateX(0)`;
+  // } else {
+  //   kDrawerContent.value.style.transform = `translateX(${
+  //     props.direction === 'left' ? '-150' : '150'
+  //   }%) translateY(0)`;
+  // }
+  // kDrawerContent.value.style.visibility = 'hidden';
 };
 </script>
