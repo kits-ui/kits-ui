@@ -6,6 +6,7 @@
     }"
     :style="{
       borderRadius: radius,
+      width: width,
     }"
   >
     <div
@@ -24,7 +25,6 @@
         height: height,
       }"
     >
-      2
       <slot>
         <img src="https://cdn.xiaolong0418.com/navigation/images/GitHub.ico" />
       </slot>

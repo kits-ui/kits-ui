@@ -9,7 +9,7 @@
 
     <br />
     <br />
-    <k-skeleton height="300px" :is-animated="true" radius="100%"></k-skeleton>
+    <k-skeleton height="200px" width="200px" :is-animated="true" radius="100%"></k-skeleton>
   </div>
 </template>
 
