@@ -134,11 +134,11 @@ onMounted(async () => {
 });
 
 onUnmounted(() => {
-  kCarouselList.value?.addEventListener('transitionend', transitionendFn);
-  window.addEventListener('visibilitychange', visibilitychangeFn);
-  window.addEventListener('mouseover', mouseoverFn);
-  window.addEventListener('click', clickFn);
-  window.addEventListener('mouseout', mouseoutFn);
+  kCarouselList.value?.removeEventListener('transitionend', transitionendFn);
+  window.removeEventListener('visibilitychange', visibilitychangeFn);
+  window.removeEventListener('mouseover', mouseoverFn);
+  window.removeEventListener('click', clickFn);
+  window.removeEventListener('mouseout', mouseoutFn);
 });
 
 /**
@@ -343,11 +343,10 @@ const switchPage = () => {
 
 const setTimeoutFn = () => {
   if (props.autoplay) {
-    let n = props.interval;
     timer.value = setTimeout(() => {
       next();
       setTimeoutFn();
-    }, n);
+    }, props.interval);
   } else {
     return;
   }
