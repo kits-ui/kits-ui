@@ -9,12 +9,19 @@
 ```vue
 <template>
   <div style="margin-bottom:20px;">
-    <k-skeleton :is-animated="true" width="100%"></k-skeleton>
-    <k-skeleton type="img" width="80px" height="80px" :is-animated="true">
-      <img src="https://cdn.xiaolong0418.com/myblog/images/37c3388f9af3eec6492b6831591fd63c.jpg" />
+    <k-skeleton :is-animated="true" width="500px" height="30px"></k-skeleton>
+    <br />
+    <br />
+    <k-skeleton type="img" width="200px" height="200px" :is-animated="true">
+      <img src="https://kits-ui.xiaolong0418.com/kits-ui/logo.png" />
     </k-skeleton>
 
-    <k-skeleton height="30px" width="30px" :is-animated="true" radius="100%"></k-skeleton>
+    <br />
+    <br />
+    <k-skeleton height="200px" width="200px" :is-animated="true" radius="50%"></k-skeleton>
+
+    <br />
+    <br />
   </div>
 </template>
 ```
