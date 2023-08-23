@@ -6,7 +6,7 @@
       width: 100vw;
       height: 100vh;
       z-index: 2000;
-      background: #5757577a;
+      background: var(--k-mask-bg);
     }
     .k-drawer-content {
       position: fixed;
@@ -14,7 +14,7 @@
       min-height: 340px;
       margin: auto;
       z-index: 2000;
-      background: #fff;
+      background: var(--k-zebra-bg);
       // visibility: hidden;
       // transition: transform 0.3s, visibility 0.5s;
       padding: 20px;
