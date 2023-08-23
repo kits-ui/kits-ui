@@ -8,6 +8,7 @@
     --k-zebra-bg: #fafafa;
     --k-border-sm-radius: 4px;        /* 小型组件圆角: button message-- */
     --k-border-lg-radius: 15px;       /* 大型组件圆角: dialog table-- */
+    --k-mask-bg: #5757577a;         /* mask背景 */
   }
 }
 
@@ -21,6 +22,7 @@
     --k-zebra-bg: #535353;
     --k-border-sm-radius: 4px;        /* 小型组件圆角 */
     --k-border-lg-radius: 15px;       /* 大型组件圆角 */
+    --k-mask-bg: #5757572e;         /* mask背景 */
   }
 }
 
@@ -34,6 +36,7 @@
   --k-zebra-bg: #fafafa;
   --k-border-sm-radius: 4px;        /* 小型组件圆角 */
   --k-border-lg-radius: 15px;       /* 大型组件圆角 */
+  --k-mask-bg: #5757577a;         /* mask背景 */
 }
 
 .dark {
@@ -45,4 +48,5 @@
   --k-zebra-bg: #535353;
   --k-border-sm-radius: 4px;        /* 小型组件圆角 */
   --k-border-lg-radius: 15px;       /* 大型组件圆角 */
+  --k-mask-bg: #5757572e;         /* mask背景 */
 }

@@ -23,6 +23,10 @@ $info-color: #6b7280;
 $success-color: #22c55e;
 $warning-color: #eab308;
 $error-color: #ef4444;
+$info-bg-color: #e4ebf8;
+$success-bg-color: #e6faee;
+$warning-bg-color: #f7f2e2;
+$error-bg-color: #f8e4e4;
 
 .k-message {
   display: block;
@@ -62,31 +66,34 @@ $error-color: #ef4444;
   }
 
   &-success {
+    color: $success-color;
     .icon-success {
       color: $success-color;
     }
-    background-color: #d2f3df;
-    
+    background-color: $success-bg-color;
   }
 
   &-error {
+    color: $error-color;
     .icon-error {
       color: $error-color;
     }
-    background-color: #f5dada;
+    background-color: $error-bg-color;
   }
   
   &-info {
+    color: $info-color;
     .icon-info {
       color: $info-color;
     }
-    background-color: #d7e1f3;
+    background-color: $info-bg-color;
   }
 
   &-warning {
+    color: $warning-color;
     .icon-warning {
       color: $warning-color;
     }
-    background-color: #f3edd9;
+    background-color: $warning-bg-color;
   }
 }

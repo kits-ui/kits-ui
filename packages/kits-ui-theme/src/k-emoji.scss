@@ -2,8 +2,9 @@
   .container {
     display: block;
     height: auto;
-    width: 500px;
-    background-color: white;
+    max-width: 442px;
+    width: auto;
+    background-color: var(--k-zebra-bg);
   
     .header {
       line-height: 30px;
@@ -12,7 +13,7 @@
       padding-left: 5px;
       user-select: none;
       position: relative;
-      border-bottom: 1px solid #fbf5f5;
+      border-bottom: 1px solid var(--k-border-color);
   
       .addbtn {
         position: absolute;
@@ -75,6 +76,9 @@
         }
       }
     }
+    .main {
+      width: auto;
+    }
   }
   
   .container .footer .toolbar-items .prev-page:active i,
@@ -88,6 +92,7 @@
   }
   
   .emoticon {
+    width: auto;
     .title {
       width: 50%;
       height: 25px;
@@ -151,6 +156,8 @@
   .box {
     display: flex;
     flex-wrap: wrap;
+    max-width: 442px;
+    width: auto;
   }
   :deep(.el-image) {
     width: 100%;

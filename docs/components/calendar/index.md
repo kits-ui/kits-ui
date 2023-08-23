@@ -8,7 +8,7 @@
 
 ```vue
 <template>
-  <div style="background: #fff">
+  <div>
     <p>以星期日开头</p>
     <k-calendar v-model="value" :first-day="0" :options="options" @on-change="onChange" />
     <br />

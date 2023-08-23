@@ -10,7 +10,7 @@
   .k-dialog-mask {
     width: inherit;
     height: inherit;
-    background: #0404048f;
+    background: var(--k-mask-bg);
     overflow-y: auto;
     padding-bottom: 120px;
     box-sizing: border-box;
@@ -28,7 +28,7 @@
     border-radius: 5px;
     outline: unset;
     transition: opacity 0.3s, transform 0.5s;
-    background: #fff;
+    background: var(--k-zebra-bg);
     z-index: 3001;
     transform: translateY(-15%);
     opacity: 0;
