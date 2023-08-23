@@ -34,6 +34,7 @@
       <span
         v-for="(item, i) in defaultSlot?.children"
         :key="i"
+        ref="kCarouselIndicatorsItem"
         :data-key="i + 1"
         class="k-carousel-indicators-item"
         :class="currentIndex === i + 1 ? 'actived' : ''"
@@ -107,13 +108,14 @@ const currentIndex = ref<number>(1);
 const currentType = ref<string>('');
 // 自动轮播定时器
 const timer = ref<any>();
+// 指示器dom
+const kCarouselIndicatorsItem = ref<any>();
 // 左右按钮
 const leftArrow = ref<any>();
 const rightArrow = ref<any>();
 
 onMounted(async () => {
   currentIndex.value = props.defaultValue;
-
   const { height, width } = kCarousel.value.getBoundingClientRect();
   kCarouselClientRect.width = width;
   kCarouselClientRect.height = height;
@@ -132,11 +134,11 @@ onMounted(async () => {
 });
 
 onUnmounted(() => {
-  kCarouselList.value?.addEventListener('transitionend', transitionendFn);
-  window.addEventListener('visibilitychange', visibilitychangeFn);
-  window.addEventListener('mouseover', mouseoverFn);
-  window.addEventListener('click', clickFn);
-  window.addEventListener('mouseout', mouseoutFn);
+  kCarouselList.value?.removeEventListener('transitionend', transitionendFn);
+  window.removeEventListener('visibilitychange', visibilitychangeFn);
+  window.removeEventListener('mouseover', mouseoverFn);
+  window.removeEventListener('click', clickFn);
+  window.removeEventListener('mouseout', mouseoutFn);
 });
 
 /**
@@ -185,18 +187,19 @@ const visibilitychangeFn = (e: any) => {
  * 监听鼠标移入回调
  */
 const mouseoverFn = (e: any) => {
-  // 判断指示器悬浮
-  if (e.target.classList[0] === 'k-carousel-indicators-item') {
-    const activedSpanList: any = document.getElementsByClassName('k-carousel-indicators-item');
-    Array.from(activedSpanList).forEach((element: any) => {
-      element.classList.remove('actived');
-    });
-    e.target.classList.add('actived');
-    currentIndex.value = Number(e.target.dataset.key);
-    clearTimeout(timer.value);
-    timer.value = null;
-    switchPage();
+  // 非当前轮播子元素直接退出
+  if (!kCarousel.value?.contains(e.target)) {
+    return;
   }
+  // 判断指示器悬浮
+  kCarouselIndicatorsItem.value?.forEach((element: any) => {
+    if (e.target === element) {
+      currentIndex.value = Number(e.target.dataset.key);
+      clearTimeout(timer.value);
+      timer.value = null;
+      switchPage();
+    }
+  });
   // 判断是否鼠标悬浮左右箭头
   if (
     e.target === leftArrow.value?.$el ||
@@ -228,6 +231,10 @@ const clickFn = (e: any) => {
  * 监听鼠标移出回调
  */
 const mouseoutFn = (e: any) => {
+  // 非当前轮播子元素直接退出
+  if (!kCarousel.value?.contains(e.target)) {
+    return;
+  }
   if (
     e.target.className === 'k-carousel-indicators-item actived' ||
     e.target === leftArrow.value?.$el ||
@@ -336,11 +343,10 @@ const switchPage = () => {
 
 const setTimeoutFn = () => {
   if (props.autoplay) {
-    let n = props.interval;
     timer.value = setTimeout(() => {
       next();
       setTimeoutFn();
-    }, n);
+    }, props.interval);
   } else {
     return;
   }
