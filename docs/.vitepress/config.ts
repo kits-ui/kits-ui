@@ -62,6 +62,7 @@ const sidebar = {
 const config: any = {
   base: '/kits-ui/',
   title: 'Kits UI🌟',
+  head: [['link', { rel: 'icon', href: '/public/logo.png' }]],
   themeConfig: {
     nav: [
       { text: '指南', link: '/guide/', activeMatch: '/guide/' },
