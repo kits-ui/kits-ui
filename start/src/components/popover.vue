@@ -17,7 +17,7 @@
       <k-button type="insert">摸我</k-button>
     </template>
   </k-popover>
-  <k-popover position="right" theme="light" title="666" :visible="visible" :width="510">
+  <k-popover position="right" theme="light" title="666" :visible="visible">
     <k-emoji @selected="selectEmoticon"></k-emoji>
     <template #reference>
       <k-button type="insert" @click="visible = true">摸我</k-button>

@@ -1,8 +1,11 @@
 .k-emoji {
+  width: auto;
+  max-width: 442px;
   .container {
     display: block;
     height: auto;
     max-width: 442px;
+    min-width: 306px;
     width: auto;
     background-color: var(--k-zebra-bg);
   

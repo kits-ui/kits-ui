@@ -14,7 +14,9 @@
           :id="`${props.name}-${idNum}`"
           ref="popverContent"
           :class="`${props.name}-content`"
-          :style="{ width: props.name === 'tooltip' ? 'fit-content' : `${props.width}px` }"
+          :style="{
+            width: props.width === 'auto' || props.name === 'tooltip' ? 'auto' : `${props.width}px`,
+          }"
         >
           <div v-if="props.name !== 'tooltip'" name="title" :class="`${props.name}-title`">
             {{ props.title }}
@@ -60,7 +62,7 @@ const props = defineProps({
     default: true,
   },
   width: {
-    type: Number,
+    type: Number || String,
     default: 150,
   },
   title: {

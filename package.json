@@ -8,8 +8,8 @@
     "start"
   ],
   "scripts": {
-    "docs:dev": "pnpm run register:components && vitepress dev docs",
-    "docs:build": "pnpm run register:components && vitepress build docs",
+    "docs:dev": "npm run build && npm run register:components && vitepress dev docs",
+    "docs:build": "npm run build && npm run register:components && vitepress build docs --mode production",
     "docs:serve": "vitepress serve docs",
     "register:components": "vitepress-rc",
     "start": "vite start",
@@ -38,7 +38,7 @@
   "keywords": [
     "vue",
     "UI",
-    "useless"
+    "kits"
   ],
   "author": "kits-ui",
   "license": "MIT",

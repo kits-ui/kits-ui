@@ -8,7 +8,7 @@ import '../../packages/kits-ui-theme/index.scss';
 
 // import { menusEvent } from '../../packages/kits-ui/src/contextMenu/usee';
 // 注册icon
-const app = createApp(App);
+const app: any = createApp(App);
 for (const [key, component] of Object.entries(kitsIcon)) {
   app.component(key, component);
 }
