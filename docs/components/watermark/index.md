@@ -19,8 +19,8 @@
 ## 配置项
 
 使用配置的水印
-
-:::demo 使用 options 配置项,来更改水印的角度(rotate) 间隔(textWidth, textHeight) 颜色(textColor) 透明度(opacity) 以及 文字内容(waterMarkText)
+使用 options 配置项,来更改水印的角度(rotate) 间隔(textWidth, textHeight) 颜色(textColor) 透明度(opacity) 以及 文字内容(waterMarkText)
+:::demo
 
 ```vue
 <template>
