@@ -1,4 +1,4 @@
-import { demoBlockPlugin } from 'vitepress-theme-demoblock';
+import { demoblockPlugin, demoblockVitePlugin } from 'vitepress-theme-demoblock';
 import { kTablePlugin } from './plugins/table';
 
 const sidebar = {
@@ -88,28 +88,32 @@ const config: any = {
     config: (md) => {
       // 添加DemoBlock插槽
       md.use(kTablePlugin);
-      md.use(demoBlockPlugin, {
-        customClass: 'demoblock-custom',
-        // customStyleTagName: 'style lang="less"',
-        scriptImports: ["import * as KitsUI from 'kits-ui'"],
-        scriptReplaces: [
-          {
-            searchValue: /const ({ defineComponent as _defineComponent }) = Vue/g,
-            replaceValue: 'const { defineComponent: _defineComponent } = Vue',
-          },
-          {
-            searchValue: /import ({.*}) from 'kits-ui'/g,
-            replaceValue: (s, s1) => `const ${s1} = KitsUI`,
-          },
-        ],
-        styleReplaces: [
-          {
-            searchValue: '@import "docs/styles/index.css";',
-            replaceValue: '@import "@docs/styles/index.css";',
-          },
-        ],
-      });
+      // md.use(demoblockPlugin, {
+      //   customClass: 'demoblock-custom',
+      //   // customStyleTagName: 'style lang="less"',
+      //   scriptImports: ["import * as KitsUI from 'kits-ui'"],
+      //   scriptReplaces: [
+      //     {
+      //       searchValue: /const ({ defineComponent as _defineComponent }) = Vue/g,
+      //       replaceValue: 'const { defineComponent: _defineComponent } = Vue',
+      //     },
+      //     {
+      //       searchValue: /import ({.*}) from 'kits-ui'/g,
+      //       replaceValue: (s, s1) => `const ${s1} = KitsUI`,
+      //     },
+      //   ],
+      //   styleReplaces: [
+      //     {
+      //       searchValue: '@import "docs/styles/index.css";',
+      //       replaceValue: '@import "@docs/styles/index.css";',
+      //     },
+      //   ],
+      // });
+      md.use(demoblockPlugin);
     },
+  },
+  vite: {
+    plugins: [demoblockVitePlugin()],
   },
 };
 export default config;

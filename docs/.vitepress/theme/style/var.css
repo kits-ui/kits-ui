@@ -198,6 +198,13 @@
   border-bottom: 1px solid #eee;
 }
 
+.VPLink.VPFeature .box{
+  border: 2px solid #2bc0ac59;
+  border-radius: 8px;
+  background-color: transparent;
+  backdrop-filter: blur(6px);
+}
+
 body {
   overflow: overlay;
 }

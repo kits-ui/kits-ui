@@ -23,14 +23,6 @@
     </k-popover>
   </div>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue';
-const value = ref(new Date());
-const onChange = (val: { date: Date; type: string }) => {
-  console.log(val);
-};
-</script>
 ```
 
 :::
@@ -48,7 +40,7 @@ const onChange = (val: { date: Date; type: string }) => {
 
 ```vue
 <template>
-  <k-popover position="right" theme="light" :width="510" :visible="visible">
+  <k-popover position="right" theme="light" :visible="visible">
     <k-emoji @selected="selectEmoticon"></k-emoji>
     <template #reference>
       <k-button @click="visible = true">click button</k-button>
