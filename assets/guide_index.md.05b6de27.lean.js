@@ -1,0 +1,1 @@
+import{_ as s,o as a,c as n,M as e}from"./chunks/framework.b0ab0003.js";const u=JSON.parse('{"title":"Kits-UI","description":"","frontmatter":{},"headers":[],"relativePath":"guide/index.md","filePath":"guide/index.md"}'),p={name:"guide/index.md"},o=e("",12),l=[o];function t(r,c,i,d,y,h){return a(),n("div",null,l)}const m=s(p,[["render",t]]);export{u as __pageData,m as default};
