@@ -1,6 +1,6 @@
 <template>
   <div style="margin: auto; width: 200px">
-    <k-input v-model="value11" type="email" @input="oninput" />
+    <k-input v-model="value11" type="email" />
     <div class="show">{{ inputValue }}</div>
   </div>
 </template>
@@ -11,9 +11,9 @@ import { ref } from 'vue';
 const value11 = ref<any>('');
 const inputValue = ref<string>('');
 
-const oninput = (e) => {
-  inputValue.value = e.target.value;
-};
+// const oninput = (e) => {
+//   inputValue.value = e.target.value;
+// };
 </script>
 
 <style scoped>

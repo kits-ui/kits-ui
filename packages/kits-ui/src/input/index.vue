@@ -20,7 +20,7 @@ const modelValue = ref(props.modelValue);
 //   emit('update:value', newValue);
 // });
 
-const onInput = () => {
-  emit('update:modelValue', modelValue);
+const onInput = (e) => {
+  emit('update:modelValue', e.target.value);
 };
 </script>
