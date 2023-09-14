@@ -19,5 +19,6 @@ export { default as kInput } from './src/input/index.vue';
 export { default as kDialog } from './src/dialog/index.vue';
 export { default as kDrawer } from './src/drawer/index.vue';
 export { default as kCarousel } from './src/carousel/index.vue';
+export { default as kUpload } from './src/upload/index.vue';
 
 export { kMessage } from './src/message/index';

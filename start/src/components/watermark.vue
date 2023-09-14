@@ -1,8 +1,8 @@
 <template>
   <div id="watermark">
     <k-watermark width="50vw" height="300px" :options="options">
-      <div class="content">
-        <div style="background-color: #fff; width: 300px; margin: auto">
+      <div class="content" style="height: 100%; display: flex; align-items: center">
+        <div style="background-color: #fff; width: 300px; margin: auto; padding: 20px">
           <div>我是内容我是内容我是内容</div>
           <div>我是内容我是内容我是内容</div>
           <div>我是内容我是内容我是内容</div>
@@ -23,6 +23,7 @@
 const options = {
   waterMarkText: '6666666666',
   textColor: 'black',
+  opacity: 0.1,
   textWidth: 170,
   textHeight: 80,
 };
