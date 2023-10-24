@@ -48,7 +48,7 @@
 
   .kDrawer-enter-active,
   .kDrawer-leave-active {
-    transition: visibility 0.3s ease, transform 0.5s ease, opacity 0.3s ease;
+    transition: visibility 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
   }
 
   .kDrawer-enter-to, .kDrawer-leave-from{

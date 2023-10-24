@@ -200,3 +200,25 @@
 | ------ | -------------- | ------------ |
 | prev   | 切换上一页触发 | `function()` |
 | next   | 切换下一页触发 | `function()` |
+| moveTo | 移动到某一页   | `function()` |
+
+```vue
+<template>
+  <k-carousel ref="kCarousel">
+    <div v-for="item in 5" :key="item" class="content">
+      {{ item }}
+    </div>
+  </k-carousel>
+  <k-button @click="jump">点击跳转第四页</k-button>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const kCarousel = ref();
+
+const jump = () => {
+  kCarousel.value.moveTo(4);
+};
+</style>
+```
