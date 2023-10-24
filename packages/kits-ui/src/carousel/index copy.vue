@@ -1,6 +1,10 @@
 <template>
   <div ref="kCarousel" class="k-carousel">
     <div ref="kCarouselList" class="k-carousel-list" :class="props.direction">
+      <!-- 补最后一位 -->
+      <div class="k-carousel-item">
+        <component :is="defaultSlot?.children[defaultSlot?.children.length - 1]"></component>
+      </div>
       <div
         v-for="(item, i) in defaultSlot?.children"
         :key="i"
@@ -9,14 +13,17 @@
       >
         <component :is="item"></component>
       </div>
+      <!-- 补第一位 -->
+      <div class="k-carousel-item">
+        <component :is="defaultSlot?.children[0]"></component>
+      </div>
     </div>
     <arrowleft
       v-if="props.direction === 'horizontal' && props.arrow"
       ref="leftArrow"
       class="kCarouselPrev"
       @click="prev"
-    >
-    </arrowleft>
+    ></arrowleft>
     <arrowright
       v-if="props.direction === 'horizontal' && props.arrow"
       ref="rightArrow"
@@ -28,7 +35,7 @@
         v-for="(item, i) in defaultSlot?.children"
         :key="i"
         ref="kCarouselIndicatorsItem"
-        :data-key="i"
+        :data-key="i + 1"
         class="k-carousel-indicators-item"
         :class="currentIndex === i + 1 ? 'actived' : ''"
       ></span>
@@ -81,7 +88,7 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(['change', 'prev', 'next', 'moveTo']);
+const emit = defineEmits(['change', 'prev', 'next']);
 const slots = useSlots();
 const defaultSlot: any = slots.default && slots.default()[0];
 
@@ -114,38 +121,55 @@ onMounted(async () => {
   kCarouselClientRect.height = height;
   await init();
   await setTimeoutFn();
-  //   // 监听过渡结束
-  //   kCarouselList.value.addEventListener('transitionend', transitionendFn);
+  // 监听过渡结束
+  kCarouselList.value.addEventListener('transitionend', transitionendFn);
   // 监测离开页面暂停自动轮播
   window.addEventListener('visibilitychange', visibilitychangeFn);
+
   window.addEventListener('mouseover', mouseoverFn);
+
   window.addEventListener('click', clickFn);
+
   window.addEventListener('mouseout', mouseoutFn);
 });
 
-const moveTo = (value: number) => {
-  console.log(value, 'valuevaluevaluevaluevalue');
-  kCarouselList.value &&
-    setStyle(kCarouselList.value, {
-      transition: `${currentDirection.value} ${props.duration / 1000}s`,
-      [currentDirection.value]: `calc(-${
-        currentDirection.value === 'left' ? kCarouselClientRect.width : kCarouselClientRect.height
-      }px * ${value})`,
-    });
-  currentIndex.value = value;
-  emit('change', value);
-};
-
-defineExpose({
-  moveTo,
-});
 onUnmounted(() => {
-  // kCarouselList.value?.removeEventListener('transitionend', transitionendFn);
+  kCarouselList.value?.removeEventListener('transitionend', transitionendFn);
   window.removeEventListener('visibilitychange', visibilitychangeFn);
   window.removeEventListener('mouseover', mouseoverFn);
   window.removeEventListener('click', clickFn);
   window.removeEventListener('mouseout', mouseoutFn);
 });
+
+/**
+ * 监听过渡结束回调
+ */
+const transitionendFn = () => {
+  // 触发下一页按钮 并判断是否是补第一页(最后一页)
+  if (currentType.value === 'next' && currentIndex.value >= kCarouselItemList.value.length - 1) {
+    setStyle(kCarouselList.value, {
+      transition: `none`,
+      [currentDirection.value]: `-${
+        currentDirection.value === 'left' ? kCarouselClientRect.width : kCarouselClientRect.height
+      }px`,
+    });
+    currentIndex.value = 1;
+  }
+  // 触发上一页按钮 并判断是否是补最后一页(第一页)
+  if (currentType.value === 'prev' && currentIndex.value < 1) {
+    setStyle(kCarouselList.value, {
+      transition: `none`,
+      [currentDirection.value]: `-${
+        (currentDirection.value === 'left'
+          ? kCarouselClientRect.width
+          : kCarouselClientRect.height) *
+        (kCarouselItemList.value.length - 2)
+      }px`,
+    });
+    // 假设当前数组内容为  5 1 2 3 4 5 1 那么 -2 是将当前页从1定位到5,需要走一个补5 一个补1
+    currentIndex.value = kCarouselItemList.value.length - 2;
+  }
+};
 
 /**
  * 监听离开页面回调
@@ -168,12 +192,12 @@ const mouseoverFn = (e: any) => {
     return;
   }
   // 判断指示器悬浮
-  kCarouselIndicatorsItem.value?.forEach((element: any, i: number) => {
+  kCarouselIndicatorsItem.value?.forEach((element: any) => {
     if (e.target === element) {
-      // currentIndex.value = Number(e.target.dataset.key);
+      currentIndex.value = Number(e.target.dataset.key);
       clearTimeout(timer.value);
       timer.value = null;
-      moveTo(i + 1);
+      switchPage();
     }
   });
   // 判断是否鼠标悬浮左右箭头
@@ -220,15 +244,10 @@ const mouseoutFn = (e: any) => {
   }
 };
 
-// /**
-//  * 初始化
-//  */
+/**
+ * 初始化
+ */
 const init = () => {
-  console.log(kCarouselList.value);
-  const firstCloneNode = kCarouselList.value.firstElementChild.cloneNode(true);
-  const lastCloneNode = kCarouselList.value.lastElementChild.cloneNode(true);
-  kCarouselList.value.appendChild(firstCloneNode);
-  kCarouselList.value.insertBefore(lastCloneNode, kCarouselList.value.firstElementChild);
   // 获取所有item
   kCarouselItemList.value = Array.from(kCarouselList.value.children).map((item: any) => {
     if (item.className === 'k-carousel-item') {
@@ -260,7 +279,7 @@ const init = () => {
     // 设置每小块的高度
   }
   // 初始定位
-  // switchPage();
+  switchPage();
   // kCarousel.value.style.setProperty('--k-carousel-item-h', kCarouselClientRect.height);
 };
 
@@ -275,58 +294,52 @@ const throttled = (fn: any, delay: number) => {
   };
 };
 
-// /**
-//  * 上一页
-//  */
+/**
+ * 上一页
+ */
 const prev = throttled(() => {
   currentType.value = 'prev';
-  console.log(currentIndex.value, 4545646);
-  if (currentIndex.value === 1) {
-    kCarouselList.value &&
-      setStyle(kCarouselList.value, {
-        transition: `none`,
-        [currentDirection.value]: `calc(-${
-          currentDirection.value === 'left' ? kCarouselClientRect.width : kCarouselClientRect.height
-        }px * ${defaultSlot?.children.length + 1})`,
-      });
-    // 读取dom 强制渲染
-    kCarouselList.value.clientHeight;
-    moveTo(defaultSlot?.children.length);
-  } else {
-    moveTo(currentIndex.value - 1);
-  }
-  // switchPage();
+  currentIndex.value -= 1;
+  switchPage();
   if (!timer.value) {
     emit('prev');
   }
-}, 1000);
+}, 1050);
 
-// /**
-//  * 下一页
-//  */
+/**
+ * 下一页
+ */
 const next = throttled(() => {
   currentType.value = 'next';
-  console.log(currentIndex.value, 2312312312);
-  if (currentIndex.value === defaultSlot?.children.length) {
-    console.log('dasdas');
-    kCarouselList.value &&
-      setStyle(kCarouselList.value, {
-        transition: `none`,
-        [currentDirection.value]: `calc(-${
-          currentDirection.value === 'left' ? kCarouselClientRect.width : kCarouselClientRect.height
-        }px * ${0})`,
-      });
-    // 读取dom 强制渲染
-    kCarouselList.value.clientHeight;
-    moveTo(1);
-  } else {
-    moveTo(currentIndex.value + 1);
-  }
-  // switchPage();
+  currentIndex.value += 1;
+  switchPage();
   if (!timer.value) {
     emit('next');
   }
-}, 1000);
+}, 1050);
+
+/**
+ * 切换回调
+ */
+const switchPage = () => {
+  kCarouselList.value &&
+    setStyle(kCarouselList.value, {
+      transition: `${currentDirection.value} ${props.duration / 1000}s`,
+      [currentDirection.value]: `calc(-${
+        currentDirection.value === 'left' ? kCarouselClientRect.width : kCarouselClientRect.height
+      }px * ${currentIndex.value})`,
+    });
+
+  let value: any = null;
+  if (currentIndex.value === 6) {
+    value = 1;
+  } else if (currentIndex.value === 0) {
+    value = defaultSlot?.children.length;
+  } else {
+    value = currentIndex.value;
+  }
+  emit('change', value);
+};
 
 const setTimeoutFn = () => {
   if (props.autoplay) {
