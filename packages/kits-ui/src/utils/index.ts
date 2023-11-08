@@ -4,13 +4,17 @@
  * @param json 需要设置的属性
  */
 export const setStyle = (elm: any, json: any) => {
-  // let styleStr = '';
-  for (const i in json) {
-    // styleStr += `${i}: ${json[i]};`;
-    // console.log(i, json[i], 63333)
-    elm.style[i] = json[i];
+  if (Array.isArray(elm)) {
+    for (let i = 0; i < elm.length; i++) {
+      for (const item in json) {
+        elm[i].style[item] = json[item];
+      }
+    }
+  } else {
+    for (const i in json) {
+      elm.style[i] = json[i];
+    }
   }
-  // elm.setAttribute('style', styleStr);
 };
 
 let idNum = 1;
