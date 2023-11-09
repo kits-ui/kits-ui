@@ -1,0 +1,25 @@
+.k-waterfall {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+  width: 100%;
+  height: auto;
+  .k-waterfall-child {
+    display: flex;
+    height: auto;
+    transition: all 0.3s;
+    .k-waterfall-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      width: 100%;
+    }
+    img {
+      width: 100%;
+      object-fit: contain;
+    }
+  }
+}
