@@ -16,6 +16,11 @@
       justify-content: flex-start;
       align-items: center;
       width: 100%;
+      .occupying {
+        width: 100%;
+        height: 180px;
+        background-color: var(--k-theme-color);
+      }
     }
     img {
       width: 100%;

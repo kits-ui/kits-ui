@@ -10,8 +10,8 @@
       >
         <div class="k-waterfall-content">
           <slot name="top" :data="copyList" :index="i" :cur-data="item"></slot>
-          <!-- <img ref="imgBox" :id="setIdNum()" :src="item.src" alt="" :style="{ height: `${item.height}px` }" /> -->
-          <img ref="imgBox" :id="setIdNum()" :src="item.src" alt="" />
+          <div v-if="item.occupying" class="occupying"></div>
+          <img ref="imgBox" :src="item.src" alt="" />
           <slot name="bottom" :data="copyList" :index="i" :cur-data="item"></slot>
         </div>
       </div>
@@ -22,7 +22,7 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
 import { PropType, ref, nextTick } from 'vue';
-import { setStyle, setIdNum } from '../utils/index';
+import { setStyle } from '../utils/index';
 
 const props = defineProps({
   list: {
@@ -80,7 +80,7 @@ const init = async (colWidth) => {
       });
     } else {
       // 取数组中最小值与最小值所对应的下标
-      const { minHeight, minHeightIndex, maxHeight } = await getMinHeight();
+      const { minHeight, minHeightIndex, maxHeight } = getMinHeight();
       // 设置当前子元素定位
       await setStyle(kWaterfallChild.value[i], {
         position: `absolute`,
@@ -113,10 +113,16 @@ const imgPreload = (item, index) => {
   return new Promise((res) => {
     const image = new Image();
     image.src = item.src;
-    image.onload = function (e) {
-      console.log(e);
-      if (e.type == 'load') {
+    image.onload = (e: any) => {
+      console.log(e.type);
+      if (e.type === 'load') {
         copyList.value[index].height = colWidth.value / (image.width / image.height);
+      }
+      res(true);
+    };
+    image.onerror = (e: any) => {
+      if (e.type === 'error') {
+        copyList.value[index].occupying = true;
       }
       res(true);
     };
