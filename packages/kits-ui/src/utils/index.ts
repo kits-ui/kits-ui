@@ -17,7 +17,7 @@ export const setStyle = (elm: any, json: any) => {
   }
 };
 
-let idNum = 1;
+let idNum: any = 1;
 export const setIdNum = () => {
   idNum++;
   return idNum;
