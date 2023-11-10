@@ -20,8 +20,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue';
-import { PropType, ref, nextTick } from 'vue';
+import { PropType, ref, nextTick, onMounted } from 'vue';
 import { setStyle } from '../utils/index';
 
 const props = defineProps({
@@ -48,7 +47,7 @@ const hArr = ref<any>([]);
 const colWidth = ref<number>(0);
 const isShow = ref<boolean>(false);
 
-onMounted(async () => {
+onMounted(() => {
   list.value = props.list;
   // 获取父盒子宽度
   const { width } = kWaterfall.value.getBoundingClientRect();

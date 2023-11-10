@@ -115,8 +115,7 @@ const imgPreload = (item, index) => {
 };
 
 const getMinHeight = () => {
-  const heightArr = kWaterfallList.value.map((item: any, i) => {
-    console.dir(item, i);
+  const heightArr = kWaterfallList.value.map((item: any) => {
     return item.offsetHeight;
   });
   const minHeight = Math.min.apply(null, heightArr);
