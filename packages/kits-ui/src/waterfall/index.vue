@@ -39,7 +39,6 @@ const props = defineProps({
     default: 3,
   },
 });
-
 const kWaterfall = ref<any>();
 const kWaterfallChild = ref<any>();
 const kWaterfallList = ref<any>();
@@ -56,8 +55,23 @@ onMounted(async () => {
   initImg();
 });
 
+function getScollTop() {
+  console.dir(kWaterfall.value);
+  console.log(
+    window.scrollY,
+    document.documentElement.scrollTop,
+    document.body.scrollTop,
+    document.getElementById('app').scrollTop,
+  );
+  return (
+    window.scrollY ||
+    document.documentElement.scrollTop ||
+    document.body.scrollTop ||
+    document.getElementById('app').scrollTop
+  );
+}
 // 初始化宽高与位置信息
-const init = async (colWidth) => {
+const init = (colWidth) => {
   // 分割数组
   for (let i = 0; i < props.column; i++) {
     dataArrList.value.push([]);
@@ -81,6 +95,31 @@ const init = async (colWidth) => {
       }, 0);
     }
   }
+  // 滚动加载图片
+  window.onscroll = function () {
+    getScollTop();
+    // 时机如何把握
+    // if (getClient().height + getScollTop() >= items[items.length - 1].offsetTop) {
+    // 最后一张图片都没了，要加载其他图片现形
+    // 假设从后端获取的图片
+    // var datas = [
+    //   './img1.jpg',
+    //   './img2.jpg',
+    //   './img3.jpg',
+    //   './img4.jpg',
+    //   './img5.jpg',
+    //   './img6.jpg',
+    //   './img7.jpg',
+    // ];
+    // for (var i = 0; i < datas.length; i++) {
+    //   var div = document.createElement('div');
+    //   div.className = 'item';
+    //   div.innerHTML = '<img src=" ' + datas[i] + '">';
+    //   box, appendChild(div);
+    // }
+    // waterFall();
+    // }
+  };
 };
 
 // 预加载

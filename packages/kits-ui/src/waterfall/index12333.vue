@@ -38,7 +38,6 @@ const props = defineProps({
   },
 });
 
-const list = ref<string[]>([]);
 const kWaterfall = ref<any>();
 const kWaterfallChild = ref<any>();
 const imgBox = ref<any>();
@@ -48,7 +47,6 @@ const colWidth = ref<number>(0);
 const isShow = ref<boolean>(false);
 
 onMounted(() => {
-  list.value = props.list;
   // 获取父盒子宽度
   const { width } = kWaterfall.value.getBoundingClientRect();
   // 设置子盒子宽度
@@ -58,7 +56,7 @@ onMounted(() => {
 });
 
 // 初始化宽高与位置信息
-const init = async (colWidth) => {
+const init = (colWidth) => {
   for (let i = 0; i < kWaterfallChild.value.length; i++) {
     // 设置盒子宽度
     setStyle(kWaterfallChild.value[i], {
@@ -71,8 +69,7 @@ const init = async (colWidth) => {
     // 判断是否第一列
     if (i < props.column) {
       hArr.value.push(kWaterfallChild.value[i].offsetHeight);
-      console.log(kWaterfallChild.value[i].offsetHeight);
-      await setStyle(kWaterfallChild.value[i], {
+      setStyle(kWaterfallChild.value[i], {
         position: `absolute`,
         top: `0px`,
         left: `${i * (colWidth + props.gap)}px`,
@@ -81,7 +78,7 @@ const init = async (colWidth) => {
       // 取数组中最小值与最小值所对应的下标
       const { minHeight, minHeightIndex, maxHeight } = getMinHeight();
       // 设置当前子元素定位
-      await setStyle(kWaterfallChild.value[i], {
+      setStyle(kWaterfallChild.value[i], {
         position: `absolute`,
         top: `${minHeight + props.gap}px`,
         left: `${minHeightIndex * (colWidth + props.gap)}px`,
@@ -90,7 +87,7 @@ const init = async (colWidth) => {
       hArr.value[minHeightIndex] =
         hArr.value[minHeightIndex] + kWaterfallChild.value[i].offsetHeight + props.gap;
       // 更新父盒子高度(最大高度)
-      await setStyle(kWaterfall.value, {
+      setStyle(kWaterfall.value, {
         height: `${maxHeight}px`,
       });
     }
