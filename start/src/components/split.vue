@@ -1,6 +1,6 @@
 <template>
   <div class="split-wrapper">
-    <k-split v-model="triggerPosition" :max="1" mode="vertical" @onMoveEnd="handleMoveEnd">
+    <k-split v-model="triggerPosition" :max="1" mode="vertical" @on-move-end="handleMoveEnd">
       <template #top> hahhaha </template>
       <template #bottom> vue vue vue </template>
     </k-split>

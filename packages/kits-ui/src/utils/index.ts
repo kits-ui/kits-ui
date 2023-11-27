@@ -4,7 +4,7 @@
  * @param json 需要设置的属性
  */
 export const setStyle = (elm: any, json: any) => {
-  console.log(elm, json);
+  // console.log(elm, json);
   if (Array.isArray(elm)) {
     for (let i = 0; i < elm.length; i++) {
       for (const item in json) {
