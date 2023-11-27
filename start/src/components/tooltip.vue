@@ -29,7 +29,7 @@
   </div>
   <div class="index2" style="width: 200px; height: 200px; overflow-y: scroll; margin: 50px auto">
     <div style="width: 150px; display: flex; flex-direction: column; justify-content: center">
-      <k-tooltip :content="`我是span-上面提示${i}`" v-for="(item, i) in 16" :key="i">
+      <k-tooltip v-for="(item, i) in 16" :key="i" :content="`我是span-上面提示${i}`">
         <k-button>我是span{{ i }}</k-button>
       </k-tooltip>
     </div>
