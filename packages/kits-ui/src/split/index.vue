@@ -76,8 +76,8 @@ export default defineComponent({
         if (splitWrapperRef.value) {
           const rect = splitWrapperRef.value.getBoundingClientRect();
           const percent = isHorizontal.value
-            ? (e.pageX + props.thickness / 2 - rect.left) / rect.width
-            : (e.pageY + props.thickness / 2 - rect.top) / rect.height;
+            ? (e.clientX + props.thickness / 2 - rect.left) / rect.width
+            : (e.clientY + props.thickness / 2 - rect.top) / rect.height;
           if (percent < props.min) offsetPosition.value = props.min;
           else if (percent > props.max) offsetPosition.value = props.max;
           else offsetPosition.value = percent;

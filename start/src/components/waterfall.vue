@@ -1,10 +1,10 @@
 <template>
   <div style="display: flex; gap: 60px">
-    <div class="waterFall">
+    <!-- <div class="waterFall">
       <k-waterfall :list="list" :column="3"></k-waterfall>
-    </div>
+    </div> -->
     <div class="waterFall">
-      <k-waterfall :list="list" :column="4">
+      <k-waterfall :list="list" :column="3">
         <template #bottom="{ index }">
           <div class="customDom">
             <p>第{{ index + 1 }}张</p>
@@ -33,7 +33,7 @@ const list = [
     src: 'https://images.tusiassets.com/model_showcase/604801613699364711/ae574f1e-e6ab-7ce0-be3c-efdf150e6a88.png!mfit_w480_h480_jpg_webp',
   },
   {
-    src: 'https://images.tusiassets.com/community/images/611354776034188268/82da544da8d283ffbe58e199536d0147.png!mfit_w480_h480_jpg_webp',
+    src: 'https://images.tusiassets.com/22community/images/611354776034188268/82da544da8d283ffbe58e199536d0147.png!mfit_w480_h480_jpg_webp',
   },
   {
     src: 'https://images.tusiassets.com/model_showcase/644908696930987941/f8df15e0-407d-aa11-77fd-d2720d878617.png!mfit_w480_h480_jpg_webp',
